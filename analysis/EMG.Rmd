@@ -1,0 +1,14 @@
+---
+title: "EMG"
+author: "joellarwood"
+date: "2019-02-21"
+output: workflowr::wflow_html
+---
+
+# Description of EMG technique 
+## Introduction
+
+```{r}
+
+```
+
