@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Mon Feb 25 15:37:34 2019
+    on Mon Mar 25 14:53:15 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -86,7 +86,7 @@ PracMusicClock = core.Clock()
 practice = sound.Sound('prac.wav', secs=-1, stereo=True)
 practice.setVolume(2)
 import serial
-ser = serial.Serial(port = "/dev/tty.usbserial-BBTKUSBTTL", 
+port = serial.Serial(port = "/dev/tty.usbserial-BBTKUSBTTL", 
                     baudrate = 115200, 
                     timeout=1) 
 
@@ -247,8 +247,8 @@ continueRoutine = True
 # update component parameters for each repeat
 practice.setSound('prac.wav')
 practice.setVolume(2, log=False)
-ser.write('10'.encode())
-ser.write("00".encode())
+port.write('10'.encode())
+
 # keep track of which components have finished
 PracMusicComponents = [practice]
 for thisComponent in PracMusicComponents:
@@ -291,7 +291,7 @@ for thisComponent in PracMusicComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
 practice.stop()  # ensure sound has stopped at end of routine
-
+port.write("00".encode())
 # the Routine "PracMusic" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -549,8 +549,7 @@ for thisSongtrial in songtrials:
     # update component parameters for each repeat
     playsong.setSound(song)
     playsong.setVolume(2, log=False)
-    ser.write('marker'.encode())
-    
+    port.write(bytes(marker))
     # keep track of which components have finished
     musicComponents = [playsong]
     for thisComponent in musicComponents:

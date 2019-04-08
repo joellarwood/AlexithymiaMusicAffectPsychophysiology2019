@@ -84,17 +84,17 @@
         <Param name="volume" updates="constant" val="2" valType="code"/>
       </SoundComponent>
       <CodeComponent name="PracMark">
-        <Param name="Begin Experiment" updates="constant" val="import serial&amp;#10;ser = serial.Serial(port = &quot;/dev/tty.usbserial-BBTKUSBTTL&quot;, &amp;#10;                    baudrate = 115200, &amp;#10;                    timeout=1) " valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import serial&amp;#10;port = serial.Serial(port = &quot;/dev/tty.usbserial-BBTKUSBTTL&quot;, &amp;#10;                    baudrate = 115200, &amp;#10;                    timeout=1) " valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="ser.write('10'.encode())&amp;#10;ser.write(&quot;00&quot;.encode())" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="port.write('10'.encode())&amp;#10;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="ser.close()" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="port.write(&quot;00&quot;.encode())" valType="extendedCode"/>
         <Param name="name" updates="None" val="PracMark" valType="code"/>
       </CodeComponent>
     </Routine>
@@ -154,7 +154,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="ser.write('marker'.encode())&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="port.write(&quot;marker&quot;.encode)" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy3 Experiment Builder (v3.0.4),
-    on Thu Feb 21 15:02:09 2019
+This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
+    on Mon Mar 25 14:40:08 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -31,7 +31,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-psychopyVersion = '3.0.4'
+psychopyVersion = '3.0.5'
 expName = 'MusicAffectPsychophysiology2019'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
@@ -47,7 +47,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/joellarwood/Desktop/git/AlexithymiaMusicAffectPsychophysiology2019/Psychopy/MusicAffectPsychophysiology2019.py',
+    originPath='/Users/uqjlarwo/Desktop/git/AlexithymiaMusicAffectPsychophysiology2019/Psychopy/MusicAffectPsychophysiology2019.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -61,7 +61,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 # Setup the Window
 win = visual.Window(
     size=[1440, 900], fullscr=True, screen=0,
-    allowGUI=True, allowStencil=False,
+    allowGUI=False, allowStencil=False,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True)
 # store frame rate of monitor if we can measure it
@@ -83,17 +83,32 @@ instructions = visual.TextStim(win=win, name='instructions',
 
 # Initialize components for Routine "PracMusic"
 PracMusicClock = core.Clock()
-sound_1 = sound.Sound('prac.wav', secs=-1, stereo=True)
-sound_1.setVolume(2)
-
-
-# Initialize components for Routine "valence"
-valenceClock = core.Clock()
-rating = visual.RatingScale(win=win, name='rating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=0, high=1, precision=100, showValue=False, scale='How pleasant did the song make you feel, where 0 = very unpleasant and 1 = very pleasant')
+practice = sound.Sound('prac.wav', secs=-1, stereo=True)
+practice.setVolume(2)
+import serial
+ser = serial.Serial(port = "/dev/tty.usbserial-BBTKUSBTTL", 
+                    baudrate = 115200, 
+                    timeout=1) 
 
 # Initialize components for Routine "arousal"
 arousalClock = core.Clock()
-arousalrating = visual.RatingScale(win=win, name='arousalrating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=0, high=1, precision=100, showValue=False, scale='How pleasant did the song make you feel, where 0 = very unaroused and 1 = very aroused')
+arousaltext = visual.TextStim(win=win, name='arousaltext',
+    text='From 1 (not at all) to 5 (very much so) how aroused/energised did you feel after listening to this song?\n\n1       2       3       4      5',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+
+# Initialize components for Routine "valence"
+valenceClock = core.Clock()
+valencetext = visual.TextStim(win=win, name='valencetext',
+    text='From 1 (not at all) to 5 (very much so) how positive/pleasant did you feel after listening to this song?\n\n1       2       3       4      5',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
 
 # Initialize components for Routine "beginstudy"
 beginstudyClock = core.Clock()
@@ -111,13 +126,25 @@ playsong = sound.Sound('A', secs=-1, stereo=True)
 playsong.setVolume(2)
 
 
-# Initialize components for Routine "valence"
-valenceClock = core.Clock()
-rating = visual.RatingScale(win=win, name='rating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=0, high=1, precision=100, showValue=False, scale='How pleasant did the song make you feel, where 0 = very unpleasant and 1 = very pleasant')
-
 # Initialize components for Routine "arousal"
 arousalClock = core.Clock()
-arousalrating = visual.RatingScale(win=win, name='arousalrating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=0, high=1, precision=100, showValue=False, scale='How pleasant did the song make you feel, where 0 = very unaroused and 1 = very aroused')
+arousaltext = visual.TextStim(win=win, name='arousaltext',
+    text='From 1 (not at all) to 5 (very much so) how aroused/energised did you feel after listening to this song?\n\n1       2       3       4      5',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+
+# Initialize components for Routine "valence"
+valenceClock = core.Clock()
+valencetext = visual.TextStim(win=win, name='valencetext',
+    text='From 1 (not at all) to 5 (very much so) how positive/pleasant did you feel after listening to this song?\n\n1       2       3       4      5',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
 
 # Initialize components for Routine "end"
 endClock = core.Clock()
@@ -170,7 +197,7 @@ while continueRoutine:
         win.callOnFlip(begin.clock.reset)  # t=0 on next screen flip
         event.clearEvents(eventType='keyboard')
     if begin.status == STARTED:
-        theseKeys = event.getKeys(keyList=['y', 'n', 'left', 'right', 'space'])
+        theseKeys = event.getKeys()
         
         # check for quit:
         if "escape" in theseKeys:
@@ -218,12 +245,12 @@ PracMusicClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-sound_1.setSound('prac.wav')
-sound_1.setVolume(2, log=False)
-import serial ser = serial.Serial(0, 115200, timeout=.5) ser.write('01') <My Stimulus Image Shown Here> ser.write('00') ser.close()
+practice.setSound('prac.wav')
+practice.setVolume(2, log=False)
+ser.write('10'.encode())
 
 # keep track of which components have finished
-PracMusicComponents = [sound_1]
+PracMusicComponents = [practice]
 for thisComponent in PracMusicComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -234,12 +261,12 @@ while continueRoutine:
     t = PracMusicClock.getTime()
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    # start/stop sound_1
-    if t >= 0.0 and sound_1.status == NOT_STARTED:
+    # start/stop practice
+    if t >= 0 and practice.status == NOT_STARTED:
         # keep track of start time/frame for later
-        sound_1.tStart = t
-        sound_1.frameNStart = frameN  # exact frame index
-        win.callOnFlip(sound_1.play)  # screen flip
+        practice.tStart = t
+        practice.frameNStart = frameN  # exact frame index
+        win.callOnFlip(practice.play)  # screen flip
     
     
     # check for quit (typically the Esc key)
@@ -263,63 +290,9 @@ while continueRoutine:
 for thisComponent in PracMusicComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-sound_1.stop()  # ensure sound has stopped at end of routine
-
+practice.stop()  # ensure sound has stopped at end of routine
+ser.write("00".encode())
 # the Routine "PracMusic" was not non-slip safe, so reset the non-slip timer
-routineTimer.reset()
-
-# ------Prepare to start Routine "valence"-------
-t = 0
-valenceClock.reset()  # clock
-frameN = -1
-continueRoutine = True
-# update component parameters for each repeat
-rating.reset()
-# keep track of which components have finished
-valenceComponents = [rating]
-for thisComponent in valenceComponents:
-    if hasattr(thisComponent, 'status'):
-        thisComponent.status = NOT_STARTED
-
-# -------Start Routine "valence"-------
-while continueRoutine:
-    # get current time
-    t = valenceClock.getTime()
-    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    # update/draw components on each frame
-    # *rating* updates
-    if t >= 0.0 and rating.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        rating.tStart = t
-        rating.frameNStart = frameN  # exact frame index
-        rating.setAutoDraw(True)
-    continueRoutine &= rating.noResponse  # a response ends the trial
-    
-    # check for quit (typically the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
-    
-    # check if all components have finished
-    if not continueRoutine:  # a component has requested a forced-end of Routine
-        break
-    continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in valenceComponents:
-        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-            continueRoutine = True
-            break  # at least one component has not yet finished
-    
-    # refresh the screen
-    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-        win.flip()
-
-# -------Ending Routine "valence"-------
-for thisComponent in valenceComponents:
-    if hasattr(thisComponent, "setAutoDraw"):
-        thisComponent.setAutoDraw(False)
-# store data for thisExp (ExperimentHandler)
-thisExp.addData('rating.response', rating.getRating())
-thisExp.nextEntry()
-# the Routine "valence" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
 # ------Prepare to start Routine "arousal"-------
@@ -328,9 +301,9 @@ arousalClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-arousalrating.reset()
+arousalkey = event.BuilderKeyResponse()
 # keep track of which components have finished
-arousalComponents = [arousalrating]
+arousalComponents = [arousaltext, arousalkey]
 for thisComponent in arousalComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -341,13 +314,34 @@ while continueRoutine:
     t = arousalClock.getTime()
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    # *arousalrating* updates
-    if t >= 0.0 and arousalrating.status == NOT_STARTED:
+    
+    # *arousaltext* updates
+    if t >= 0.0 and arousaltext.status == NOT_STARTED:
         # keep track of start time/frame for later
-        arousalrating.tStart = t
-        arousalrating.frameNStart = frameN  # exact frame index
-        arousalrating.setAutoDraw(True)
-    continueRoutine &= arousalrating.noResponse  # a response ends the trial
+        arousaltext.tStart = t
+        arousaltext.frameNStart = frameN  # exact frame index
+        arousaltext.setAutoDraw(True)
+    
+    # *arousalkey* updates
+    if t >= 0.0 and arousalkey.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        arousalkey.tStart = t
+        arousalkey.frameNStart = frameN  # exact frame index
+        arousalkey.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(arousalkey.clock.reset)  # t=0 on next screen flip
+        event.clearEvents(eventType='keyboard')
+    if arousalkey.status == STARTED:
+        theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            arousalkey.keys = theseKeys[-1]  # just the last key pressed
+            arousalkey.rt = arousalkey.clock.getTime()
+            # a response ends the routine
+            continueRoutine = False
     
     # check for quit (typically the Esc key)
     if endExpNow or event.getKeys(keyList=["escape"]):
@@ -370,11 +364,93 @@ while continueRoutine:
 for thisComponent in arousalComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-# store data for thisExp (ExperimentHandler)
-thisExp.addData('arousalrating.response', arousalrating.getRating())
-thisExp.addData('arousalrating.rt', arousalrating.getRT())
+# check responses
+if arousalkey.keys in ['', [], None]:  # No response was made
+    arousalkey.keys=None
+thisExp.addData('arousalkey.keys',arousalkey.keys)
+if arousalkey.keys != None:  # we had a response
+    thisExp.addData('arousalkey.rt', arousalkey.rt)
 thisExp.nextEntry()
 # the Routine "arousal" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+# ------Prepare to start Routine "valence"-------
+t = 0
+valenceClock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+valencekey = event.BuilderKeyResponse()
+# keep track of which components have finished
+valenceComponents = [valencetext, valencekey]
+for thisComponent in valenceComponents:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+# -------Start Routine "valence"-------
+while continueRoutine:
+    # get current time
+    t = valenceClock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *valencetext* updates
+    if t >= 0.0 and valencetext.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        valencetext.tStart = t
+        valencetext.frameNStart = frameN  # exact frame index
+        valencetext.setAutoDraw(True)
+    
+    # *valencekey* updates
+    if t >= 0.0 and valencekey.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        valencekey.tStart = t
+        valencekey.frameNStart = frameN  # exact frame index
+        valencekey.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(valencekey.clock.reset)  # t=0 on next screen flip
+        event.clearEvents(eventType='keyboard')
+    if valencekey.status == STARTED:
+        theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            valencekey.keys = theseKeys[-1]  # just the last key pressed
+            valencekey.rt = valencekey.clock.getTime()
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in valenceComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "valence"-------
+for thisComponent in valenceComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# check responses
+if valencekey.keys in ['', [], None]:  # No response was made
+    valencekey.keys=None
+thisExp.addData('valencekey.keys',valencekey.keys)
+if valencekey.keys != None:  # we had a response
+    thisExp.addData('valencekey.rt', valencekey.rt)
+thisExp.nextEntry()
+# the Routine "valence" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
 # ------Prepare to start Routine "beginstudy"-------
@@ -473,7 +549,7 @@ for thisSongtrial in songtrials:
     # update component parameters for each repeat
     playsong.setSound(song)
     playsong.setVolume(2, log=False)
-    import serial ser = serial.Serial(0, 115200, timeout=.5) ser.write('01') <practice trial> ser.write('00') ser.close()
+    ser.write("10". encode())
     # keep track of which components have finished
     musicComponents = [playsong]
     for thisComponent in musicComponents:
@@ -516,61 +592,8 @@ for thisSongtrial in songtrials:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     playsong.stop()  # ensure sound has stopped at end of routine
-    
+    ser.write("00". encode())
     # the Routine "music" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
-    
-    # ------Prepare to start Routine "valence"-------
-    t = 0
-    valenceClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    # update component parameters for each repeat
-    rating.reset()
-    # keep track of which components have finished
-    valenceComponents = [rating]
-    for thisComponent in valenceComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "valence"-------
-    while continueRoutine:
-        # get current time
-        t = valenceClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        # *rating* updates
-        if t >= 0.0 and rating.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            rating.tStart = t
-            rating.frameNStart = frameN  # exact frame index
-            rating.setAutoDraw(True)
-        continueRoutine &= rating.noResponse  # a response ends the trial
-        
-        # check for quit (typically the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in valenceComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "valence"-------
-    for thisComponent in valenceComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    # store data for songtrials (TrialHandler)
-    songtrials.addData('rating.response', rating.getRating())
-    # the Routine "valence" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
     # ------Prepare to start Routine "arousal"-------
@@ -579,9 +602,9 @@ for thisSongtrial in songtrials:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    arousalrating.reset()
+    arousalkey = event.BuilderKeyResponse()
     # keep track of which components have finished
-    arousalComponents = [arousalrating]
+    arousalComponents = [arousaltext, arousalkey]
     for thisComponent in arousalComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -592,13 +615,34 @@ for thisSongtrial in songtrials:
         t = arousalClock.getTime()
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        # *arousalrating* updates
-        if t >= 0.0 and arousalrating.status == NOT_STARTED:
+        
+        # *arousaltext* updates
+        if t >= 0.0 and arousaltext.status == NOT_STARTED:
             # keep track of start time/frame for later
-            arousalrating.tStart = t
-            arousalrating.frameNStart = frameN  # exact frame index
-            arousalrating.setAutoDraw(True)
-        continueRoutine &= arousalrating.noResponse  # a response ends the trial
+            arousaltext.tStart = t
+            arousaltext.frameNStart = frameN  # exact frame index
+            arousaltext.setAutoDraw(True)
+        
+        # *arousalkey* updates
+        if t >= 0.0 and arousalkey.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            arousalkey.tStart = t
+            arousalkey.frameNStart = frameN  # exact frame index
+            arousalkey.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(arousalkey.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        if arousalkey.status == STARTED:
+            theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                arousalkey.keys = theseKeys[-1]  # just the last key pressed
+                arousalkey.rt = arousalkey.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -621,10 +665,91 @@ for thisSongtrial in songtrials:
     for thisComponent in arousalComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    # store data for songtrials (TrialHandler)
-    songtrials.addData('arousalrating.response', arousalrating.getRating())
-    songtrials.addData('arousalrating.rt', arousalrating.getRT())
+    # check responses
+    if arousalkey.keys in ['', [], None]:  # No response was made
+        arousalkey.keys=None
+    songtrials.addData('arousalkey.keys',arousalkey.keys)
+    if arousalkey.keys != None:  # we had a response
+        songtrials.addData('arousalkey.rt', arousalkey.rt)
     # the Routine "arousal" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # ------Prepare to start Routine "valence"-------
+    t = 0
+    valenceClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    valencekey = event.BuilderKeyResponse()
+    # keep track of which components have finished
+    valenceComponents = [valencetext, valencekey]
+    for thisComponent in valenceComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "valence"-------
+    while continueRoutine:
+        # get current time
+        t = valenceClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *valencetext* updates
+        if t >= 0.0 and valencetext.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            valencetext.tStart = t
+            valencetext.frameNStart = frameN  # exact frame index
+            valencetext.setAutoDraw(True)
+        
+        # *valencekey* updates
+        if t >= 0.0 and valencekey.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            valencekey.tStart = t
+            valencekey.frameNStart = frameN  # exact frame index
+            valencekey.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(valencekey.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        if valencekey.status == STARTED:
+            theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                valencekey.keys = theseKeys[-1]  # just the last key pressed
+                valencekey.rt = valencekey.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in valenceComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "valence"-------
+    for thisComponent in valenceComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # check responses
+    if valencekey.keys in ['', [], None]:  # No response was made
+        valencekey.keys=None
+    songtrials.addData('valencekey.keys',valencekey.keys)
+    if valencekey.keys != None:  # we had a response
+        songtrials.addData('valencekey.rt', valencekey.rt)
+    # the Routine "valence" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
     
@@ -718,7 +843,7 @@ if key_resp_2.keys != None:  # we had a response
 thisExp.nextEntry()
 # the Routine "end" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
-
+ser.close()
 
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')

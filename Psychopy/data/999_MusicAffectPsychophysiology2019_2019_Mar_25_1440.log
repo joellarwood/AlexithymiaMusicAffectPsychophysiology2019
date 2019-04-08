@@ -1,0 +1,39 @@
+5.7683 	WARNING 	User requested fullscreen with size [1440  900], but screen is actually [1920, 1080]. Using actual size
+6.4096 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x126d39d30>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x12a83ec88>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='norm', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+6.4096 	EXP 	window1: recordFrameIntervals = False
+6.5771 	EXP 	window1: recordFrameIntervals = True
+6.7611 	EXP 	window1: recordFrameIntervals = False
+6.8922 	EXP 	Created instructions = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='instructions', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+6.9286 	EXP 	Sound  set volume 1.000
+6.9594 	EXP 	Created arousaltext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='arousaltext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+6.9831 	EXP 	Created valencetext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='valencetext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.0160 	EXP 	Created text = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.0161 	EXP 	Sound  set volume 1.000
+7.0388 	EXP 	Created arousaltext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='arousaltext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.0599 	EXP 	Created valencetext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='valencetext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.0855 	EXP 	Created MusicEnd = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='MusicEnd', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.1113 	EXP 	instructions: autoDraw = True
+8.2829 	DATA 	Keypress: space
+8.3281 	EXP 	instructions: autoDraw = False
+38.3448 	EXP 	arousaltext: autoDraw = True
+40.0654 	DATA 	Keypress: 1
+40.0803 	EXP 	arousaltext: autoDraw = False
+40.0803 	EXP 	valencetext: autoDraw = True
+40.6822 	DATA 	Keypress: 1
+40.6979 	EXP 	valencetext: autoDraw = False
+40.6979 	EXP 	text: autoDraw = True
+42.2021 	DATA 	Keypress: space
+42.2123 	EXP 	Imported Music.xlsx as conditions, 16 conditions, 4 params
+42.2127 	EXP 	Created sequence: random, trialTypes=16, nReps=1, seed=None
+42.2129 	EXP 	New trial (rep=0, index=0): OrderedDict([('song', '30MonoWAV/30MonoF3.wav'), ('valence', 1), ('arousal', 2), ('marker', 22)])
+42.2496 	EXP 	text: autoDraw = False
+72.2668 	EXP 	arousaltext: autoDraw = True
+74.6047 	DATA 	Keypress: 1
+74.6187 	EXP 	arousaltext: autoDraw = False
+74.6187 	EXP 	valencetext: autoDraw = True
+75.0205 	DATA 	Keypress: 1
+75.0214 	EXP 	New trial (rep=0, index=1): OrderedDict([('song', '30MonoWAV/30MonoS1.wav'), ('valence', 1), ('arousal', 1), ('marker', 28)])
+75.0524 	EXP 	valencetext: autoDraw = False
+105.0696 	EXP 	arousaltext: autoDraw = True
+165.8892 	DATA 	Keypress: escape
+166.1532 	EXP 	window1: mouseVisible = True
