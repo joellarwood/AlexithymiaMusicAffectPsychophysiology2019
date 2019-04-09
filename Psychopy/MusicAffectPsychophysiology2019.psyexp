@@ -154,14 +154,14 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="port.write(&quot;marker&quot;.encode)" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="port.write('marker'.encode())" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="ser.write(&quot;00&quot;. encode())" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="port.write(&quot;00&quot;. encode())" valType="extendedCode"/>
         <Param name="name" updates="None" val="mark" valType="code"/>
       </CodeComponent>
     </Routine>
@@ -282,12 +282,106 @@
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
     </Routine>
+    <Routine name="Differentiation">
+      <TextComponent name="WordInstruction">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="WordInstruction" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, .5)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="text" updates="set every repeat" val="$Instruction&amp;#10;&amp;#10;&amp;#10;&amp;#10;" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="WordResponse">
+        <Param name="allowedKeys" updates="constant" val="'1', '2', '3', '4'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="WordResponse" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <TextComponent name="WordScale">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="WordScale" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -.3)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="text" updates="constant" val="1 (Not at all)&amp;#10;&amp;#10;2 (Little)&amp;#10;&amp;#10;3 (Much)&amp;#10;&amp;#10;4(A great deal)" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <TextComponent name="EmoWord">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="EmoWord" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, .3)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="text" updates="set every repeat" val="$Word" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="instru"/>
     <Routine name="PracMusic"/>
     <Routine name="arousal"/>
     <Routine name="valence"/>
+    <LoopInitiator loopType="TrialHandler" name="pracwords">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SAD')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANXIOUS ')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANGRY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'FRUSTRATED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ASHAMED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'GUILTY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'HAPPY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'EXCITED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ALERT')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ACTIVE')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'TENDER')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SCARED')])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="EMOTIONWORDS.xlsx" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="pracwords" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Differentiation"/>
+    <LoopTerminator name="pracwords"/>
     <Routine name="beginstudy"/>
     <LoopInitiator loopType="TrialHandler" name="songtrials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
@@ -303,6 +397,19 @@
     <Routine name="music"/>
     <Routine name="arousal"/>
     <Routine name="valence"/>
+    <LoopInitiator loopType="TrialHandler" name="words">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SAD')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANXIOUS ')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANGRY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'FRUSTRATED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ASHAMED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'GUILTY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'HAPPY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'EXCITED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ALERT')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ACTIVE')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'TENDER')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SCARED')])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="EMOTIONWORDS.xlsx" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="words" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Differentiation"/>
+    <LoopTerminator name="words"/>
     <LoopTerminator name="songtrials"/>
     <Routine name="end"/>
   </Flow>

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Mon Mar 25 14:53:15 2019
+    on Tue Apr  9 10:46:08 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -110,6 +110,30 @@ valencetext = visual.TextStim(win=win, name='valencetext',
     languageStyle='LTR',
     depth=0.0);
 
+# Initialize components for Routine "Differentiation"
+DifferentiationClock = core.Clock()
+WordInstruction = visual.TextStim(win=win, name='WordInstruction',
+    text='default text',
+    font='Arial',
+    pos=(0, .5), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+WordScale = visual.TextStim(win=win, name='WordScale',
+    text='1 (Not at all)\n\n2 (Little)\n\n3 (Much)\n\n4(A great deal)',
+    font='Arial',
+    pos=(0, -.3), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
+EmoWord = visual.TextStim(win=win, name='EmoWord',
+    text='default text',
+    font='Arial',
+    pos=(0, .3), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-3.0);
+
 # Initialize components for Routine "beginstudy"
 beginstudyClock = core.Clock()
 text = visual.TextStim(win=win, name='text',
@@ -145,6 +169,30 @@ valencetext = visual.TextStim(win=win, name='valencetext',
     color='white', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=0.0);
+
+# Initialize components for Routine "Differentiation"
+DifferentiationClock = core.Clock()
+WordInstruction = visual.TextStim(win=win, name='WordInstruction',
+    text='default text',
+    font='Arial',
+    pos=(0, .5), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+WordScale = visual.TextStim(win=win, name='WordScale',
+    text='1 (Not at all)\n\n2 (Little)\n\n3 (Much)\n\n4(A great deal)',
+    font='Arial',
+    pos=(0, -.3), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
+EmoWord = visual.TextStim(win=win, name='EmoWord',
+    text='default text',
+    font='Arial',
+    pos=(0, .3), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-3.0);
 
 # Initialize components for Routine "end"
 endClock = core.Clock()
@@ -453,6 +501,139 @@ thisExp.nextEntry()
 # the Routine "valence" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
+# set up handler to look after randomisation of conditions etc
+pracwords = data.TrialHandler(nReps=1, method='random', 
+    extraInfo=expInfo, originPath=-1,
+    trialList=data.importConditions('EMOTIONWORDS.xlsx'),
+    seed=None, name='pracwords')
+thisExp.addLoop(pracwords)  # add the loop to the experiment
+thisPracword = pracwords.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisPracword.rgb)
+if thisPracword != None:
+    for paramName in thisPracword:
+        exec('{} = thisPracword[paramName]'.format(paramName))
+
+for thisPracword in pracwords:
+    currentLoop = pracwords
+    # abbreviate parameter names if possible (e.g. rgb = thisPracword.rgb)
+    if thisPracword != None:
+        for paramName in thisPracword:
+            exec('{} = thisPracword[paramName]'.format(paramName))
+    
+    # ------Prepare to start Routine "Differentiation"-------
+    t = 0
+    DifferentiationClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    WordInstruction.setText(Instruction
+
+
+
+)
+    WordResponse = event.BuilderKeyResponse()
+    EmoWord.setText(Word)
+    # keep track of which components have finished
+    DifferentiationComponents = [WordInstruction, WordResponse, WordScale, EmoWord]
+    for thisComponent in DifferentiationComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "Differentiation"-------
+    while continueRoutine:
+        # get current time
+        t = DifferentiationClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *WordInstruction* updates
+        if t >= 0.0 and WordInstruction.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            WordInstruction.tStart = t
+            WordInstruction.frameNStart = frameN  # exact frame index
+            WordInstruction.setAutoDraw(True)
+        
+        # *WordResponse* updates
+        if t >= 0.0 and WordResponse.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            WordResponse.tStart = t
+            WordResponse.frameNStart = frameN  # exact frame index
+            WordResponse.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(WordResponse.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        if WordResponse.status == STARTED:
+            theseKeys = event.getKeys(keyList=['1', '2', '3', '4'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                WordResponse.keys = theseKeys[-1]  # just the last key pressed
+                WordResponse.rt = WordResponse.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
+        
+        # *WordScale* updates
+        if t >= 0.0 and WordScale.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            WordScale.tStart = t
+            WordScale.frameNStart = frameN  # exact frame index
+            WordScale.setAutoDraw(True)
+        
+        # *EmoWord* updates
+        if t >= 0.0 and EmoWord.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            EmoWord.tStart = t
+            EmoWord.frameNStart = frameN  # exact frame index
+            EmoWord.setAutoDraw(True)
+        frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if EmoWord.status == STARTED and t >= frameRemains:
+            EmoWord.setAutoDraw(False)
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in DifferentiationComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "Differentiation"-------
+    for thisComponent in DifferentiationComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # check responses
+    if WordResponse.keys in ['', [], None]:  # No response was made
+        WordResponse.keys=None
+    pracwords.addData('WordResponse.keys',WordResponse.keys)
+    if WordResponse.keys != None:  # we had a response
+        pracwords.addData('WordResponse.rt', WordResponse.rt)
+    # the Routine "Differentiation" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    thisExp.nextEntry()
+    
+# completed 1 repeats of 'pracwords'
+
+# get names of stimulus parameters
+if pracwords.trialList in ([], [None], None):
+    params = []
+else:
+    params = pracwords.trialList[0].keys()
+# save data for this loop
+pracwords.saveAsText(filename + 'pracwords.csv', delim=',',
+    stimOut=params,
+    dataOut=['n','all_mean','all_std', 'all_raw'])
+
 # ------Prepare to start Routine "beginstudy"-------
 t = 0
 beginstudyClock.reset()  # clock
@@ -549,7 +730,7 @@ for thisSongtrial in songtrials:
     # update component parameters for each repeat
     playsong.setSound(song)
     playsong.setVolume(2, log=False)
-    port.write(bytes(marker))
+    port.write('marker'.encode())
     # keep track of which components have finished
     musicComponents = [playsong]
     for thisComponent in musicComponents:
@@ -592,7 +773,7 @@ for thisSongtrial in songtrials:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     playsong.stop()  # ensure sound has stopped at end of routine
-    ser.write("00". encode())
+    port.write("00". encode())
     # the Routine "music" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -751,6 +932,139 @@ for thisSongtrial in songtrials:
         songtrials.addData('valencekey.rt', valencekey.rt)
     # the Routine "valence" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
+    
+    # set up handler to look after randomisation of conditions etc
+    words = data.TrialHandler(nReps=1, method='random', 
+        extraInfo=expInfo, originPath=-1,
+        trialList=data.importConditions('EMOTIONWORDS.xlsx'),
+        seed=None, name='words')
+    thisExp.addLoop(words)  # add the loop to the experiment
+    thisWord = words.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisWord.rgb)
+    if thisWord != None:
+        for paramName in thisWord:
+            exec('{} = thisWord[paramName]'.format(paramName))
+    
+    for thisWord in words:
+        currentLoop = words
+        # abbreviate parameter names if possible (e.g. rgb = thisWord.rgb)
+        if thisWord != None:
+            for paramName in thisWord:
+                exec('{} = thisWord[paramName]'.format(paramName))
+        
+        # ------Prepare to start Routine "Differentiation"-------
+        t = 0
+        DifferentiationClock.reset()  # clock
+        frameN = -1
+        continueRoutine = True
+        # update component parameters for each repeat
+        WordInstruction.setText(Instruction
+
+
+
+)
+        WordResponse = event.BuilderKeyResponse()
+        EmoWord.setText(Word)
+        # keep track of which components have finished
+        DifferentiationComponents = [WordInstruction, WordResponse, WordScale, EmoWord]
+        for thisComponent in DifferentiationComponents:
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        
+        # -------Start Routine "Differentiation"-------
+        while continueRoutine:
+            # get current time
+            t = DifferentiationClock.getTime()
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *WordInstruction* updates
+            if t >= 0.0 and WordInstruction.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                WordInstruction.tStart = t
+                WordInstruction.frameNStart = frameN  # exact frame index
+                WordInstruction.setAutoDraw(True)
+            
+            # *WordResponse* updates
+            if t >= 0.0 and WordResponse.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                WordResponse.tStart = t
+                WordResponse.frameNStart = frameN  # exact frame index
+                WordResponse.status = STARTED
+                # keyboard checking is just starting
+                win.callOnFlip(WordResponse.clock.reset)  # t=0 on next screen flip
+                event.clearEvents(eventType='keyboard')
+            if WordResponse.status == STARTED:
+                theseKeys = event.getKeys(keyList=['1', '2', '3', '4'])
+                
+                # check for quit:
+                if "escape" in theseKeys:
+                    endExpNow = True
+                if len(theseKeys) > 0:  # at least one key was pressed
+                    WordResponse.keys = theseKeys[-1]  # just the last key pressed
+                    WordResponse.rt = WordResponse.clock.getTime()
+                    # a response ends the routine
+                    continueRoutine = False
+            
+            # *WordScale* updates
+            if t >= 0.0 and WordScale.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                WordScale.tStart = t
+                WordScale.frameNStart = frameN  # exact frame index
+                WordScale.setAutoDraw(True)
+            
+            # *EmoWord* updates
+            if t >= 0.0 and EmoWord.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                EmoWord.tStart = t
+                EmoWord.frameNStart = frameN  # exact frame index
+                EmoWord.setAutoDraw(True)
+            frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
+            if EmoWord.status == STARTED and t >= frameRemains:
+                EmoWord.setAutoDraw(False)
+            
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in DifferentiationComponents:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # -------Ending Routine "Differentiation"-------
+        for thisComponent in DifferentiationComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # check responses
+        if WordResponse.keys in ['', [], None]:  # No response was made
+            WordResponse.keys=None
+        words.addData('WordResponse.keys',WordResponse.keys)
+        if WordResponse.keys != None:  # we had a response
+            words.addData('WordResponse.rt', WordResponse.rt)
+        # the Routine "Differentiation" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
+        thisExp.nextEntry()
+        
+    # completed 1 repeats of 'words'
+    
+    # get names of stimulus parameters
+    if words.trialList in ([], [None], None):
+        params = []
+    else:
+        params = words.trialList[0].keys()
+    # save data for this loop
+    words.saveAsText(filename + 'words.csv', delim=',',
+        stimOut=params,
+        dataOut=['n','all_mean','all_std', 'all_raw'])
     thisExp.nextEntry()
     
 # completed 1 repeats of 'songtrials'
