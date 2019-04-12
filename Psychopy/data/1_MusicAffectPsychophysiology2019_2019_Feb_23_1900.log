@@ -1,8 +1,0 @@
-2.6707 	WARNING 	sounddevice audio lib was requested but not loaded: sounddevice not working
-8.0567 	EXP 	Created window1 = Window(allowGUI=True, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x127a36dd8>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x12b8f5438>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([2880, 1800]), stereo=False, units='norm', useFBO=True, useRetina=True, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
-8.0568 	EXP 	window1: recordFrameIntervals = False
-8.2233 	EXP 	window1: recordFrameIntervals = True
-8.2875 	WARNING 	t of last frame was 31.52ms (=1/31)
-8.4552 	EXP 	window1: recordFrameIntervals = False
-8.6655 	EXP 	Created instructions = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='instructions', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
-10.8628 	EXP 	Set  sound=C

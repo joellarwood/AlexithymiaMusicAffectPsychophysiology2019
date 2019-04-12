@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Tue Apr  9 10:46:08 2019
+    on Fri Apr 12 10:07:11 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -93,7 +93,7 @@ port = serial.Serial(port = "/dev/tty.usbserial-BBTKUSBTTL",
 # Initialize components for Routine "arousal"
 arousalClock = core.Clock()
 arousaltext = visual.TextStim(win=win, name='arousaltext',
-    text='From 1 (not at all) to 5 (very much so) how aroused/energised did you feel after listening to this song?\n\n1       2       3       4      5',
+    text='how aroused/energised did you feel after listening to this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -103,7 +103,17 @@ arousaltext = visual.TextStim(win=win, name='arousaltext',
 # Initialize components for Routine "valence"
 valenceClock = core.Clock()
 valencetext = visual.TextStim(win=win, name='valencetext',
-    text='From 1 (not at all) to 5 (very much so) how positive/pleasant did you feel after listening to this song?\n\n1       2       3       4      5',
+    text='How positive/pleasant did you feel after listening to this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+
+# Initialize components for Routine "liking"
+likingClock = core.Clock()
+like = visual.TextStim(win=win, name='like',
+    text='How much did you like this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -120,7 +130,7 @@ WordInstruction = visual.TextStim(win=win, name='WordInstruction',
     languageStyle='LTR',
     depth=0.0);
 WordScale = visual.TextStim(win=win, name='WordScale',
-    text='1 (Not at all)\n\n2 (Little)\n\n3 (Much)\n\n4(A great deal)',
+    text='1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, -.3), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -153,7 +163,7 @@ playsong.setVolume(2)
 # Initialize components for Routine "arousal"
 arousalClock = core.Clock()
 arousaltext = visual.TextStim(win=win, name='arousaltext',
-    text='From 1 (not at all) to 5 (very much so) how aroused/energised did you feel after listening to this song?\n\n1       2       3       4      5',
+    text='how aroused/energised did you feel after listening to this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -163,7 +173,7 @@ arousaltext = visual.TextStim(win=win, name='arousaltext',
 # Initialize components for Routine "valence"
 valenceClock = core.Clock()
 valencetext = visual.TextStim(win=win, name='valencetext',
-    text='From 1 (not at all) to 5 (very much so) how positive/pleasant did you feel after listening to this song?\n\n1       2       3       4      5',
+    text='How positive/pleasant did you feel after listening to this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -180,7 +190,7 @@ WordInstruction = visual.TextStim(win=win, name='WordInstruction',
     languageStyle='LTR',
     depth=0.0);
 WordScale = visual.TextStim(win=win, name='WordScale',
-    text='1 (Not at all)\n\n2 (Little)\n\n3 (Much)\n\n4(A great deal)',
+    text='1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, -.3), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -193,6 +203,16 @@ EmoWord = visual.TextStim(win=win, name='EmoWord',
     color='white', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
+
+# Initialize components for Routine "musicbreak"
+musicbreakClock = core.Clock()
+betweensongs = visual.TextStim(win=win, name='betweensongs',
+    text='+',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
 
 # Initialize components for Routine "end"
 endClock = core.Clock()
@@ -501,6 +521,85 @@ thisExp.nextEntry()
 # the Routine "valence" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
+# ------Prepare to start Routine "liking"-------
+t = 0
+likingClock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+likekey = event.BuilderKeyResponse()
+# keep track of which components have finished
+likingComponents = [like, likekey]
+for thisComponent in likingComponents:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+# -------Start Routine "liking"-------
+while continueRoutine:
+    # get current time
+    t = likingClock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *like* updates
+    if t >= 0.0 and like.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        like.tStart = t
+        like.frameNStart = frameN  # exact frame index
+        like.setAutoDraw(True)
+    
+    # *likekey* updates
+    if t >= 0.0 and likekey.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        likekey.tStart = t
+        likekey.frameNStart = frameN  # exact frame index
+        likekey.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(likekey.clock.reset)  # t=0 on next screen flip
+        event.clearEvents(eventType='keyboard')
+    if likekey.status == STARTED:
+        theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            likekey.keys = theseKeys[-1]  # just the last key pressed
+            likekey.rt = likekey.clock.getTime()
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in likingComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "liking"-------
+for thisComponent in likingComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# check responses
+if likekey.keys in ['', [], None]:  # No response was made
+    likekey.keys=None
+thisExp.addData('likekey.keys',likekey.keys)
+if likekey.keys != None:  # we had a response
+    thisExp.addData('likekey.rt', likekey.rt)
+thisExp.nextEntry()
+# the Routine "liking" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
 # set up handler to look after randomisation of conditions etc
 pracwords = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
@@ -563,7 +662,7 @@ for thisPracword in pracwords:
             win.callOnFlip(WordResponse.clock.reset)  # t=0 on next screen flip
             event.clearEvents(eventType='keyboard')
         if WordResponse.status == STARTED:
-            theseKeys = event.getKeys(keyList=['1', '2', '3', '4'])
+            theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
             
             # check for quit:
             if "escape" in theseKeys:
@@ -587,9 +686,6 @@ for thisPracword in pracwords:
             EmoWord.tStart = t
             EmoWord.frameNStart = frameN  # exact frame index
             EmoWord.setAutoDraw(True)
-        frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if EmoWord.status == STARTED and t >= frameRemains:
-            EmoWord.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -730,7 +826,7 @@ for thisSongtrial in songtrials:
     # update component parameters for each repeat
     playsong.setSound(song)
     playsong.setVolume(2, log=False)
-    port.write('marker'.encode())
+    port.write('10'.encode())
     # keep track of which components have finished
     musicComponents = [playsong]
     for thisComponent in musicComponents:
@@ -995,7 +1091,7 @@ for thisSongtrial in songtrials:
                 win.callOnFlip(WordResponse.clock.reset)  # t=0 on next screen flip
                 event.clearEvents(eventType='keyboard')
             if WordResponse.status == STARTED:
-                theseKeys = event.getKeys(keyList=['1', '2', '3', '4'])
+                theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
                 
                 # check for quit:
                 if "escape" in theseKeys:
@@ -1019,9 +1115,6 @@ for thisSongtrial in songtrials:
                 EmoWord.tStart = t
                 EmoWord.frameNStart = frameN  # exact frame index
                 EmoWord.setAutoDraw(True)
-            frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
-            if EmoWord.status == STARTED and t >= frameRemains:
-                EmoWord.setAutoDraw(False)
             
             # check for quit (typically the Esc key)
             if endExpNow or event.getKeys(keyList=["escape"]):
@@ -1065,6 +1158,58 @@ for thisSongtrial in songtrials:
     words.saveAsText(filename + 'words.csv', delim=',',
         stimOut=params,
         dataOut=['n','all_mean','all_std', 'all_raw'])
+    
+    # ------Prepare to start Routine "musicbreak"-------
+    t = 0
+    musicbreakClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    routineTimer.add(15.000000)
+    # update component parameters for each repeat
+    # keep track of which components have finished
+    musicbreakComponents = [betweensongs]
+    for thisComponent in musicbreakComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "musicbreak"-------
+    while continueRoutine and routineTimer.getTime() > 0:
+        # get current time
+        t = musicbreakClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *betweensongs* updates
+        if t >= 0.0 and betweensongs.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            betweensongs.tStart = t
+            betweensongs.frameNStart = frameN  # exact frame index
+            betweensongs.setAutoDraw(True)
+        frameRemains = 0.0 + 15- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if betweensongs.status == STARTED and t >= frameRemains:
+            betweensongs.setAutoDraw(False)
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in musicbreakComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "musicbreak"-------
+    for thisComponent in musicbreakComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
     thisExp.nextEntry()
     
 # completed 1 repeats of 'songtrials'
