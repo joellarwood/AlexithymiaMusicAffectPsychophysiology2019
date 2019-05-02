@@ -1,3 +1,20 @@
+-   [Confirmatory Predictions](#confirmatory-predictions)
+-   [Explorations](#explorations)
+-   [Rationale (optional)](#rationale-optional)
+-   [Methods](#methods)
+    -   [Design](#design)
+    -   [Planned sample](#planned-sample)
+    -   [Exclusion criteria](#exclusion-criteria)
+    -   [Procedure](#procedure)
+-   [Analysis plan](#analysis-plan)
+    -   [Confirmatory analyses](#confirmatory-analyses)
+    -   [Details of analysis](#details-of-analysis)
+    -   [Existing data](#existing-data)
+    -   [Project schedule (optional)](#project-schedule-optional)
+    -   [Further comments (optional)](#further-comments-optional)
+-   [References](#references)
+    -   [](#section)
+
 Pre-registration is commit \#
 <!--ensure this is completed after Gen and Eric have looked at the documnent-->
 
@@ -14,7 +31,7 @@ Confirmatory Predictions
 corrugator activity compared to music that is positively valenced.
 
 ``` r
-##Insert hypotheis test code chunk/s
+##Insert hypothesis test code chunk/s
 ```
 
 </p>

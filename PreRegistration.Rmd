@@ -3,9 +3,11 @@ title           : "Preregistration: Affective, Emotional, and Psychophysiologioc
 shorttitle      : "My preregistration"
 date            : "`r Sys.setlocale('LC_TIME', 'C'); format(Sys.time(), '%d\\\\. %B %Y')`"
 
-output: 
-markdown_github:
-  toc: true 
+output:
+  md_document:
+    variant: markdown_github
+    toc: true
+    toc_depth: 2
 ---
 Pre-registration is commit #  <!--ensure this is completed after Gen and Eric have looked at the documnent-->
 
@@ -22,7 +24,7 @@ Reserved data URL :
 ### Psychophysiology
 <p> **H1:** Music that is negatively valenced will lead to increased corrugator activity compared to music that is positively valenced. 
 ```{r}
-##Insert hypotheis test code chunk/s
+##Insert hypothesis test code chunk/s
 ```
 </p>
 <p> **H2:** Music that is posititvely valenced will lead to increased zygomaticus activity compared to music that is negatively valenced. 
@@ -160,6 +162,7 @@ Enter your response here.
 
 ```{r echo = FALSE}
 ##INSERT DRIVE->MARKDOWN ROUNDTRIP HERE - EXPORT
+##INSERT OSF UPLOAD/UPDATE
 ```
 
 # References
