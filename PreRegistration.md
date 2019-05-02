@@ -1,14 +1,15 @@
 Preregistration: Affective, Emotional, and Psychophysiologiocal
 Responses to Music in Alexithymia
 ================
-02\. May 2019
+03\. May 2019
 
-  - [Confirmatory Predictions](#confirmatory-predictions)
-      - [Psychophysiology](#psychophysiology)
-      - [Core Affect](#core-affect)
-      - [Emotion Differentiation](#emotion-differentiation)
-  - [Explorations](#explorations)
-  - [Rationale (optional)](#rationale-optional)
+  - [Hypotheses](#hypotheses)
+      - [Confirmatory Predictions](#confirmatory-predictions)
+          - [Psychophysiology](#psychophysiology)
+          - [Core Affect](#core-affect)
+          - [Emotion Differentiation](#emotion-differentiation)
+      - [Explorations](#explorations)
+      - [Rationale (optional)](#rationale-optional)
   - [Methods](#methods)
       - [Design](#design)
           - [Independent Variables](#independent-variables)
@@ -25,7 +26,9 @@ Responses to Music in Alexithymia
 Pre-registration is commit \#
 <!--ensure this is completed after Gen and Eric have looked at the documnent-->
 
-Reserved data URL : \# Hypotheses
+Reserved data URL :
+
+# Hypotheses
 
 ## Confirmatory Predictions
 
@@ -312,7 +315,7 @@ Positive and Negative Emotion Differentiation\[2\]
 
 <!-- If applicable, describe pre-selection rules. Indicate where, from whom and how the data will be collected. Justify planned sample size. If applicable, include or refer to a file related to your power analysis here (e.g., a protocol of power analyses from G*Power, a script, a screenshot, etc.). Describe data collection termination rule. -->
 
-Enter your response here.
+The sample will be 120 undergraduate psychology students.
 
 ## Exclusion criteria
 
@@ -345,7 +348,12 @@ Enter your response here.
 
 If using techniques other than null hypothesis testing (for example, Bayesian statistics), describe your criteria and inputs toward making an evidential conclusion, including prior values or distributions. -->
 
-Enter your response here.
+All analyses relating to differences in affect and emotion across music
+type and alexithymia will be modelled using a HGLMM. Trials for each
+stimuli will be nested in the stimulus which is nested in the affective
+category. Alexithymia will be treated as a continuous variable and the
+model will be the emotion category\*alexithymia interaction, grouped by
+participant, stimulus and trial.
 
 ## Details of analysis
 
