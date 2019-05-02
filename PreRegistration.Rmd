@@ -4,15 +4,13 @@ shorttitle      : "My preregistration"
 date            : "`r Sys.setlocale('LC_TIME', 'C'); format(Sys.time(), '%d\\\\. %B %Y')`"
 
 output:
-  md_document:
-    variant: markdown_github
+  github_document:
     toc: true
-    toc_depth: 2
 ---
 Pre-registration is commit #  <!--ensure this is completed after Gen and Eric have looked at the documnent-->
 
 ```{r echo = FALSE}
-##INSERT DRIVE->MARKDOWN ROUNDTRIP HERE - IMPORT 
+##INSERT DRIVE-> MARKDOWN ROUNDTRIP HERE - IMPORT 
 ```
 
 Reserved data URL : 
@@ -73,9 +71,13 @@ Reserved data URL :
 ## Rationale (optional)
 <!-- A figure or table may be helpful to describe complex interactions; this facilitates correct specification of the ordering of all group means. For original research, add rationales or theoretical frameworks for why a certain hypothesis is tested. If multiple predictions can be made for the same IV-DV combination, describe what outcome would be predicted by which theory. -->
 
+<p>There are two dominant perspectives that explain emotional experiences; the basic emotion approach and the constructed emotion approach. These perspectives lead to fundamentally different hypotheses about the antecedents and processes of emotional experience. While both theories of emotion arrive at the same end product of an emotion category, basic emotion theory does not consider valence and arousal while constructionist theory does. Furthermore, basic emotion theory has a strong stimulus -> response link. Constructed emotion provides a more nuanced view, however, where the affective qualities of a stimuli are considered, along with situational goals and changes in bodily state with these considerations being used to predict which emotion, conceptually grouped by language, is likely being experienced. Thefefore basic emotion theory places an emphasis on emotional fingerprints, or distinct physiology for dfinstinct emotions, while constructivist theory does not. </p>
 
-Enter your response here.
+<p>Language is central to constructivist approaches, whereby emotion words group knowledge about emotions and their context specific phenotypes. Alexithymia is charactersied by a lack of words for emotions and is considered to contribute to a difficulty in emotional experience and differentiation. Alexithymia, therefore, provides insight into the biocognition of emotional experience.</p> 
 
+<p>Given the documented difficulties in emotional experience in alexithymia a basic emotion theory leads to the hypothesis that there will be physiological differences in high and low alexithymics during emotional stimulus presentation. Conversely, constructivist theory does not make this prediction of a moderation but does allow for physiological differences when the stimuli are prototypical and emotionally relevant (as is the case with music). </p>
+
+<p> Regardless of theory alexithymia will also be related to difficulties in the rating of emotional experience. Given music is seen as being primarily dimensional with emotions constructed around affective judgements the difficulties in emotional experience in alexithymia should be observed at an affective level as well as a categorical level. Poor concept emotion concept definition in alexithymia also leads to the prediction that the differentiation between emotions will be hampered. According to constructivist theory this is due to a lack of orthogonal concepts, while basic theory will relate this to experienced physiology during the emotional experience whereby differnt emotions will have distinct physiological patterning. </p>  
 
 # Methods
 
@@ -86,7 +88,27 @@ Enter your response here.
 
 List dependent variables, or variables in a correlational design and variables acting as covariates or moderators. -->
 
-Enter your response here.
+### Independent Variables
+<p><blockquote>Music Affect:
+  1. High Valence and High Arousal
+  2. High Valence and Low Arousal
+  3. Low Valence and High Arousal
+  4. Low Valence and Low Arousal </p></blockquote>
+<p><blockquote> Alexihtymia: Continuous as scored by the Toronto Alexithymia Scale[^3]</p></blockquote>
+
+[^33]: Link to Measure 
+
+### Dependent Variables 
+<p><blockquote> Zygomaticus Voltage </p></blockquote>
+<p><blockquote> Corrugator Voltage </p></blockquote>
+<p><blockquote> Electrodermal Activity </p></blockquote>
+<p><blockquote> Experienced Valence </p>
+<p style="text-align: center;"> 1 (Negative) - 7 (Positive0 </p></blockquote>
+<p><blockquote> Experienced Arousal </p>
+<p style="text-align: center;"> 1 (Low) - 7 (High </p></blockquote>
+<p><blockquote> Positive and Negative Emotion Differentiation[^3] </p></blockquote>
+[^3]: This is the inverse correlation of ratings on a 1 to 5 scale of the negative emotions *INSERT WORDS HERE* and the inverse correlation of ratings on a 1 to 5 scale of positive emotions *INSERT WORDS HERE* 
+
 
 
 ## Planned sample
@@ -145,30 +167,30 @@ Enter your response here.
 
 **Data collection has not begun.**
 
-**Data collection is underway or complete but I have not yet looked at the data.**
+<!--**Data collection is underway or complete but I have not yet looked at the data.**
 
-**Data collection is underway or complete and I have looked at the data.**
+**Data collection is underway or complete and I have looked at the data.** -->
 
 
 ## Project schedule (optional)
 <!-- Provide the (estimated) start and end dates for this project. -->
 
-Enter your response here.
+Data will be collected up until the 2nd June, at which point this data will be analysed for presentation at the 2019 ISRE conference. It is anticipated that 80 data points will be available at this time (120 participant slots are open). Data collection will resume in August and continue until the sample of 120 has been reached. Data will only be analysed at 2 points: Between June 2 and August (when recruitment is paused) and at the completion of the sampling of 120 participants.  
 
+<!--## Further comments (optional)
 
-## Further comments (optional)
-
-Enter your response here.
+Enter your response here.-->
 
 ```{r echo = FALSE}
 ##INSERT DRIVE->MARKDOWN ROUNDTRIP HERE - EXPORT
 ##INSERT OSF UPLOAD/UPDATE
 ```
 
+<!--
 # References
 ## 
 \vspace{-2pc}
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{-1in}
 \setlength{\parskip}{8pt}
-\noindent
+\noindent-->
