@@ -19,12 +19,18 @@ Responses to Music in Alexithymia
       - [Procedure](#procedure)
   - [Analysis plan](#analysis-plan)
       - [Confirmatory analyses](#confirmatory-analyses)
-      - [Details of analysis](#details-of-analysis)
       - [Existing data](#existing-data)
       - [Project schedule (optional)](#project-schedule-optional)
 
 Pre-registration is commit \#
 <!--ensure this is completed after Gen and Eric have looked at the documnent-->
+
+    ## File downloaded:
+    ##   * MEMGPreRegistration
+    ## Saved locally as:
+    ##   * PreRegistration.txt
+
+    ## [1] TRUE
 
 Reserved data URL :
 
@@ -127,9 +133,9 @@ negative emotions but not between positive emotions.
 <p>
 
 **E1** Does the shift from the mean value of valence and arousal
-(Zscore) predict the extent to which an emotion\[^1\] was judged as
-being as experienced. \[^1\]: The emotion will be whatever emotion was
-the highest rated for that musical peice and will be opoerationalised as
+(Zscore) predict the extent to which an emotion\[1\] was judged as being
+as experienced. \[2\]: The emotion will be whatever emotion was the
+highest rated for that musical peice and will be opoerationalised as
 Zscore.
 
 </p>
@@ -231,11 +237,13 @@ Arousal 3. Low Valence and High Arousal 4. Low Valence and Low Arousal
 
 <blockquote>
 
-Alexihtymia: Continuous as scored by the Toronto Alexithymia Scale\[1\]
+Alexihtymia: Continuous as scored by the Toronto Alexithymia Scale \[3\]
 
 </p>
 
 </blockquote>
+
+\[4\]: Link to Measure
 
 ### Dependent Variables
 
@@ -305,11 +313,15 @@ Experienced Arousal
 
 <blockquote>
 
-Positive and Negative Emotion Differentiation\[2\]
+Positive and Negative Emotion Differentiation\[5\]
 
 </p>
 
 </blockquote>
+
+\[6\]: This is the inverse correlation of ratings on a 1 to 5 scale of
+the negative emotions *INSERT WORDS HERE* and the inverse correlation of
+ratings on a 1 to 5 scale of positive emotions *INSERT WORDS HERE*
 
 ## Planned sample
 
@@ -326,15 +338,11 @@ The sample will be 120 undergraduate psychology students.
     d) data-based outlier criteria;
     e) method-based outlier criteria (e.g. too short or long response times). -->
 
-Enter your response here.
-
 ## Procedure
 
 <!-- Describe all manipulations, measures, materials and procedures including the order of presentation and the method of randomization and blinding (e.g., single or double blind), as in a published Methods section. -->
 
 <!-- Optional: Set fail-safe levels of exclusion at which the whole study needs to be stopped, altered, and restarted. You may pre-determine what proportion of excluded participants will cause the study to be stopped and restarted. If applicable, you can refer to any files related to your methods and procedure here (e.g., a paper describing a scale you are using, experimenter instructions, etc.) -->
-
-Enter your response here.
 
 # Analysis plan
 
@@ -353,10 +361,7 @@ type and alexithymia will be modelled using a HGLMM. Trials for each
 stimuli will be nested in the stimulus which is nested in the affective
 category. Alexithymia will be treated as a continuous variable and the
 model will be the emotion category\*alexithymia interaction, grouped by
-participant, stimulus and trial.
-
-## Details of analysis
-
+participant, stimulus and trial. \#\# Details of analysis
 <!-- Specify contingencies and assumptions, such as: 
     a) Method of correction for multiple tests
     b) The method of missing data handling (e.g., pairwise or listwise deletion, imputation, interpolation)
@@ -364,8 +369,6 @@ participant, stimulus and trial.
     d) Anticipated data transformations
     e) Assumptions of analyses, and plans for alternative/corrected analyses if each assumption is violated
     f) If applicable, you can refer to any files here that are related to your analyses (e.g., syntaxes, scripts, etc.). -->
-
-Enter your response here.
 
 ## Existing data
 
@@ -393,6 +396,11 @@ paused) and at the completion of the sampling of 120 participants.
 
 Enter your response here.-->
 
+    ## File updated:
+    ##   * MEMGPreRegistration: 1fzajo224IWeYW31urfX7b0yjwCCbIq1kJMBpN5aSj_8
+
+    ## [1] TRUE
+
 <!--
 # References
 ## 
@@ -402,10 +410,14 @@ Enter your response here.-->
 \setlength{\parskip}{8pt}
 \noindent-->
 
-1.  This is the inverse correlation of ratings on a 1 to 5 scale of the
-    negative emotions *INSERT WORDS HERE* and the inverse correlation of
-    ratings on a 1 to 5 scale of positive emotions *INSERT WORDS HERE*
+1.  1
 
-2.  This is the inverse correlation of ratings on a 1 to 5 scale of the
-    negative emotions *INSERT WORDS HERE* and the inverse correlation of
-    ratings on a 1 to 5 scale of positive emotions *INSERT WORDS HERE*
+2.  1
+
+3.  3
+
+4.  3
+
+5.  3
+
+6.  4
