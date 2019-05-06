@@ -1,7 +1,7 @@
 Preregistration: Affective, Emotional, and Psychophysiologiocal
 Responses to Music in Alexithymia
 ================
-03\. May 2019
+07\. May 2019
 
   - [Hypotheses](#hypotheses)
       - [Confirmatory Predictions](#confirmatory-predictions)
@@ -24,13 +24,6 @@ Responses to Music in Alexithymia
 
 Pre-registration is commit \#
 <!--ensure this is completed after Gen and Eric have looked at the documnent-->
-
-    ## File downloaded:
-    ##   * MEMGPreRegistration
-    ## Saved locally as:
-    ##   * PreRegistration.txt
-
-    ## [1] TRUE
 
 Reserved data URL :
 
@@ -133,19 +126,17 @@ negative emotions but not between positive emotions.
 <p>
 
 **E1** Does the shift from the mean value of valence and arousal
-(Zscore) predict the extent to which an emotion\[1\] was judged as being
-as experienced. \[2\]: The emotion will be whatever emotion was the
-highest rated for that musical peice and will be opoerationalised as
-Zscore.
+(Zscore) predict the extent to which an emotion `[1]` was judged as
+being as experienced.
 
 </p>
 
 <p>
 
 **E2** Is psychophysiology over time predicted by musical
-characteristics over time\[^2\] \[^2\]: This will likely need to be done
-by extracting musical features over time using a python MIR toolbox and
-correlating with raw acqknowledge files.
+characteristics over time `[2]`
+
+</p>
 
 ## Rationale (optional)
 
@@ -218,6 +209,9 @@ distinct physiological patterning.
     a) whether they are within- or between-participant
     b) the relationship between them (e.g., orthogonal, nested).
 
+
+
+
 List dependent variables, or variables in a correlational design and variables acting as covariates or moderators. -->
 
 ### Independent Variables
@@ -237,13 +231,11 @@ Arousal 3. Low Valence and High Arousal 4. Low Valence and Low Arousal
 
 <blockquote>
 
-Alexihtymia: Continuous as scored by the Toronto Alexithymia Scale \[3\]
+Alexihtymia: Continuous as scored by the Toronto Alexithymia Scale
 
 </p>
 
 </blockquote>
-
-\[4\]: Link to Measure
 
 ### Dependent Variables
 
@@ -313,15 +305,11 @@ Experienced Arousal
 
 <blockquote>
 
-Positive and Negative Emotion Differentiation\[5\]
+Positive and Negative Emotion Differentiation `[3]`
 
 </p>
 
 </blockquote>
-
-\[6\]: This is the inverse correlation of ratings on a 1 to 5 scale of
-the negative emotions *INSERT WORDS HERE* and the inverse correlation of
-ratings on a 1 to 5 scale of positive emotions *INSERT WORDS HERE*
 
 ## Planned sample
 
@@ -354,6 +342,9 @@ The sample will be 120 undergraduate psychology students.
     c) each variable’s role in the technique (e.g., IV, DV, moderator, mediator, covariate)
     d) rationale for each covariate used, if any.
 
+
+
+
 If using techniques other than null hypothesis testing (for example, Bayesian statistics), describe your criteria and inputs toward making an evidential conclusion, including prior values or distributions. -->
 
 All analyses relating to differences in affect and emotion across music
@@ -378,6 +369,9 @@ participant, stimulus and trial. \#\# Details of analysis
 
 <!--**Data collection is underway or complete but I have not yet looked at the data.**
 
+
+
+
 **Data collection is underway or complete and I have looked at the data.** -->
 
 ## Project schedule (optional)
@@ -394,12 +388,21 @@ paused) and at the completion of the sampling of 120 participants.
 
 <!--## Further comments (optional)
 
+
+
+
 Enter your response here.-->
 
-    ## File updated:
-    ##   * MEMGPreRegistration: 1fzajo224IWeYW31urfX7b0yjwCCbIq1kJMBpN5aSj_8
+`[1]: The emotion will be whatever emotion was the highest rated for
+that musical peice and will be opoerationalised as Zscore.`
 
-    ## [1] TRUE
+`[2]: This will likely need to be done by extracting musical features
+over time using a python MIR toolbox and correlating with raw
+acqknowledge files.`
+
+`[3]: This is the inverse correlation of ratings on a 1 to 5 scale of
+the negative emotions *INSERT WORDS HERE* and the inverse correlation of
+ratings on a 1 to 5 scale of positive emotions *INSERT WORDS HERE*`
 
 <!--
 # References
@@ -409,15 +412,3 @@ Enter your response here.-->
 \setlength{\leftskip}{-1in}
 \setlength{\parskip}{8pt}
 \noindent-->
-
-1.  1
-
-2.  1
-
-3.  3
-
-4.  3
-
-5.  3
-
-6.  4
