@@ -1,0 +1,219 @@
+\documentclass[]{article}
+    \usepackage{lmodern}
+    \usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+  \else % if luatex or xelatex
+\ifxetex
+\usepackage{mathspec}
+\usepackage{xltxtra,xunicode}
+\else
+  \usepackage{fontspec}
+\fi
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\newcommand{\euro}{€}
+        \fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+  \usepackage{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+  \usepackage[right=1in,top=1.25in,bottom=1.25in,left=2.5in]{geometry}
+  \ifxetex
+\usepackage[setpagesize=false, % page size defined by xetex
+            unicode=false, % unicode breaks when used with xetex
+            xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+bookmarks=true,
+pdfauthor={},
+pdftitle={My social psychology preregistration based on van 't Veer and Giner-Sorolla (2016) template},
+colorlinks=true,
+citecolor=blue,
+urlcolor=blue,
+linkcolor=magenta,
+pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% Customization for cos_prereg
+\usepackage{longtable,booktabs,threeparttable,tabularx}
+\linespread{1.5}
+\newcounter{question}
+\setcounter{question}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+\posttitle{
+\begin{center}\large#1\end{center}
+}
+}
+
+\setlength{\droptitle}{-2em}
+\title{My social psychology preregistration based on van 't Veer and
+Giner-Sorolla (2016) template}
+\pretitle{\begin{changemargin}{-8pc}{0pc} \centering\large Preregistration\\ \Huge}
+\posttitle{\end{changemargin}}
+  \author{
+          First Author\textsuperscript{1},
+          Ernst-August Doelle\textsuperscript{1,2}          \\ \vspace{0.5cm}
+              \textsuperscript{1} Wilhelm-Wundt-University\\
+              \textsuperscript{2} Konstanz Business School      }
+
+  \def\affdep{{"", ""}}%
+  \def\affcity{{"", ""}}%
+  \preauthor{\begin{changemargin}{-8pc}{0pc} \centering\large}
+  \postauthor{\end{changemargin}}
+\date{02. May 2019}
+\predate{\begin{changemargin}{-8pc}{0pc} \centering\large\emph}
+\postdate{\end{changemargin}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{}
+\rhead{\large\textsc{\MakeLowercase{My preregistration}}}
+
+
+
+% Title settings
+\usepackage{titlesec}
+\titleformat{\section}[display]{\bfseries\Large}{\thesection}{}{}[]
+\titlespacing{\section}{0pc}{*3}{*1.5}
+\titleformat{\subsection}[leftmargin]{\titlerule\bfseries\filleft}{\thesubsection}{.5em}{}
+\titlespacing{\subsection}{8pc}{5ex plus .1ex minus .2ex}{1.5pc}
+  
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\begin{document}
+\maketitle
+\vspace{2pc}
+
+
+\newcommand\Question[2]{%
+   \leavevmode\par
+   \stepcounter{question}
+   \noindent
+   \textbf{\thequestion. #1}. #2\par}
+
+\newcommand\Answer[1]{%
+    \noindent
+    \textit{Registered response}: #1\par}
+    
+\hypertarget{hypotheses}{%
+\section{Hypotheses}\label{hypotheses}}
+
+\hypertarget{predictions}{%
+\subsection{Predictions}\label{predictions}}
+
+Enter your response here.
+
+\hypertarget{rationale-optional}{%
+\subsection{Rationale (optional)}\label{rationale-optional}}
+
+Enter your response here.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+\hypertarget{design}{%
+\subsection{Design}\label{design}}
+
+Enter your response here.
+
+\hypertarget{planned-sample}{%
+\subsection{Planned sample}\label{planned-sample}}
+
+Enter your response here.
+
+\hypertarget{exclusion-criteria}{%
+\subsection{Exclusion criteria}\label{exclusion-criteria}}
+
+Enter your response here.
+
+\hypertarget{procedure}{%
+\subsection{Procedure}\label{procedure}}
+
+Enter your response here.
+
+\hypertarget{analysis-plan}{%
+\section{Analysis plan}\label{analysis-plan}}
+
+\hypertarget{confirmatory-analyses}{%
+\subsection{Confirmatory analyses}\label{confirmatory-analyses}}
+
+Enter your response here.
+
+\hypertarget{details-of-analysis}{%
+\subsection{Details of analysis}\label{details-of-analysis}}
+
+Enter your response here.
+
+\hypertarget{existing-data}{%
+\subsection{Existing data}\label{existing-data}}
+
+\textbf{Data collection has not begun.}
+
+\textbf{Data collection is underway or complete but I have not yet
+looked at the data.}
+
+\textbf{Data collection is underway or complete and I have looked at the
+data.}
+
+\hypertarget{project-schedule-optional}{%
+\subsection{Project schedule
+(optional)}\label{project-schedule-optional}}
+
+Enter your response here.
+
+\hypertarget{further-comments-optional}{%
+\subsection{Further comments
+(optional)}\label{further-comments-optional}}
+
+Enter your response here.
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\hypertarget{section}{%
+\subsection{}\label{section}}
+
+\vspace{-2pc}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{-1in}
+\setlength{\parskip}{8pt}
+
+\noindent
+
+\end{document}
