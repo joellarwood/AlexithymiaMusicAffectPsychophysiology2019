@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Tue May  7 07:37:16 2019
+    on Tue May  7 16:12:32 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -47,7 +47,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/joellarwood/Desktop/git/AlexithymiaMusicAffectPsychophysiology2019/Psychopy/MusicAffectPsychophysiology2019_lastrun.py',
+    originPath='/Users/uqjlarwo/Desktop/git/AlexithymiaMusicAffectPsychophysiology2019/Psychopy/MusicAffectPsychophysiology2019_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -800,7 +800,7 @@ for thisComponent in beginstudyComponents:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-songtrials = data.TrialHandler(nReps=1, method='random', 
+songtrials = data.TrialHandler(nReps=2, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('Music.xlsx'),
     seed=None, name='songtrials')
@@ -1212,7 +1212,7 @@ for thisSongtrial in songtrials:
             thisComponent.setAutoDraw(False)
     thisExp.nextEntry()
     
-# completed 1 repeats of 'songtrials'
+# completed 2 repeats of 'songtrials'
 
 # get names of stimulus parameters
 if songtrials.trialList in ([], [None], None):

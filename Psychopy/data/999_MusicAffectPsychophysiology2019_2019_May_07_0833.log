@@ -1,0 +1,164 @@
+6.1934 	WARNING 	User requested fullscreen with size [1440  900], but screen is actually [1920, 1080]. Using actual size
+6.7831 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x129663c50>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x12afb9ba8>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='norm', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+6.7831 	EXP 	window1: recordFrameIntervals = False
+6.9497 	EXP 	window1: recordFrameIntervals = True
+7.1331 	EXP 	window1: recordFrameIntervals = False
+7.2484 	EXP 	Created instructions = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='instructions', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.2840 	EXP 	Sound  set volume 1.000
+7.3210 	EXP 	Created arousaltext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='arousaltext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.3518 	EXP 	Created valencetext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='valencetext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.3734 	EXP 	Created like = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='like', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.3790 	EXP 	Created WordInstruction = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='WordInstruction', opacity=1.0, ori=0, pos=array([0. , 0.5]), rgb=array([255., 255., 255.]), text='default text', units='norm', win=Window(...), wrapWidth=1)
+7.3938 	EXP 	Created WordScale = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-2.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='WordScale', opacity=1.0, ori=0, pos=array([ 0. , -0.3]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.3998 	EXP 	Created EmoWord = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-3.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='EmoWord', opacity=1.0, ori=0, pos=array([0. , 0.3]), rgb=array([255., 255., 255.]), text='default text', units='norm', win=Window(...), wrapWidth=1)
+7.4332 	EXP 	Created text = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.4333 	EXP 	Sound  set volume 1.000
+7.4584 	EXP 	Created arousaltext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='arousaltext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.4834 	EXP 	Created valencetext = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='valencetext', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.4889 	EXP 	Created WordInstruction = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='WordInstruction', opacity=1.0, ori=0, pos=array([0. , 0.5]), rgb=array([255., 255., 255.]), text='default text', units='norm', win=Window(...), wrapWidth=1)
+7.5029 	EXP 	Created WordScale = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-2.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='WordScale', opacity=1.0, ori=0, pos=array([ 0. , -0.3]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.5080 	EXP 	Created EmoWord = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-3.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='EmoWord', opacity=1.0, ori=0, pos=array([0. , 0.3]), rgb=array([255., 255., 255.]), text='default text', units='norm', win=Window(...), wrapWidth=1)
+7.5127 	EXP 	Created betweensongs = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='betweensongs', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='norm', win=Window(...), wrapWidth=1)
+7.5381 	EXP 	Created MusicEnd = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='MusicEnd', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='norm', win=Window(...), wrapWidth=1)
+7.5675 	EXP 	instructions: autoDraw = True
+22.0679 	DATA 	Keypress: space
+22.0989 	EXP 	instructions: autoDraw = False
+52.1281 	EXP 	arousaltext: autoDraw = True
+53.4973 	DATA 	Keypress: 1
+53.5119 	EXP 	arousaltext: autoDraw = False
+53.5119 	EXP 	valencetext: autoDraw = True
+53.8138 	DATA 	Keypress: 1
+53.8289 	EXP 	valencetext: autoDraw = False
+53.8289 	EXP 	like: autoDraw = True
+54.1961 	DATA 	Keypress: 1
+54.2041 	EXP 	Imported EMOTIONWORDS.xlsx as conditions, 12 conditions, 2 params
+54.2044 	EXP 	Created sequence: random, trialTypes=12, nReps=1, seed=None
+54.2046 	EXP 	New trial (rep=0, index=0): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'EXCITED')])
+54.2282 	EXP 	like: autoDraw = False
+54.2282 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+54.2282 	EXP 	EmoWord: text = 'EXCITED'
+54.2282 	EXP 	WordInstruction: autoDraw = True
+54.2282 	EXP 	WordScale: autoDraw = True
+54.2282 	EXP 	EmoWord: autoDraw = True
+54.6801 	DATA 	Keypress: 1
+54.6811 	EXP 	New trial (rep=0, index=1): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'FRUSTRATED')])
+54.6947 	EXP 	WordInstruction: autoDraw = False
+54.6947 	EXP 	WordScale: autoDraw = False
+54.6947 	EXP 	EmoWord: autoDraw = False
+54.6947 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+54.6947 	EXP 	EmoWord: text = 'FRUSTRATED'
+54.6947 	EXP 	WordInstruction: autoDraw = True
+54.6947 	EXP 	WordScale: autoDraw = True
+54.6947 	EXP 	EmoWord: autoDraw = True
+55.0956 	DATA 	Keypress: 1
+55.0965 	EXP 	New trial (rep=0, index=2): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ALERT')])
+55.1109 	EXP 	WordInstruction: autoDraw = False
+55.1109 	EXP 	WordScale: autoDraw = False
+55.1109 	EXP 	EmoWord: autoDraw = False
+55.1109 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+55.1109 	EXP 	EmoWord: text = 'ALERT'
+55.1109 	EXP 	WordInstruction: autoDraw = True
+55.1109 	EXP 	WordScale: autoDraw = True
+55.1109 	EXP 	EmoWord: autoDraw = True
+55.5798 	DATA 	Keypress: 1
+55.5806 	EXP 	New trial (rep=0, index=3): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'HAPPY')])
+55.5950 	EXP 	WordInstruction: autoDraw = False
+55.5950 	EXP 	WordScale: autoDraw = False
+55.5950 	EXP 	EmoWord: autoDraw = False
+55.5950 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+55.5950 	EXP 	EmoWord: text = 'HAPPY'
+55.5950 	EXP 	WordInstruction: autoDraw = True
+55.5950 	EXP 	WordScale: autoDraw = True
+55.5950 	EXP 	EmoWord: autoDraw = True
+55.9462 	DATA 	Keypress: 1
+55.9471 	EXP 	New trial (rep=0, index=4): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ASHAMED')])
+55.9614 	EXP 	WordInstruction: autoDraw = False
+55.9614 	EXP 	WordScale: autoDraw = False
+55.9614 	EXP 	EmoWord: autoDraw = False
+55.9614 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+55.9614 	EXP 	EmoWord: text = 'ASHAMED'
+55.9614 	EXP 	WordInstruction: autoDraw = True
+55.9614 	EXP 	WordScale: autoDraw = True
+55.9614 	EXP 	EmoWord: autoDraw = True
+56.3125 	DATA 	Keypress: 1
+56.3133 	EXP 	New trial (rep=0, index=5): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'TENDER')])
+56.3281 	EXP 	WordInstruction: autoDraw = False
+56.3281 	EXP 	WordScale: autoDraw = False
+56.3281 	EXP 	EmoWord: autoDraw = False
+56.3281 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+56.3281 	EXP 	EmoWord: text = 'TENDER'
+56.3281 	EXP 	WordInstruction: autoDraw = True
+56.3281 	EXP 	WordScale: autoDraw = True
+56.3281 	EXP 	EmoWord: autoDraw = True
+56.7126 	DATA 	Keypress: 1
+56.7136 	EXP 	New trial (rep=0, index=6): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SCARED')])
+56.7281 	EXP 	WordInstruction: autoDraw = False
+56.7281 	EXP 	WordScale: autoDraw = False
+56.7281 	EXP 	EmoWord: autoDraw = False
+56.7281 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+56.7281 	EXP 	EmoWord: text = 'SCARED'
+56.7281 	EXP 	WordInstruction: autoDraw = True
+56.7281 	EXP 	WordScale: autoDraw = True
+56.7281 	EXP 	EmoWord: autoDraw = True
+57.1462 	DATA 	Keypress: 1
+57.1470 	EXP 	New trial (rep=0, index=7): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANXIOUS ')])
+57.1609 	EXP 	WordInstruction: autoDraw = False
+57.1609 	EXP 	WordScale: autoDraw = False
+57.1609 	EXP 	EmoWord: autoDraw = False
+57.1609 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+57.1609 	EXP 	EmoWord: text = 'ANXIOUS '
+57.1609 	EXP 	WordInstruction: autoDraw = True
+57.1609 	EXP 	WordScale: autoDraw = True
+57.1609 	EXP 	EmoWord: autoDraw = True
+57.5796 	DATA 	Keypress: 1
+57.5804 	EXP 	New trial (rep=0, index=8): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SAD')])
+57.5944 	EXP 	WordInstruction: autoDraw = False
+57.5944 	EXP 	WordScale: autoDraw = False
+57.5944 	EXP 	EmoWord: autoDraw = False
+57.5944 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+57.5944 	EXP 	EmoWord: text = 'SAD'
+57.5944 	EXP 	WordInstruction: autoDraw = True
+57.5944 	EXP 	WordScale: autoDraw = True
+57.5944 	EXP 	EmoWord: autoDraw = True
+58.0295 	DATA 	Keypress: 1
+58.0303 	EXP 	New trial (rep=0, index=9): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'GUILTY')])
+58.0446 	EXP 	WordInstruction: autoDraw = False
+58.0446 	EXP 	WordScale: autoDraw = False
+58.0446 	EXP 	EmoWord: autoDraw = False
+58.0446 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+58.0446 	EXP 	EmoWord: text = 'GUILTY'
+58.0446 	EXP 	WordInstruction: autoDraw = True
+58.0446 	EXP 	WordScale: autoDraw = True
+58.0446 	EXP 	EmoWord: autoDraw = True
+58.5139 	DATA 	Keypress: 1
+58.5293 	EXP 	New trial (rep=0, index=10): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANGRY')])
+58.5445 	EXP 	WordInstruction: autoDraw = False
+58.5445 	EXP 	WordScale: autoDraw = False
+58.5445 	EXP 	EmoWord: autoDraw = False
+58.5445 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+58.5445 	EXP 	EmoWord: text = 'ANGRY'
+58.5445 	EXP 	WordInstruction: autoDraw = True
+58.5445 	EXP 	WordScale: autoDraw = True
+58.5445 	EXP 	EmoWord: autoDraw = True
+58.9459 	DATA 	Keypress: 1
+58.9467 	EXP 	New trial (rep=0, index=11): OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ACTIVE')])
+58.9619 	EXP 	WordInstruction: autoDraw = False
+58.9619 	EXP 	WordScale: autoDraw = False
+58.9619 	EXP 	EmoWord: autoDraw = False
+58.9619 	EXP 	WordInstruction: text = 'To what extent did the music make you feel '
+58.9619 	EXP 	EmoWord: text = 'ACTIVE'
+58.9619 	EXP 	WordInstruction: autoDraw = True
+58.9619 	EXP 	WordScale: autoDraw = True
+58.9619 	EXP 	EmoWord: autoDraw = True
+59.4478 	DATA 	Keypress: 1
+59.4783 	EXP 	WordInstruction: autoDraw = False
+59.4783 	EXP 	WordScale: autoDraw = False
+59.4783 	EXP 	EmoWord: autoDraw = False
+59.4783 	EXP 	text: autoDraw = True
+61.0287 	DATA 	Keypress: space
+61.0384 	EXP 	Imported Music.xlsx as conditions, 16 conditions, 5 params
+61.0388 	EXP 	Created sequence: random, trialTypes=16, nReps=2, seed=None
+61.0392 	EXP 	New trial (rep=0, index=0): OrderedDict([('song', '30MonoWAV/30MonoT3.wav'), ('valence', 2), ('arousal', 1), ('affectcat', 4), ('songmark', 15)])
+61.0761 	EXP 	text: autoDraw = False
+67.3792 	DATA 	Keypress: escape
+67.6437 	EXP 	window1: mouseVisible = True
