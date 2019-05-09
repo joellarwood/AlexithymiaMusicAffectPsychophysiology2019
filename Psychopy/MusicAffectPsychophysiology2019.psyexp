@@ -49,7 +49,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="text" updates="constant" val="Now that the practice is finished the experiment will begin. This will take about 15 minutes. You will be told by the program when the experiment is over&amp;#10;&amp;#10;Press any key to begin the study" valType="str"/>
+        <Param name="text" updates="constant" val="Now that the practice is finished the experiment will begin. This will take about 40 minutes. You will be told by the program when the experiment is over&amp;#10;&amp;#10;Press any key to begin the study" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -460,6 +460,7 @@
     <Routine name="music"/>
     <Routine name="arousal"/>
     <Routine name="valence"/>
+    <Routine name="liking"/>
     <LoopInitiator loopType="TrialHandler" name="words">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SAD')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANXIOUS ')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ANGRY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'FRUSTRATED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ASHAMED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'GUILTY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'HAPPY')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'EXCITED')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ALERT')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'ACTIVE')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'TENDER')]), OrderedDict([('Instruction', 'To what extent did the music make you feel '), ('Word', 'SCARED')])]" valType="str"/>

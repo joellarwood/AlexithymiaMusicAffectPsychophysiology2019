@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Tue May  7 16:12:32 2019
+    on Thu May  9 16:18:27 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -147,7 +147,7 @@ EmoWord = visual.TextStim(win=win, name='EmoWord',
 # Initialize components for Routine "beginstudy"
 beginstudyClock = core.Clock()
 text = visual.TextStim(win=win, name='text',
-    text='Now that the practice is finished the experiment will begin. This will take about 15 minutes. You will be told by the program when the experiment is over\n\nPress any key to begin the study',
+    text='Now that the practice is finished the experiment will begin. This will take about 40 minutes. You will be told by the program when the experiment is over\n\nPress any key to begin the study',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -174,6 +174,16 @@ arousaltext = visual.TextStim(win=win, name='arousaltext',
 valenceClock = core.Clock()
 valencetext = visual.TextStim(win=win, name='valencetext',
     text='How positive/pleasant did you feel after listening to this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+
+# Initialize components for Routine "liking"
+likingClock = core.Clock()
+like = visual.TextStim(win=win, name='like',
+    text='How much did you like this song?\n\n1 (Not at all)\n2 (Slightly)\n3 (Moderately)\n4 (Very)\n5 (Extremely)',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -1027,6 +1037,84 @@ for thisSongtrial in songtrials:
     if valencekey.keys != None:  # we had a response
         songtrials.addData('valencekey.rt', valencekey.rt)
     # the Routine "valence" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # ------Prepare to start Routine "liking"-------
+    t = 0
+    likingClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    likekey = event.BuilderKeyResponse()
+    # keep track of which components have finished
+    likingComponents = [like, likekey]
+    for thisComponent in likingComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "liking"-------
+    while continueRoutine:
+        # get current time
+        t = likingClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *like* updates
+        if t >= 0.0 and like.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            like.tStart = t
+            like.frameNStart = frameN  # exact frame index
+            like.setAutoDraw(True)
+        
+        # *likekey* updates
+        if t >= 0.0 and likekey.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            likekey.tStart = t
+            likekey.frameNStart = frameN  # exact frame index
+            likekey.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(likekey.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        if likekey.status == STARTED:
+            theseKeys = event.getKeys(keyList=['1', '2', '3', '4', '5'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                likekey.keys = theseKeys[-1]  # just the last key pressed
+                likekey.rt = likekey.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in likingComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "liking"-------
+    for thisComponent in likingComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # check responses
+    if likekey.keys in ['', [], None]:  # No response was made
+        likekey.keys=None
+    songtrials.addData('likekey.keys',likekey.keys)
+    if likekey.keys != None:  # we had a response
+        songtrials.addData('likekey.rt', likekey.rt)
+    # the Routine "liking" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
