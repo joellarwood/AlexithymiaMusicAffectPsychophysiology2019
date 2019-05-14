@@ -1,0 +1,147 @@
+---
+title: "Data Analysis"
+output: github_document
+---
+
+```{r setup, include=TRUE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readbulk)
+library(psych)
+library(afex)
+library(knitr)
+library(emmeans)
+devtools::install_github("crsh/papaja")
+library(sjPlot)
+library(irr)
+```
+
+#Data Wrangle 
+##Load in Data
+```{r message = FALSE, warning = FALSE}
+raw <- readbulk::read_bulk(directory = "Data", fun = read_csv)
+
+raw <- unite(raw, 
+                 trialunique,
+                 participant, songmark, songtrials.thisRepN,
+                 remove = FALSE)
+
+raw <- raw %>% mutate(.,
+                              affectcat = as.factor(recode(affectcat,
+                                                           "1" = "High Arousal/Positive Valence",
+                                                           "2" = "High Arousal/Negative Valence",
+                                                           "3" = "Low Arousal/Negative Valence",
+                                                           "4" = "Low Arousal/Positve Valence")),
+                              arousal = as.factor(recode(arousal, 
+                                                         "1" = "Low",
+                                                         "2" = "high")),
+                              valence = as.factor(recode(valence,
+                                                         "1" = "Negative",
+                                                         "2" = "Positive")))
+
+#remove practice trial
+filtered <- raw %>% filter(valencekey.keys > 0 & arousalkey.keys > 0 & songmark > 0)
+
+filtered <- filtered %>% select(participant,
+                                trial_unique,
+                                Word,
+                                songmark,
+                                valence,
+                                arousal,
+                                affectcat,
+                                arousalkey.keys,
+                                valencekey.keys,
+                                likekey.keys,
+                                WordResponse.keys) 
+
+
+```
+
+#Data Wrangling Emotion words 
+```{r}
+forspread <- filtered %>% filter (WordResponse.keys > 0) %>% select(trialunique,
+                                Word,
+                                WordResponse.keys)
+
+
+spread <- forspread %>% group_by (trialunique) %>% spread(key = Word, value = WordResponse.keys)
+
+```
+
+## Affect ratings
+```{r}
+affectrating <- filtered %>% select(trialunique,
+                                    participant,
+                                    songmark,
+                                    affectcat, 
+                                    valence,
+                                    arousal,
+                                    valencekey.keys,
+                                    arousalkey.keys)
+```
+
+##Merge affect and emotion ratings
+```{r}
+joinedaffectemo <- full_join(affectrating, spread, 
+                    by = "trialunique")
+```
+
+##Merge with questioniarre responses 
+```{r}
+
+joined <- 
+```
+
+# Emotion Differentiation 
+## Create list of words 
+```{r}
+poslist <- c("ACTIVE", "ALERT", "EXCITED", "HAPPY", "TENDER") #CHECK ALERT
+neglist <- c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")
+```
+
+## Negative stimuli 
+```{r}
+negstim <- joined %>% filter(valence == "Negative")
+
+PID <-  unique(joined$participant)
+
+negICC=NULL
+for (sub in PID){
+ sub_negstim=negstim[negstim[,1]==sub,c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")]  #selects data for the current subject
+  icc=icc(sub_negstim, model="twoway",unit="average")  #computes ICC
+  icc_temp=icc$value
+
+  fz_iccTemp=fisherz(icc_temp)
+
+  row_temp=c(sub,icc_temp,fz_iccTemp)
+  icc_list_negstim=rbind(icc_list_negstim,row_temp)
+  print(fz_iccTemp)
+}
+
+colnames(icc_list_w1)=c("Participant","ICCneg","ICCneg.fz")
+icc_list_negstim=as.data.frame(icc_list_negstim)
+
+
+colnames(icc_list_negstim)=c("PpID","ICCneg","ICCneg.fz")
+icc_list_w1=as.data.frame(icc_list_negstim)
+
+```
+
+
+
+
+
+
+# Describe Data 
+```{r}
+
+joined %>% select(arousalkey.keys, valencekey.keys, likekey.keys) %>% describeBy(group = joined$affectcat) 
+
+joined %>% ggplot(aes(x=valencekey.keys)) + geom_histogram(binwidth = .5)  +facet_wrap(~affectcat)
+
+joined %>% ggplot(aes(x=arousalkey.keys)) + geom_histogram(binwidth = .5) +facet_wrap(~affectcat)
+
+joined %>% ggplot(aes(x=likekey.keys)) + geom_histogram(binwidth = .5) +facet_wrap(~affectcat)
+```
+
+# Hypothesis Tests
