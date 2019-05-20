@@ -43,7 +43,7 @@ raw <- raw %>% mutate(.,
 filtered <- raw %>% filter(valencekey.keys > 0 & arousalkey.keys > 0 & songmark > 0)
 
 filtered <- filtered %>% select(participant,
-                                trial_unique,
+                                trialunique,
                                 Word,
                                 songmark,
                                 valence,

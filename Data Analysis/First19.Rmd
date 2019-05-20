@@ -42,10 +42,10 @@ raw <- raw %>% mutate(.,
                                                  "2" = "Positive")))
 
 #remove practice trial
-filtered <- raw %>% filter(valencekey.keys > 0 & arousalkey.keys > 0 & songmark > 0)
+filtered <- raw %>% filter(!is.na(song) & !(is.na(Instruction)))
 
 filtered <- filtered %>% select(participant,
-                                trial_unique,
+                                trialunique,
                                 Word,
                                 songmark,
                                 valence,
@@ -62,24 +62,24 @@ filtered <- filtered %>% select(participant,
 #Data Wrangling Emotion words 
 ```{r}
 forspread <- filtered %>% filter (WordResponse.keys > 0) %>% select(trialunique,
-                                Word,
-                                WordResponse.keys)
+                                                                    Word,
+                                                                    WordResponse.keys)
 
 
-spread <- forspread %>% group_by (trialunique) %>% spread(key = Word, value = WordResponse.keys)
+spread <- forspread %>% spread(key = Word, value = WordResponse.keys)
 
 ```
 
 ## Affect ratings
 ```{r}
-affectrating <- filtered %>% select(trialunique,
-                                    participant,
-                                    songmark,
-                                    affectcat, 
-                                    valence,
-                                    arousal,
-                                    valencekey.keys,
-                                    arousalkey.keys)
+affectrating <- filtered %>% filter(!is.na(arousalkey.keys)) %>% select(trialunique,
+                                                              participant,
+                                                              songmark,
+                                                              affectcat, 
+                                                              valence,
+                                                              arousal,
+                                                              valencekey.keys,
+                                                              arousalkey.keys)
 ```
 
 ##Merge affect and emotion ratings
@@ -103,24 +103,34 @@ neglist <- c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCAR
 
 ## Negative stimuli 
 ```{r}
-negstim <- joined %>% filter(valence == "Negative")
+negstim <- joinedaffectemo %>% filter(valence == "Negative")
 
-PID <-  unique(joined$participant)
+PID <-  unique(joinedaffectemo$participant)
+
+negICC <- 
+
+  {subnegstim <- select(negstim, 
+                        ANGRY, ANXIOUS, ASHAMED, FRUSTRATED, GUILTY, SAD, SCARED) 
+  icc = icc(subnegstim, model = "twoway", unit = "average") #computes ICC
+  icc_temp = icc$value
+  fz_iccTemp = fisherz(icc_temp)
+  rowtemp = sub }
+  
 
 negICC=NULL
 for (sub in PID){
- sub_negstim=negstim[negstim[,1]==sub,c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")]  #selects data for the current subject
+  sub_negstim=negstim[negstim[,1]==sub,c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")]  #selects data for the current subject
   icc=icc(sub_negstim, model="twoway",unit="average")  #computes ICC
   icc_temp=icc$value
 
   fz_iccTemp=fisherz(icc_temp)
 
   row_temp=c(sub,icc_temp,fz_iccTemp)
-  icc_list_negstim=rbind(icc_list_negstim,row_temp)
+  negICC=rbind(negICC,row_temp)
   print(fz_iccTemp)
 }
 
-colnames(icc_list_w1)=c("Participant","ICCneg","ICCneg.fz")
+colnames(negICC)=c("Participant","ICCneg","ICCneg.fz")
 icc_list_negstim=as.data.frame(icc_list_negstim)
 
 
@@ -302,6 +312,15 @@ icc_list_w1=as.data.frame(icc_list_negstim)
 <!-- ``` -->
 
 
+```{r}
+pilotmodelvalence <- afex::mixed(formula = valencekey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = filtered, return = "merMod")  
+
+valenceplot <- plot_model(pilotmodelvalence, type = "eff") 
+print(valenceplot$affectcat)
+
+emmeans(pilotmodelvalence, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
+
+```
 
 
 
