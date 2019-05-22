@@ -1,9 +1,10 @@
 ---
 title: "First 19 Participants"
-output: github_document
+output:
+  github_document:
+    toc: true
 ---
 Peek at data to check range of scores and main effect of song condition. Checking range out of concerns regarding variance for alexithymia moderation 
-
 
 ```{r setup, include=TRUE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -230,18 +231,18 @@ icc_list_posstim=as.data.frame(icc_list_posstim)
 ```{r}
 joinedICC <- full_join(icc_list_posstim, icc_list_negstim, by = "participant")  %>% full_join(scores, by = "participant")
 
-joinedICC <- joinedICC %>% mutate (ICCneg_keep = if_else(condition = .$ICCneg > 0,
+joinedICC <- joinedICC %>% mutate (ICCneg_keep = if_else(condition = joinedICC$ICCneg > 0,
                                                           true = "Positive",
                                                           false = "Ignore",
                                                           missing = "Ignore"),
-                                    ICCpos_keep = if_else(condition = .$ICCpos > 0,
+                                    ICCpos_keep = if_else(condition = joinedICC$ICCpos > 0,
                                                           true = "Positive",
                                                           false = "Ignore",
                                                           missing = "Ignore"),
-                                    ICCneg_r = 1 - .$ICCneg,
-                                    ICCneg_fz_r = -1* .$ICCneg.fz,
-                                    ICCpos_r = 1 - .$ICCpos,
-                                    ICCpos_fz_r = -1* .$ICCpos.fz)  
+                                    ICCneg_r = 1 - joinedICC$ICCneg,
+                                    ICCneg_fz_r = -1* joinedICC$ICCneg_fz,
+                                    ICCpos_r = 1 - joinedICC$ICCpos,
+                                    ICCpos_fz_r = -1* joinedICC$ICCpos_fz)  
 ```
 
 
