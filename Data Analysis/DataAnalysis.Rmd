@@ -1,0 +1,235 @@
+---
+title: "Data Analysis"
+output: github_document
+---
+
+```{r setup, include=TRUE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readbulk)
+library(psych)
+library(afex)
+library(knitr)
+library(emmeans)
+devtools::install_github("crsh/papaja")
+library(sjPlot)
+library(irr)
+library(qualtRics)
+```
+# Self Report Data 
+##Load in and basic clean
+```{r, message = FALSE}
+selfreport <- read_csv("First19Data/first19Qual.csv") #update file path
+selfreport <- genderRecode(input=selfreport,
+                           genderColName = "gender", 
+                           method = "narrow",
+                           outputColName = "gender_recode", 
+                           missingValuesObjectName = NA,
+                           customDictionary = data.frame(stringsAsFactors=FALSE,
+       Input = c("girl/female"),
+      Output = c("female")))
+
+```
+
+## Describe demographics 
+```{r}
+selfreport %>% select(age, musichours) %>% describe() %>% kable(digits = 3)
+selfreport <- selfreport %>% mutate(yearsplay = as.factor(yearsplay) %>% recode("6" = "5+"))
+CreateTableOne(vars = c("gender_recode", "yearsplay"), data = selfreport) %>% kableone()
+```
+
+##Create scores 
+###Alexithymia
+```{r}
+selfreport <- selfreport %>% mutate(tas_4r = 6 - .$tas_4, #Reverse code items
+                                    tas_5r = 6 - .$tas_5,
+                                    tas_10r = 6 - .$tas_10,
+                                    tas_18r = 6 - .$tas_18,
+                                    tas_19r = 6 - .$tas_19)
+EOTlist <- c("tas_5r", "tas_8", "tas_10r", "tas_15", "tas_16", "tas_18r", "tas_19r", "tas_20")
+DDFlist <- c("tas_2", "tas_4r", "tas_11", "tas_12", "tas_17")
+DIFlist <- c("tas_1", "tas_3", "tas_6", "tas_7", "tas_9", "tas_13", "tas_14")
+
+tas <- selfreport %>% transmute(participant = .$id,
+                                EOT = select(., EOTlist) %>% rowSums(),
+                                DDF = select(., DDFlist) %>% rowSums(),
+                                DIF = select(.,DIFlist) %>% rowSums(),
+                                TAS = select(., EOT, DDF, DIF) %>% rowSums())
+
+selfreport %>% select(EOTlist) %>% alpha()
+selfreport %>% select(DDFlist) %>% alpha()
+selfreport %>% select(DIFlist) %>% alpha()
+```
+
+###DASS
+```{r}
+# S (Stress) Q1, 6, 8, 11, 12, 14, 18
+# A (Anxiety) Q2, 4, 7, 9, 15, 19, 20
+# D (Depression) Q3, 5, 10, 13, 16, 17, 21 
+
+stresslist <- c("DASS_1", "DASS_6", "DASS_8", "DASS_11", "DASS_12", "DASS_14", "DASS_18")
+anxietylist <- c("DASS_2", "DASS_4", "DASS_7", "DASS_9", "DASS_15", "DASS_19", "DASS_20")
+depressionlist <- c("DASS_3", "DASS_5", "DASS_10", "DASS_13", "DASS_16", "DASS_17", "DASS_21")
+
+dass <- selfreport %>% transmute(participant = .$id,
+                                 stress = select(selfreport, stresslist) %>% rowSums(),
+                            anxiety = select(selfreport,anxietylist) %>% rowSums(),
+                            depression = select(selfreport,depressionlist) %>% rowSums())
+
+selfreport %>% select(stresslist) %>% alpha()
+selfreport %>% select(anxietylist) %>% alpha()
+selfreport %>% select(depressionlist) %>% alpha()
+```
+
+##Join scores
+```{r}
+scores <- full_join(dass, tas, by = "participant")
+scores %>% select(-participant) %>% describe() %>% kable(digits = 2)
+```
+#Data Wrangle 
+##Load in Data
+```{r message = FALSE, warning = FALSE}
+raw <- readbulk::read_bulk(directory = "Data", fun = read_csv)
+
+raw <- unite(raw, 
+                 trialunique,
+                 participant, songmark, songtrials.thisRepN,
+                 remove = FALSE)
+
+raw <- raw %>% mutate(.,
+                              affectcat = as.factor(recode(affectcat,
+                                                           "1" = "High Arousal/Positive Valence",
+                                                           "2" = "High Arousal/Negative Valence",
+                                                           "3" = "Low Arousal/Negative Valence",
+                                                           "4" = "Low Arousal/Positve Valence")),
+                              arousal = as.factor(recode(arousal, 
+                                                         "1" = "Low",
+                                                         "2" = "high")),
+                              valence = as.factor(recode(valence,
+                                                         "1" = "Negative",
+                                                         "2" = "Positive")))
+
+#remove practice trial
+filtered <- raw %>% filter(valencekey.keys > 0 & arousalkey.keys > 0 & songmark > 0)
+
+filtered <- filtered %>% select(participant,
+                                trialunique,
+                                Word,
+                                songmark,
+                                valence,
+                                arousal,
+                                affectcat,
+                                arousalkey.keys,
+                                valencekey.keys,
+                                likekey.keys,
+                                WordResponse.keys) 
+
+
+```
+
+#Emotion words 
+```{r}
+forspread <- filtered %>% filter (WordResponse.keys > 0) %>% select(trialunique,
+                                Word,
+                                WordResponse.keys)
+
+
+spread <- forspread %>% group_by (trialunique) %>% spread(key = Word, value = WordResponse.keys)
+
+```
+
+##Affect ratings
+```{r}
+affectrating <- filtered %>% select(trialunique,
+                                    participant,
+                                    songmark,
+                                    affectcat, 
+                                    valence,
+                                    arousal,
+                                    valencekey.keys,
+                                    arousalkey.keys)
+```
+
+##Merge affect and emotion ratings
+```{r}
+joinedaffectemo <- full_join(affectrating, spread, 
+                    by = "trialunique")
+```
+
+##Merge with questioniarre responses 
+```{r}
+joined <- full_join(joinedaffectemo, scores,
+                    by = "participant")
+```
+
+# Emotion Differentiation 
+## Create list of words
+```{r}
+poslist <- c("ACTIVE", "ALERT", "EXCITED", "HAPPY", "TENDER") #CHECK ALERT
+neglist <- c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")
+```
+
+# Cretae negative and postive song data sets and participant list 
+```{r}
+negstim <- joinedaffectemo %>% filter(valence == "Negative")
+posstim <- joinedaffectemo %>% filter(valence == "Positive")
+
+participant <- (unique(joinedaffectemo$participant)) 
+
+```
+
+## Negative Stimuli
+```{r}
+icc_list_negstim=NULL
+for(i in participant){
+  participant_select <- filter(negstim, participant == i)
+  stim_select <- select(participant_select, neglist)
+  icc <- irr::icc(stim_select, model = "twoway", unit = "average")
+  icc_temp <- icc$value
+  fz_iccTemp <- fisherz(icc_temp)
+  row_temp <- c(i, icc_temp, fz_iccTemp)
+  icc_list_negstim=rbind(icc_list_negstim,row_temp)
+  print(icc_temp)
+} 
+
+colnames(icc_list_negstim)=c("participant","ICCneg","ICCneg.fz")
+icc_list_negstim=as.data.frame(icc_list_negstim)
+```
+
+## Positive Stimuli
+```{r}
+icc_list_posstim=NULL
+for(i in participant){
+  participant_select <- filter(posstim, participant == i)
+  stim_select <- select(participant_select, neglist)
+  icc <- irr::icc(stim_select, model = "twoway", unit = "average")
+  icc_temp <- icc$value
+  fz_iccTemp <- fisherz(icc_temp)
+  row_temp <- c(i, icc_temp, fz_iccTemp)
+  icc_list_posstim=rbind(icc_list_posstim,row_temp)
+  print(icc_temp)
+} 
+
+colnames(icc_list_posstim)=c("participant","ICCneg","ICCneg.fz")
+icc_list_posstim=as.data.frame(icc_list_posstim)
+```
+
+#Join ICC, make values inverse and mark negative (negative scores cannot be interpreted)
+```{r}
+joinedICC <- full_join(icc_list_posstim, icc_list_negstim, by = "participant")  %>% full_join(scores, by = "participant")
+
+joinedICC <- joinedICC %>% mutate (ICCneg_keep = if_else(condition = .$ICCneg > 0,
+                                                          true = "Positive",
+                                                          false = "Ignore",
+                                                          missing = "Ignore"),
+                                    ICCpos_keep = if_else(condition = .$ICCpos > 0,
+                                                          true = "Positive",
+                                                          false = "Ignore",
+                                                          missing = "Ignore"),
+                                    ICCneg_r = 1 - .$ICCneg,
+                                    ICCneg_fz_r = -1* .$ICCneg.fz,
+                                    ICCpos_r = 1 - .$ICCpos,
+                                    ICCpos_fz_r = -1* .$ICCpos.fz)  
+```
+
+
