@@ -245,188 +245,28 @@ joinedICC <- joinedICC %>% mutate (ICCneg_keep = if_else(condition = joinedICC$I
                                     ICCpos_fz_r = -1* joinedICC$ICCpos_fz)  
 ```
 
-
-<!-- # Load in data  -->
-<!-- ```{r message = FALSE, warning = FALSE} -->
-<!-- first19 <- readbulk::read_bulk(directory = "First19Data", fun = read_csv) -->
-
-<!-- first19 <- unite(first19,  -->
-<!--                  trialunique, -->
-<!--                  participant, songmark, songtrials.thisRepN, -->
-<!--                  remove = FALSE) -->
-
-<!-- first19 <- first19 %>% mutate(., -->
-<!--                               affectcat = as.factor(recode(affectcat, -->
-<!--                                                            "1" = "High Arousal/Positive Valence", -->
-<!--                                                            "2" = "High Arousal/Negative Valence", -->
-<!--                                                            "3" = "Low Arousal/Negative Valence", -->
-<!--                                                            "4" = "Low Arousal/Positve Valence")), -->
-<!--                               arousal = as.factor(recode(arousal,  -->
-<!--                                                          "1" = "Low", -->
-<!--                                                          "2" = "high")), -->
-<!--                               valence = as.factor(recode(valence, -->
-<!--                                                          "1" = "Negative", -->
-<!--                                                          "2" = "Positive"))) -->
-
-
-
-
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- head(first19) -->
-<!-- #remove practice trial -->
-<!-- filtered19 <- first19 %>% filter(valencekey.keys > 0 & arousalkey.keys > 0 & songmark > 0) -->
-
-<!-- filtered19 <- filtered19 %>% select(participant, -->
-<!--                                     id_trial, -->
-<!--                                     Word, -->
-<!--                                     songmark, -->
-<!--                                     valence, -->
-<!--                                     arousal, -->
-<!--                                     affectcat, -->
-<!--                                     arousalkey.keys, -->
-<!--                                     valencekey.keys, -->
-<!--                                     likekey.keys, -->
-<!--                                     WordResponse.keys)  -->
-
-<!-- names(filtered19) -->
-
-<!-- filtered19 %>% select(arousalkey.keys, valencekey.keys, likekey.keys) %>% describeBy(group = filtered19$affectcat)  -->
-<!-- ``` -->
-
-<!-- #Data Wrangling Emotion words  -->
-<!-- ```{r} -->
-<!-- forspread <- first19 %>% filter (WordResponse.keys > 0) %>% select(trialunique, -->
-<!--                                 Word, -->
-<!--                                 WordResponse.keys) -->
-
-
-<!-- spread <- forspread %>% group_by (trialunique) %>% spread(key = Word, value = WordResponse.keys) -->
-
-<!-- ``` -->
-
-<!-- #Bind affect rating with emotion rating  -->
-
-<!-- ```{r} -->
-<!-- affectrating <- first19 %>% filter(valencekey.keys > 0 & songmark > 0) %>% select(trialunique, -->
-<!--                                                                    participant, -->
-<!--                                                                    songmark, -->
-<!--                                                                    affectcat,  -->
-<!--                                                                    valence, -->
-<!--                                                                    arousal, -->
-<!--                                                                    valencekey.keys, -->
-<!--                                                                    arousalkey.keys) -->
-
-<!-- names(c(affectrating, spread19)) -->
-<!-- joined <- full_join(affectrating, spread19,  -->
-<!--                     by = "trialunique") -->
-
-
-<!-- View(joined) -->
-<!-- ``` -->
-
-
-
-
-
-
-
-<!-- ```{r} -->
-<!-- # #require(ggplot2)     -->
-<!-- # p <- ggplot(data = df, aes(x=hour))  -->
-<!-- # p <- p + geom_histogram(aes(weights=count, fill=weekday)) -->
-<!-- # p <- p + scale_fill_brewer(palette="Set3") -->
-<!-- # p <- p + facet_wrap( ~ weekday, ncol=1) -->
-<!-- # p -->
-
-<!-- filtered19 %>% ggplot(aes(x=valencekey.keys)) + geom_histogram(binwidth = .5)  +facet_wrap(~affectcat) -->
-
-<!-- filtered19 %>% ggplot(aes(x=arousalkey.keys)) + geom_histogram(binwidth = .5) +facet_wrap(~affectcat) -->
-
-<!-- filtered19 %>% ggplot(aes(x=likekey.keys)) + geom_histogram(binwidth = .5) +facet_wrap(~affectcat) -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- names(filtered19) -->
-
-<!-- filtered19 <- filtered19 %>% select(affectcat, -->
-<!--                                     valence, -->
-<!--                                     arousal, -->
-<!--                                     songmark, -->
-<!--                                     valencekey.keys, -->
-<!--                                     arousalkey.keys, -->
-<!--                                     likekey.keys, -->
-<!--                                     participant) -->
-
-<!-- pilotmodelvalence <- afex::mixed(formula = valencekey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = filtered19, return = "merMod")  -->
-
-<!-- valenceplot <- plot_model(pilotmodelvalence, type = "eff") -->
-<!-- print(valenceplot$affectcat) -->
-
-<!-- emmeans(pilotmodelvalence, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)  -->
-
-<!-- pilotmodelarousal <- afex::mixed(formula = arousalkey.keys~affectcat + (1 |participant), data = filtered19, return = "merMod")  -->
-
-<!-- arousalplot <- plot_model(pilotmodelarousal, type = "eff") -->
-<!-- print(arousalplot$affectcat) -->
-
-<!-- emmeans(pilotmodelarousal, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for arousal ratings", digits = 0) -->
-<!-- ``` -->
-
-<!-- #Data Wrangling Emotion words  -->
-<!-- ```{r} -->
-<!-- forspread <- first19 %>% filter (WordResponse.keys > 0) %>% select(trialunique, -->
-<!--                                 Word, -->
-<!--                                 WordResponse.keys) -->
-
-
-<!-- spread19 <- forspread %>% group_by (trialunique) %>% spread(key = Word, value = WordResponse.keys) -->
-
-<!-- ``` -->
-
-
-<!-- #Emotion differentiation -->
-<!-- ## Negative stimuli  -->
-
-<!-- negstim <- joined %>% filter(valence == "Negative") -->
-<!-- ```{r} -->
-<!-- negstim <- joined %>% filter(valence == "Negative") -->
-
-<!-- PID <-  unique(joined$participant) -->
-
-<!-- negICC=NULL -->
-<!-- for (sub in PID){ -->
-<!--  sub_negstim=negstim[negstim[,1]==sub,c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")]  #selects data for the current subject -->
-<!--   icc=icc(sub_negstim, model="twoway",unit="average")  #computes ICC -->
-<!--   icc_temp=icc$value -->
-
-<!--   fz_iccTemp=fisherz(icc_temp) -->
-
-<!--   row_temp=c(sub,icc_temp,fz_iccTemp) -->
-<!--   icc_list_negstim=rbind(icc_list_negstim,row_temp) -->
-<!--   print(fz_iccTemp) -->
-<!-- } -->
-
-<!-- colnames(icc_list_w1)=c("Participant","ICCneg","ICCneg.fz") -->
-<!-- icc_list_negstim=as.data.frame(icc_list_negstim) -->
-
-
-<!-- colnames(icc_list_negstim)=c("PpID","ICCneg","ICCneg.fz") -->
-<!-- icc_list_w1=as.data.frame(icc_list_negstim) -->
-
-<!-- ``` -->
-
-
+# Describe and Plot Valence
 ```{r}
-pilotmodelvalence <- afex::mixed(formula = valencekey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = filtered, return = "merMod")  
+valencemodel <- afex::mixed(formula = valencekey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = joinedaffectemo, return = "merMod") 
+  
+summary(valencemodel)
 
-valenceplot <- plot_model(pilotmodelvalence, type = "eff") 
+valenceplot <- plot_model(valencemodel, type = "pred") 
 print(valenceplot$affectcat)
 
-emmeans(pilotmodelvalence, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
+emmeans(valencemodel, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
 
 ```
 
+# Describe and Plot Arousal
+```{r}
+arousalmodel <- afex::mixed(formula = arousalkey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = joinedaffectemo, return = "merMod") 
+  
+summary(arousalmodel)
 
+arousalplot <- plot_model(arousalmodel, type = "pred") 
+print(arousalplot$affectcat)
 
+emmeans(arousalmodel, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for arousal ratings", digits = 3)
+
+```
