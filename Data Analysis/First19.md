@@ -31,6 +31,7 @@ library(irr)
 library(tableone)
 devtools::install_github("ropenscilabs/gendercodeR")
 library(gendercodeR)
+library(interactions)
 ```
 
 # Self Report Data
@@ -97,141 +98,26 @@ tas <- selfreport %>% transmute(participant = .$id,
                                 DIF = select(.,DIFlist) %>% rowSums(),
                                 TAS = select(., EOT, DDF, DIF) %>% rowSums())
 
-selfreport %>% select(EOTlist) %>% alpha()
+alpha(select(selfreport, EOTlist))$total$std.alpha
 ```
-
-    ## Warning in alpha(.): Some items were negatively correlated with the total scale and probably 
-    ## should be reversed.  
-    ## To do this, run the function again with the 'check.keys=TRUE' option
 
     ## Some items ( tas_8 tas_10r ) were negatively correlated with the total scale and 
     ## probably should be reversed.  
     ## To do this, run the function again with the 'check.keys=TRUE' option
 
-    ## 
-    ## Reliability analysis   
-    ## Call: alpha(x = .)
-    ## 
-    ##   raw_alpha std.alpha G6(smc) average_r  S/N  ase mean   sd median_r
-    ##       0.38      0.38    0.72     0.071 0.62 0.21  2.2 0.39    0.071
-    ## 
-    ##  lower alpha upper     95% confidence boundaries
-    ## -0.04 0.38 0.79 
-    ## 
-    ##  Reliability if an item is dropped:
-    ##         raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
-    ## tas_5r       0.32      0.33    0.68     0.065 0.49     0.24 0.068 0.072
-    ## tas_8        0.45      0.44    0.67     0.102 0.80     0.19 0.081 0.096
-    ## tas_10r      0.41      0.45    0.61     0.104 0.81     0.20 0.067 0.072
-    ## tas_15       0.38      0.37    0.67     0.076 0.58     0.21 0.108 0.011
-    ## tas_16       0.46      0.46    0.75     0.110 0.87     0.19 0.096 0.119
-    ## tas_18r      0.25      0.22    0.55     0.038 0.28     0.26 0.076 0.069
-    ## tas_19r      0.26      0.25    0.54     0.046 0.34     0.25 0.098 0.069
-    ## tas_20       0.14      0.18    0.59     0.030 0.21     0.30 0.079 0.011
-    ## 
-    ##  Item statistics 
-    ##          n raw.r std.r   r.cor r.drop mean   sd
-    ## tas_5r  19  0.49  0.47 0.39958  0.202  2.5 0.96
-    ## tas_8   19  0.23  0.25 0.15845 -0.063  2.2 0.92
-    ## tas_10r 19  0.22  0.24 0.20155 -0.013  1.7 0.75
-    ## tas_15  19  0.40  0.40 0.29219  0.093  2.2 0.98
-    ## tas_16  19  0.21  0.20 0.00094 -0.082  2.2 0.92
-    ## tas_18r 19  0.61  0.64 0.64360  0.464  1.8 0.60
-    ## tas_19r 19  0.59  0.59 0.58241  0.296  2.4 1.07
-    ## tas_20  19  0.71  0.69 0.66033  0.486  2.2 1.03
-    ## 
-    ## Non missing response frequency for each item
-    ##            1    2    3    4    5 miss
-    ## tas_5r  0.11 0.53 0.16 0.21 0.00    0
-    ## tas_8   0.16 0.58 0.21 0.00 0.05    0
-    ## tas_10r 0.42 0.53 0.00 0.05 0.00    0
-    ## tas_15  0.26 0.37 0.26 0.11 0.00    0
-    ## tas_16  0.21 0.47 0.21 0.11 0.00    0
-    ## tas_18r 0.26 0.63 0.11 0.00 0.00    0
-    ## tas_19r 0.21 0.37 0.21 0.21 0.00    0
-    ## tas_20  0.21 0.53 0.16 0.05 0.05    0
+    ## [1] 0.3809204
 
 ``` r
-selfreport %>% select(DDFlist) %>% alpha()
+alpha(select(selfreport, DDFlist))$total$std.alpha
 ```
 
-    ## 
-    ## Reliability analysis   
-    ## Call: alpha(x = .)
-    ## 
-    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-    ##        0.8       0.8    0.81      0.45 4.1 0.072  2.9 0.95     0.45
-    ## 
-    ##  lower alpha upper     95% confidence boundaries
-    ## 0.66 0.8 0.94 
-    ## 
-    ##  Reliability if an item is dropped:
-    ##        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-    ## tas_2       0.79      0.80    0.76      0.50 4.0    0.077 0.010  0.48
-    ## tas_4r      0.70      0.69    0.65      0.36 2.3    0.110 0.012  0.40
-    ## tas_11      0.76      0.76    0.74      0.45 3.2    0.089 0.020  0.46
-    ## tas_12      0.79      0.80    0.80      0.50 3.9    0.078 0.022  0.50
-    ## tas_17      0.76      0.76    0.77      0.44 3.1    0.092 0.036  0.45
-    ## 
-    ##  Item statistics 
-    ##         n raw.r std.r r.cor r.drop mean  sd
-    ## tas_2  19  0.65  0.67  0.58   0.47  3.0 1.2
-    ## tas_4r 19  0.88  0.89  0.90   0.79  2.8 1.2
-    ## tas_11 19  0.76  0.75  0.69   0.59  2.9 1.3
-    ## tas_12 19  0.67  0.67  0.54   0.48  2.5 1.2
-    ## tas_17 19  0.78  0.76  0.66   0.61  3.1 1.4
-    ## 
-    ## Non missing response frequency for each item
-    ##           1    2    3    4    5 miss
-    ## tas_2  0.05 0.37 0.21 0.26 0.11    0
-    ## tas_4r 0.05 0.53 0.11 0.21 0.11    0
-    ## tas_11 0.05 0.47 0.16 0.11 0.21    0
-    ## tas_12 0.21 0.42 0.11 0.21 0.05    0
-    ## tas_17 0.21 0.16 0.11 0.37 0.16    0
+    ## [1] 0.8022894
 
 ``` r
-selfreport %>% select(DIFlist) %>% alpha()
+alpha(select(selfreport, DIFlist))$total$std.alpha
 ```
 
-    ## 
-    ## Reliability analysis   
-    ## Call: alpha(x = .)
-    ## 
-    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-    ##       0.89      0.89    0.91      0.54 8.2 0.037  2.5 0.86     0.61
-    ## 
-    ##  lower alpha upper     95% confidence boundaries
-    ## 0.82 0.89 0.96 
-    ## 
-    ##  Reliability if an item is dropped:
-    ##        raw_alpha std.alpha G6(smc) average_r  S/N alpha se  var.r med.r
-    ## tas_1       0.87      0.87    0.90      0.53  6.8    0.044 0.0378  0.58
-    ## tas_3       0.91      0.91    0.91      0.63 10.3    0.031 0.0051  0.62
-    ## tas_6       0.86      0.86    0.87      0.51  6.3    0.048 0.0250  0.58
-    ## tas_7       0.87      0.87    0.89      0.52  6.5    0.045 0.0365  0.61
-    ## tas_9       0.87      0.87    0.89      0.52  6.5    0.045 0.0429  0.62
-    ## tas_13      0.87      0.87    0.88      0.52  6.5    0.046 0.0378  0.62
-    ## tas_14      0.87      0.87    0.89      0.53  6.7    0.045 0.0277  0.56
-    ## 
-    ##  Item statistics 
-    ##         n raw.r std.r r.cor r.drop mean   sd
-    ## tas_1  19  0.80  0.80  0.75   0.71  2.8 1.12
-    ## tas_3  19  0.50  0.52  0.43   0.36  1.9 0.99
-    ## tas_6  19  0.86  0.85  0.85   0.78  2.6 1.26
-    ## tas_7  19  0.81  0.82  0.80   0.75  2.2 0.92
-    ## tas_9  19  0.82  0.83  0.79   0.75  3.1 1.13
-    ## tas_13 19  0.83  0.82  0.81   0.75  2.3 1.11
-    ## tas_14 19  0.82  0.81  0.78   0.74  2.4 1.16
-    ## 
-    ## Non missing response frequency for each item
-    ##           1    2    3    4    5 miss
-    ## tas_1  0.05 0.47 0.11 0.32 0.05    0
-    ## tas_3  0.42 0.37 0.11 0.11 0.00    0
-    ## tas_6  0.16 0.47 0.11 0.16 0.11    0
-    ## tas_7  0.21 0.47 0.21 0.11 0.00    0
-    ## tas_9  0.05 0.37 0.11 0.42 0.05    0
-    ## tas_13 0.21 0.47 0.16 0.11 0.05    0
-    ## tas_14 0.21 0.47 0.11 0.16 0.05    0
+    ## [1] 0.8907239
 
 \#\#\#DASS
 
@@ -249,10 +135,10 @@ dass <- selfreport %>% transmute(participant = .$id,
                             anxiety = select(selfreport,anxietylist) %>% rowSums(),
                             depression = select(selfreport,depressionlist) %>% rowSums())
 
-selfreport %>% select(stresslist) %>% alpha()
+alpha(select(selfreport, stresslist))$total$std.alpha
 ```
 
-    ## Warning in alpha(.): Some items were negatively correlated with the total scale and probably 
+    ## Warning in alpha(select(selfreport, stresslist)): Some items were negatively correlated with the total scale and probably 
     ## should be reversed.  
     ## To do this, run the function again with the 'check.keys=TRUE' option
 
@@ -260,133 +146,19 @@ selfreport %>% select(stresslist) %>% alpha()
     ## probably should be reversed.  
     ## To do this, run the function again with the 'check.keys=TRUE' option
 
-    ## 
-    ## Reliability analysis   
-    ## Call: alpha(x = .)
-    ## 
-    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-    ##       0.71      0.67     0.8      0.23 2.1 0.094 0.98 0.51      0.3
-    ## 
-    ##  lower alpha upper     95% confidence boundaries
-    ## 0.53 0.71 0.9 
-    ## 
-    ##  Reliability if an item is dropped:
-    ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-    ## DASS_1       0.65      0.61    0.71      0.21 1.6    0.118 0.060  0.20
-    ## DASS_6       0.72      0.67    0.78      0.26 2.1    0.087 0.089  0.36
-    ## DASS_8       0.65      0.61    0.74      0.20 1.5    0.112 0.080  0.17
-    ## DASS_11      0.66      0.60    0.74      0.20 1.5    0.109 0.094  0.17
-    ## DASS_12      0.60      0.56    0.68      0.17 1.3    0.136 0.057  0.20
-    ## DASS_14      0.68      0.64    0.77      0.23 1.8    0.108 0.078  0.20
-    ## DASS_18      0.75      0.74    0.80      0.33 2.9    0.087 0.045  0.36
-    ## 
-    ##  Item statistics 
-    ##          n raw.r std.r r.cor r.drop mean   sd
-    ## DASS_1  19  0.70  0.65 0.650  0.546 1.32 0.82
-    ## DASS_6  19  0.45  0.48 0.367  0.241 1.16 0.83
-    ## DASS_8  19  0.69  0.67 0.608  0.520 0.95 0.91
-    ## DASS_11 19  0.67  0.70 0.628  0.492 0.89 0.88
-    ## DASS_12 19  0.82  0.78 0.805  0.671 1.05 1.08
-    ## DASS_14 19  0.61  0.58 0.490  0.431 0.89 0.81
-    ## DASS_18 19  0.11  0.22 0.093 -0.027 0.58 0.51
-    ## 
-    ## Non missing response frequency for each item
-    ##            0    1    2    3 miss
-    ## DASS_1  0.16 0.42 0.37 0.05    0
-    ## DASS_6  0.16 0.63 0.11 0.11    0
-    ## DASS_8  0.37 0.37 0.21 0.05    0
-    ## DASS_11 0.37 0.42 0.16 0.05    0
-    ## DASS_12 0.37 0.37 0.11 0.16    0
-    ## DASS_14 0.32 0.53 0.11 0.05    0
-    ## DASS_18 0.42 0.58 0.00 0.00    0
+    ## [1] 0.6738721
 
 ``` r
-selfreport %>% select(anxietylist) %>% alpha()
+alpha(select(selfreport, anxietylist))$total$std.alpha
 ```
 
-    ## 
-    ## Reliability analysis   
-    ## Call: alpha(x = .)
-    ## 
-    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-    ##       0.82      0.81    0.91      0.38 4.3 0.056 0.68 0.64     0.41
-    ## 
-    ##  lower alpha upper     95% confidence boundaries
-    ## 0.71 0.82 0.93 
-    ## 
-    ##  Reliability if an item is dropped:
-    ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-    ## DASS_2       0.86      0.85    0.89      0.49 5.9    0.048 0.043  0.48
-    ## DASS_4       0.77      0.75    0.88      0.33 3.0    0.072 0.099  0.36
-    ## DASS_7       0.78      0.77    0.82      0.35 3.3    0.074 0.082  0.36
-    ## DASS_9       0.81      0.80    0.91      0.40 3.9    0.059 0.099  0.36
-    ## DASS_15      0.75      0.74    0.84      0.32 2.8    0.083 0.090  0.36
-    ## DASS_19      0.84      0.84    0.89      0.47 5.2    0.055 0.071  0.48
-    ## DASS_20      0.75      0.73    0.84      0.31 2.7    0.079 0.083  0.36
-    ## 
-    ##  Item statistics 
-    ##          n raw.r std.r r.cor r.drop mean   sd
-    ## DASS_2  19  0.33  0.34  0.28   0.15 0.68 0.82
-    ## DASS_4  19  0.83  0.84  0.81   0.75 0.53 0.84
-    ## DASS_7  19  0.80  0.77  0.78   0.69 0.53 1.02
-    ## DASS_9  19  0.66  0.65  0.55   0.50 1.05 1.03
-    ## DASS_15 19  0.89  0.88  0.88   0.81 0.79 1.08
-    ## DASS_19 19  0.39  0.43  0.36   0.24 0.63 0.68
-    ## DASS_20 19  0.90  0.91  0.91   0.85 0.53 0.84
-    ## 
-    ## Non missing response frequency for each item
-    ##            0    1    2    3 miss
-    ## DASS_2  0.47 0.42 0.05 0.05    0
-    ## DASS_4  0.63 0.26 0.05 0.05    0
-    ## DASS_7  0.74 0.11 0.05 0.11    0
-    ## DASS_9  0.37 0.32 0.21 0.11    0
-    ## DASS_15 0.58 0.16 0.16 0.11    0
-    ## DASS_19 0.47 0.42 0.11 0.00    0
-    ## DASS_20 0.63 0.26 0.05 0.05    0
+    ## [1] 0.8125129
 
 ``` r
-selfreport %>% select(depressionlist) %>% alpha()
+alpha(select(selfreport, depressionlist))$total$std.alpha
 ```
 
-    ## 
-    ## Reliability analysis   
-    ## Call: alpha(x = .)
-    ## 
-    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-    ##       0.79      0.81     0.9      0.38 4.3 0.075  0.6 0.49     0.43
-    ## 
-    ##  lower alpha upper     95% confidence boundaries
-    ## 0.64 0.79 0.94 
-    ## 
-    ##  Reliability if an item is dropped:
-    ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-    ## DASS_3       0.77      0.80    0.88      0.40 4.1    0.085 0.065  0.45
-    ## DASS_5       0.82      0.82    0.89      0.43 4.5    0.062 0.041  0.45
-    ## DASS_10      0.73      0.76    0.88      0.35 3.2    0.100 0.065  0.38
-    ## DASS_13      0.72      0.75    0.87      0.33 3.0    0.104 0.066  0.37
-    ## DASS_16      0.75      0.78    0.85      0.37 3.6    0.091 0.061  0.43
-    ## DASS_17      0.76      0.77    0.85      0.36 3.4    0.084 0.049  0.43
-    ## DASS_21      0.79      0.81    0.88      0.42 4.3    0.073 0.038  0.47
-    ## 
-    ##  Item statistics 
-    ##          n raw.r std.r r.cor r.drop mean   sd
-    ## DASS_3  19  0.60  0.61  0.55   0.49 0.47 0.51
-    ## DASS_5  19  0.61  0.54  0.48   0.35 1.32 1.06
-    ## DASS_10 19  0.79  0.78  0.74   0.69 0.84 0.76
-    ## DASS_13 19  0.84  0.83  0.79   0.75 0.74 0.73
-    ## DASS_16 19  0.71  0.71  0.70   0.61 0.32 0.58
-    ## DASS_17 19  0.70  0.74  0.75   0.57 0.26 0.73
-    ## DASS_21 19  0.52  0.58  0.55   0.36 0.26 0.65
-    ## 
-    ## Non missing response frequency for each item
-    ##            0    1    2    3 miss
-    ## DASS_3  0.53 0.47 0.00 0.00    0
-    ## DASS_5  0.26 0.32 0.26 0.16    0
-    ## DASS_10 0.37 0.42 0.21 0.00    0
-    ## DASS_13 0.42 0.42 0.16 0.00    0
-    ## DASS_16 0.74 0.21 0.05 0.00    0
-    ## DASS_17 0.84 0.11 0.00 0.05    0
-    ## DASS_21 0.84 0.05 0.11 0.00    0
+    ## [1] 0.8116102
 
 \#\#Join scores
 
@@ -618,61 +390,494 @@ joinedICC <- joinedICC %>% mutate (ICCneg_keep = if_else(condition = joinedICC$I
 # Describe and Plot Valence
 
 ``` r
-valencemodel <- afex::mixed(formula = valencekey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = joinedaffectemo, return = "merMod") 
+valencemodel <- afex::mixed(formula = valencekey.keys~affectcat*TAS + (1 |songmark) +(affectcat |participant), data = joined, return = "merMod") 
 ```
 
     ## Contrasts set to contr.sum for the following variables: affectcat
 
+    ## Numerical variables NOT centered on 0: TAS
+    ## If in interactions, interpretation of lower order (e.g., main) effects difficult.
+
     ## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-    ## control$checkConv, : Model failed to converge with max|grad| = 0.0114462
+    ## control$checkConv, : Model failed to converge with max|grad| = 0.00409274
     ## (tol = 0.002, component 1)
 
 ``` r
-summary(valencemodel)
+tab_model(valencemodel)
 ```
 
-    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-    ## lmerModLmerTest]
-    ## Formula: 
-    ## valencekey.keys ~ affectcat + (1 | songmark) + (affectcat | participant)
-    ##    Data: data
-    ## 
-    ## REML criterion at convergence: 1458
-    ## 
-    ## Scaled residuals: 
-    ##     Min      1Q  Median      3Q     Max 
-    ## -3.2639 -0.5371 -0.0674  0.5415  3.3774 
-    ## 
-    ## Random effects:
-    ##  Groups      Name        Variance Std.Dev. Corr             
-    ##  participant (Intercept) 0.27934  0.5285                    
-    ##              affectcat1  0.16803  0.4099    0.09            
-    ##              affectcat2  0.17680  0.4205   -0.15 -0.47      
-    ##              affectcat3  0.13230  0.3637    0.06  0.45 -0.93
-    ##  songmark    (Intercept) 0.06689  0.2586                    
-    ##  Residual                0.51128  0.7150                    
-    ## Number of obs: 602, groups:  participant, 19; songmark, 16
-    ## 
-    ## Fixed effects:
-    ##             Estimate Std. Error      df t value Pr(>|t|)    
-    ## (Intercept)   2.6430     0.1405 24.8010  18.814 3.41e-16 ***
-    ## affectcat1   -0.8313     0.1547 21.8570  -5.374 2.19e-05 ***
-    ## affectcat2    1.0803     0.1563 22.2664   6.912 5.71e-07 ***
-    ## affectcat3   -0.8652     0.1485 20.2392  -5.826 1.01e-05 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Correlation of Fixed Effects:
-    ##            (Intr) affct1 affct2
-    ## affectcat1  0.049              
-    ## affectcat2 -0.078 -0.385       
-    ## affectcat3  0.028 -0.065 -0.540
-    ## convergence code: 0
-    ## Model failed to converge with max|grad| = 0.0114462 (tol = 0.002, component 1)
+    ## Caution! ICC for random-slope-intercept models usually not meaningful. Use `adjusted = TRUE` to use the mean random effect variance to calculate the ICC. See 'Note' in `?icc`.
+
+<table style="border-collapse:collapse; border:none;">
+
+<tr>
+
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+
+ 
+
+</th>
+
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+
+valencekey keys
+
+</th>
+
+</tr>
+
+<tr>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+
+Predictors
+
+</td>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+
+Estimates
+
+</td>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+
+CI
+
+</td>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+
+p
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+(Intercept)
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+2.00
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.46 – 3.55
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+<strong>0.021</strong>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat1
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.25
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-1.01 – 1.51
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.703
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat2
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.07
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-1.23 – 1.37
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.918
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat3
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.07
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-1.26 – 1.11
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.904
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.01
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.02 – 0.05
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.420
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat1:TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.02
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.05 – 0.00
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.102
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat2:TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.02
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.01 – 0.05
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.136
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat3:TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.02
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.04 – 0.01
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.196
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="4" style="font-weight:bold; text-align:left; padding-top:.8em;">
+
+Random Effects
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+σ<sup>2</sup>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.51
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>00</sub> <sub>participant</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.28
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>00</sub> <sub>songmark</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.07
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>11</sub> <sub>participant.affectcat1</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.15
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>11</sub> <sub>participant.affectcat2</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.16
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>11</sub> <sub>participant.affectcat3</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.12
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ρ<sub>01</sub> <sub>participant.affectcat1</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.20
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ρ<sub>01</sub> <sub>participant.affectcat2</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+\-0.25
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ρ<sub>01</sub> <sub>participant.affectcat3</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.14
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ICC <sub>participant</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.33
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ICC <sub>songmark</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.08
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+
+Observations
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+
+602
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.436 / 0.714
+
+</td>
+
+</tr>
+
+</table>
 
 ``` r
-valenceplot <- plot_model(valencemodel, type = "pred") 
-print(valenceplot$affectcat)
+plot_model(valencemodel, type = "pred")$affectcat 
 ```
 
 ![](First19_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
@@ -681,76 +886,521 @@ print(valenceplot$affectcat)
 emmeans(valencemodel, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
 ```
 
+    ## NOTE: Results may be misleading due to involvement in interactions
+
 | contrast                                                      | estimate |    SE |     df | t.ratio | p.value |
 | :------------------------------------------------------------ | -------: | ----: | -----: | ------: | ------: |
-| High Arousal/Negative Valence - High Arousal/Positive Valence |  \-1.912 | 0.259 | 22.707 | \-7.386 |   0.000 |
-| High Arousal/Negative Valence - Low Arousal/Negative Valence  |    0.034 | 0.221 | 16.148 |   0.153 |   0.999 |
-| High Arousal/Negative Valence - Low Arousal/Positve Valence   |  \-1.447 | 0.272 | 24.175 | \-5.323 |   0.000 |
-| High Arousal/Positive Valence - Low Arousal/Negative Valence  |    1.945 | 0.267 | 23.728 |   7.273 |   0.000 |
-| High Arousal/Positive Valence - Low Arousal/Positve Valence   |    0.464 | 0.231 | 18.117 |   2.009 |   0.221 |
-| Low Arousal/Negative Valence - Low Arousal/Positve Valence    |  \-1.481 | 0.249 | 21.268 | \-5.956 |   0.000 |
+| High Arousal/Negative Valence - High Arousal/Positive Valence |  \-1.911 | 0.249 | 21.098 | \-7.661 |   0.000 |
+| High Arousal/Negative Valence - Low Arousal/Negative Valence  |    0.034 | 0.223 | 16.398 |   0.152 |   0.999 |
+| High Arousal/Negative Valence - Low Arousal/Positve Valence   |  \-1.448 | 0.265 | 23.033 | \-5.455 |   0.000 |
+| High Arousal/Positive Valence - Low Arousal/Negative Valence  |    1.945 | 0.262 | 22.686 |   7.423 |   0.000 |
+| High Arousal/Positive Valence - Low Arousal/Positve Valence   |    0.464 | 0.233 | 18.408 |   1.990 |   0.228 |
+| Low Arousal/Negative Valence - Low Arousal/Positve Valence    |  \-1.482 | 0.243 | 20.172 | \-6.088 |   0.000 |
 
 Pairwise comparisons of main effect of song affect category for valence
 ratings
 
+``` r
+interact_plot(model = valencemodel,
+              pred = TAS,
+              modx = affectcat,
+              x.label = "Alexithymia",
+              y.label = "Rated Valence")
+```
+
+![](First19_files/figure-gfm/unnamed-chunk-16-2.png)<!-- -->
+
 # Describe and Plot Arousal
 
 ``` r
-arousalmodel <- afex::mixed(formula = arousalkey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = joinedaffectemo, return = "merMod") 
+arousalmodel <- afex::mixed(formula = arousalkey.keys~affectcat*TAS + (1 |songmark) +(affectcat |participant), data = joined, return = "merMod") 
 ```
 
     ## Contrasts set to contr.sum for the following variables: affectcat
 
+    ## Numerical variables NOT centered on 0: TAS
+    ## If in interactions, interpretation of lower order (e.g., main) effects difficult.
+
     ## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl =
-    ## control$checkConv, : Model failed to converge with max|grad| = 0.0116944
+    ## control$checkConv, : Model failed to converge with max|grad| = 0.00365187
     ## (tol = 0.002, component 1)
 
 ``` r
-summary(arousalmodel)
+tab_model(arousalmodel)
 ```
 
-    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-    ## lmerModLmerTest]
-    ## Formula: 
-    ## arousalkey.keys ~ affectcat + (1 | songmark) + (affectcat | participant)
-    ##    Data: data
-    ## 
-    ## REML criterion at convergence: 1405.6
-    ## 
-    ## Scaled residuals: 
-    ##     Min      1Q  Median      3Q     Max 
-    ## -3.0537 -0.5941 -0.0724  0.6579  3.1763 
-    ## 
-    ## Random effects:
-    ##  Groups      Name        Variance Std.Dev. Corr             
-    ##  participant (Intercept) 0.2444   0.4944                    
-    ##              affectcat1  0.2681   0.5178    0.34            
-    ##              affectcat2  0.1424   0.3773   -0.41 -0.60      
-    ##              affectcat3  0.1350   0.3674   -0.42 -0.52 -0.23
-    ##  songmark    (Intercept) 0.1024   0.3201                    
-    ##  Residual                0.4674   0.6837                    
-    ## Number of obs: 602, groups:  participant, 19; songmark, 16
-    ## 
-    ## Fixed effects:
-    ##             Estimate Std. Error      df t value Pr(>|t|)    
-    ## (Intercept)   2.7176     0.1416 27.3702  19.195  < 2e-16 ***
-    ## affectcat1    0.6195     0.1888 23.7214   3.281  0.00319 ** 
-    ## affectcat2    1.0846     0.1705 19.2034   6.363 3.99e-06 ***
-    ## affectcat3   -1.2209     0.1692 18.8476  -7.214 7.88e-07 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Correlation of Fixed Effects:
-    ##            (Intr) affct1 affct2
-    ## affectcat1  0.173              
-    ## affectcat2 -0.168 -0.415       
-    ## affectcat3 -0.168 -0.387 -0.306
-    ## convergence code: 0
-    ## Model failed to converge with max|grad| = 0.0116944 (tol = 0.002, component 1)
+    ## Caution! ICC for random-slope-intercept models usually not meaningful. Use `adjusted = TRUE` to use the mean random effect variance to calculate the ICC. See 'Note' in `?icc`.
+
+<table style="border-collapse:collapse; border:none;">
+
+<tr>
+
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+
+ 
+
+</th>
+
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+
+arousalkey keys
+
+</th>
+
+</tr>
+
+<tr>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+
+Predictors
+
+</td>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+
+Estimates
+
+</td>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+
+CI
+
+</td>
+
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+
+p
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+(Intercept)
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+2.25
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.79 – 3.72
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+<strong>0.008</strong>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat1
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.96
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.67 – 2.59
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.262
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat2
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.09
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-1.23 – 1.06
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.881
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat3
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.30
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-1.47 – 0.87
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.623
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.01
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.02 – 0.04
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.536
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat1:TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.01
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.04 – 0.03
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.676
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat2:TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.03
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.00 – 0.05
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.052
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+
+affectcat3:TAS
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.02
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+\-0.04 – 0.00
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+
+0.126
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="4" style="font-weight:bold; text-align:left; padding-top:.8em;">
+
+Random Effects
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+σ<sup>2</sup>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.47
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>00</sub> <sub>participant</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.25
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>00</sub> <sub>songmark</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.10
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>11</sub> <sub>participant.affectcat1</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.28
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>11</sub> <sub>participant.affectcat2</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.11
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+τ<sub>11</sub> <sub>participant.affectcat3</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.12
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ρ<sub>01</sub> <sub>participant.affectcat1</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.37
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ρ<sub>01</sub> <sub>participant.affectcat2</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+\-0.58
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ρ<sub>01</sub> <sub>participant.affectcat3</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+\-0.39
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ICC <sub>participant</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.31
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+ICC <sub>songmark</sub>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.12
+
+</td>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+
+Observations
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+
+602
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+
+</td>
+
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+
+0.466 / 0.742
+
+</td>
+
+</tr>
+
+</table>
 
 ``` r
-arousalplot <- plot_model(arousalmodel, type = "pred") 
-print(arousalplot$affectcat)
+plot_model(arousalmodel, type = "pred")$affectcat 
 ```
 
 ![](First19_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
@@ -759,14 +1409,26 @@ print(arousalplot$affectcat)
 emmeans(arousalmodel, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for arousal ratings", digits = 3)
 ```
 
+    ## NOTE: Results may be misleading due to involvement in interactions
+
 | contrast                                                      | estimate |    SE |     df | t.ratio | p.value |
 | :------------------------------------------------------------ | -------: | ----: | -----: | ------: | ------: |
-| High Arousal/Negative Valence - High Arousal/Positive Valence |  \-0.465 | 0.302 | 22.904 | \-1.539 |   0.432 |
-| High Arousal/Negative Valence - Low Arousal/Negative Valence  |    1.840 | 0.298 | 22.362 |   6.168 |   0.000 |
-| High Arousal/Negative Valence - Low Arousal/Positve Valence   |    1.103 | 0.282 | 19.865 |   3.904 |   0.005 |
-| High Arousal/Positive Valence - Low Arousal/Negative Valence  |    2.305 | 0.275 | 18.476 |   8.398 |   0.000 |
-| High Arousal/Positive Valence - Low Arousal/Positve Valence   |    1.568 | 0.259 | 15.566 |   6.053 |   0.000 |
-| Low Arousal/Negative Valence - Low Arousal/Positve Valence    |  \-0.738 | 0.260 | 15.822 | \-2.834 |   0.053 |
+| High Arousal/Negative Valence - High Arousal/Positive Valence |  \-0.465 | 0.301 | 22.302 | \-1.549 |   0.427 |
+| High Arousal/Negative Valence - Low Arousal/Negative Valence  |    1.840 | 0.301 | 22.426 |   6.105 |   0.000 |
+| High Arousal/Negative Valence - Low Arousal/Positve Valence   |    1.103 | 0.285 | 20.080 |   3.867 |   0.005 |
+| High Arousal/Positive Valence - Low Arousal/Negative Valence  |    2.306 | 0.265 | 16.525 |   8.710 |   0.000 |
+| High Arousal/Positive Valence - Low Arousal/Positve Valence   |    1.568 | 0.258 | 15.185 |   6.088 |   0.000 |
+| Low Arousal/Negative Valence - Low Arousal/Positve Valence    |  \-0.738 | 0.259 | 15.529 | \-2.845 |   0.053 |
 
 Pairwise comparisons of main effect of song affect category for arousal
 ratings
+
+``` r
+interact_plot(model = arousalmodel,
+              pred = TAS,
+              modx = affectcat,
+              x.label = "Alexithymia",
+              y.label = "Rated arousal")
+```
+
+![](First19_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
