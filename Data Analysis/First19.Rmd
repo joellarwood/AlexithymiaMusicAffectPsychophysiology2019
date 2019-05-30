@@ -20,6 +20,7 @@ library(irr)
 library(tableone)
 devtools::install_github("ropenscilabs/gendercodeR")
 library(gendercodeR)
+library(interactions)
 ```
 
 # Self Report Data 
@@ -47,7 +48,7 @@ CreateTableOne(vars = c("gender_recode", "yearsplay"), data = selfreport) %>% ka
 
 ##Create scores 
 ###Alexithymia
-```{r}
+```{r, message = FALSE, warning=FALSE}
 selfreport <- selfreport %>% mutate(tas_4r = 6 - .$tas_4, #Reverse code items
                                     tas_5r = 6 - .$tas_5,
                                     tas_10r = 6 - .$tas_10,
@@ -63,9 +64,10 @@ tas <- selfreport %>% transmute(participant = .$id,
                                 DIF = select(.,DIFlist) %>% rowSums(),
                                 TAS = select(., EOT, DDF, DIF) %>% rowSums())
 
-selfreport %>% select(EOTlist) %>% alpha()
-selfreport %>% select(DDFlist) %>% alpha()
-selfreport %>% select(DIFlist) %>% alpha()
+alpha(select(selfreport, EOTlist))$total$std.alpha
+alpha(select(selfreport, DDFlist))$total$std.alpha
+alpha(select(selfreport, DIFlist))$total$std.alpha
+
 ```
 
 ###DASS
@@ -84,9 +86,9 @@ dass <- selfreport %>% transmute(participant = .$id,
                             anxiety = select(selfreport,anxietylist) %>% rowSums(),
                             depression = select(selfreport,depressionlist) %>% rowSums())
 
-selfreport %>% select(stresslist) %>% alpha()
-selfreport %>% select(anxietylist) %>% alpha()
-selfreport %>% select(depressionlist) %>% alpha()
+alpha(select(selfreport, stresslist))$total$std.alpha
+alpha(select(selfreport, anxietylist))$total$std.alpha
+alpha(select(selfreport, depressionlist))$total$std.alpha
 ```
 
 ##Join scores
@@ -247,26 +249,35 @@ joinedICC <- joinedICC %>% mutate (ICCneg_keep = if_else(condition = joinedICC$I
 
 # Describe and Plot Valence
 ```{r}
-valencemodel <- afex::mixed(formula = valencekey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = joinedaffectemo, return = "merMod") 
+valencemodel <- afex::mixed(formula = valencekey.keys~affectcat*TAS + (1 |songmark) +(affectcat |participant), data = joined, return = "merMod") 
   
-summary(valencemodel)
+tab_model(valencemodel)
 
-valenceplot <- plot_model(valencemodel, type = "pred") 
-print(valenceplot$affectcat)
+plot_model(valencemodel, type = "pred")$affectcat 
 
 emmeans(valencemodel, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
 
+interact_plot(model = valencemodel,
+              pred = TAS,
+              modx = affectcat,
+              x.label = "Alexithymia",
+              y.label = "Rated Valence")
 ```
 
 # Describe and Plot Arousal
 ```{r}
-arousalmodel <- afex::mixed(formula = arousalkey.keys~affectcat + (1 |songmark) +(affectcat |participant), data = joinedaffectemo, return = "merMod") 
+arousalmodel <- afex::mixed(formula = arousalkey.keys~affectcat*TAS + (1 |songmark) +(affectcat |participant), data = joined, return = "merMod") 
   
-summary(arousalmodel)
+tab_model(arousalmodel)
 
-arousalplot <- plot_model(arousalmodel, type = "pred") 
-print(arousalplot$affectcat)
+plot_model(arousalmodel, type = "pred")$affectcat 
 
 emmeans(arousalmodel, "affectcat") %>% pairs() %>% kable(caption = "Pairwise comparisons of main effect of song affect category for arousal ratings", digits = 3)
+
+interact_plot(model = arousalmodel,
+              pred = TAS,
+              modx = affectcat,
+              x.label = "Alexithymia",
+              y.label = "Rated arousal")
 
 ```
