@@ -7,7 +7,7 @@ output: github_document
 library(tidyverse)
 library(readbulk)
 library(psych)
-library(afex)
+library(lme4)
 library(knitr)
 library(emmeans)
 library(sjPlot)
@@ -171,6 +171,9 @@ vis_dat(joinedaffectemo)
 joined <- full_join(joinedaffectemo, scores,
                     by = "participant")
 
+joined <- mutate(joined,
+                 id = as.factor(participant),
+                 songmark = as.factor(songmark))
 vis_dat(joined)
 ```
 
@@ -256,7 +259,7 @@ DiffCorMatrix <- cor(select(joinedICC, ICCneg_r, ICCneg_fz_r, ICCpos_r, ICCpos_f
 p.mat <- cor.mtest(DiffCorVar)
 
 DiffCorPlot <- corrplot(corr = cor(DiffCorVar, use = "complete.obs"),
-                        method = c("circle"),
+                        method = c("ellipse"),
                         type = c("upper"),
                         sig.level = c(.001, .01, .05),
                         p.mat = cor.mtest(DiffCorVar)$p,
@@ -267,7 +270,7 @@ DiffCorPlot <- corrplot(corr = cor(DiffCorVar, use = "complete.obs"),
 
 # Describe and Plot Valence Self Report
 ```{r Valence self report GLM}
-valencemodel <- afex::mixed(formula = valencekey.keys~affectcat*TAS + (1 + TAS |participant) +(1 + TAS |songmark), data = joined, return = "merMod") 
+valencemodel <- lmer(valencekey.keys~affectcat*TAS + (1 |id) +(1 |songmark), data = joined) 
 
 tab_model(valencemodel)
 
@@ -280,11 +283,15 @@ interactions::interact_plot(model = valencemodel,
               modx = affectcat,
               x.label = "Alexithymia",
               y.label = "Rated Valence")
+
+sjPlot::plot_model(model = lmer(valencekey.keys~songmark*TAS + (1 |id) , data = joined) ,
+                   type ="int",
+                   mdrt.values = "meansd")
 ```
 
 # Describe and Plot Arousal
 ```{r Arousal self report GLM}
-arousalmodel <- afex::mixed(formula = arousalkey.keys~affectcat*TAS + (1 + TAS |participant) +(1 + TAS |songmark), data = joined, return = "merMod") 
+arousalmodel <- lme4::lmer(formula = arousalkey.keys~affectcat*TAS + (1 |participant) +(1 |songmark), data = joined) 
 
 tab_model(arousalmodel)
 
@@ -300,6 +307,13 @@ interactions::interact_plot(model = arousalmodel,
               x.label = "Alexithymia",
               y.label = "Rated arousal")
 
+interactions::sim_slopes(model = arousalmodel,
+                         pred = TAS,
+                         modx = affectcat)
+
 ```
 
+```{r}
+joined %>% select(valencekey.keys, arousalkey.keys, songmark) %>% dplyr::group_by(songmark) %>% skimr::skim() %>% skimr::kable()
+```
 
