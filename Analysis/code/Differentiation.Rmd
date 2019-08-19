@@ -1,0 +1,84 @@
+---
+title: "Emotion Differentiation"
+output: github_document
+---
+
+```{r emotion word list}
+poslist <- c("ACTIVE", "EXCITED", "HAPPY", "TENDER") #CHECK ALERT
+neglist <- c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")
+```
+
+```{r split by song valence}
+negstim <- joined %>% filter(valence == "Negative")
+posstim <- joined %>% filter(valence == "Positive")
+
+participant <- (unique(joined$participant)) 
+```
+
+## Negative Stimuli
+```{r negative songs emotion differentiation}
+icc_list_negstim=NULL
+for(i in participant){
+  participant_select <- filter(negstim, participant == i)
+  stim_select <- select(participant_select, neglist)
+  icc <- irr::icc(stim_select, model = "twoway", unit = "average")
+  icc_temp <- icc$value
+  row_temp <- c(i, icc_temp)
+  icc_list_negstim=rbind(icc_list_negstim,row_temp)
+  print(icc_temp)
+} 
+
+colnames(icc_list_negstim)=c("participant","ICCneg")
+
+icc_list_negstim=as_tibble(icc_list_negstim)%>% replace_with_na_all(condition = ~.x < 0) #make data frame and remove below 0, neg numbers cannot be interpreted 
+
+```
+
+## Positive Stimuli
+```{r positive songs emotion differentiation}
+icc_list_posstim=NULL
+for(i in participant){
+  participant_select <- filter(posstim, participant == i) #select participant for loop
+  stim_select <- select(participant_select, poslist) #select scores for positive words
+  icc <- irr::icc(stim_select, model = "twoway", unit = "average") # get ICC for words for participant
+  icc_temp <- icc$value #extract ICC
+  row_temp <- c(i, icc_temp) # create participant row
+  icc_list_posstim=rbind(icc_list_posstim,row_temp) 
+  print(icc_temp)
+} 
+
+colnames(icc_list_posstim) <- c("participant","ICCpos")
+icc_list_posstim <-as_tibble(icc_list_posstim) %>% replace_with_na_all(condition = ~.x < 0) #make data frame and remove below 0, neg numbers cannot be interpreted 
+
+```
+
+#Join ICC, make values inverse 
+```{r join emotion differentiation}
+joinedICC <- full_join(icc_list_posstim, icc_list_negstim, by = "participant")  %>% full_join(scores, by = "participant")
+
+joinedICC <- joinedICC %>%  mutate(ICCneg_r = 1 - .$ICCneg, # reverse, higher scores = higher differentiation
+                                   ICCneg_fz_r = -1* (fisherz(ICCneg)), #fisher z tranformation and reverse so that higher score = higher differentiation
+                                   ICCpos_r = 1 - .$ICCpos,# reverse, higher scores = higher differentiation
+                                   ICCpos_fz_r = -1*(fisherz(ICCpos)))#fisher z tranformation and reverse so that higher score = higher differentiation
+
+joinedICC %>% select(contains("ICC")) %>% skimr::skim() %>% skimr::kable()
+
+```
+
+# Emotion Differentiation Correlations
+```{r Differentiation Correlations}
+
+DiffCorVar <- select(joinedICC, ICCneg_r, ICCpos_r, TAS, DDF, DIF, EOT)
+DiffCorMatrix <- cor(select(joinedICC, ICCneg_r, ICCpos_r, TAS, DDF, DIF, EOT)) #variables for correlation
+p.mat <- cor.mtest(DiffCorVar)
+
+DiffCorPlot <- corrplot(corr = cor(DiffCorVar, use = "complete.obs"),
+                        method = c("ellipse"),
+                        type = c("upper"),
+                        sig.level = c(.001, .01, .05),
+                        p.mat = cor.mtest(DiffCorVar)$p,
+                        insig = c("label_sig"))
+
+apa.cor.table(DiffCorVar, filename = "../results/DiffCorrelations.rtf", show.conf.interval = FALSE)
+
+```

@@ -1,0 +1,115 @@
+---
+title: "Summarise"
+output: github_document
+---
+
+```{r}
+sum <- filtered %>% 
+  group_by(participant, affectcat) %>%
+  summarise(arousal = mean(arousalkey.keys),
+            valence = mean(valencekey.keys),
+            liking = mean(likekey.keys),
+            TAS = mean(TAS))
+```
+# Self Report Data 
+## Valence Self Report 
+```{r valence model}
+valencemodelsum <- lmer(valence~affectcat*TAS + (1 | participant), data = sum) 
+tab_model(valencemodelsum)
+
+anova(valencemodelsum)
+
+sjPlot::plot_model(model = valencemodelsum,
+                   type = "int",
+                   mdrt.values = "meansd",
+                   title = "Mean Self Report Valence",
+                   grparticipant = FALSE) + 
+  ggplot2::ylim(1, 5) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") + 
+  xlab("Affective Category") +
+  ylab ("Rated Valence") + 
+  theme_classic()
+
+interactions::interact_plot(valencemodelsum,
+                            pred = TAS,
+                            modx = affectcat, 
+                            interval = TRUE)  + 
+  ylab("Rated Valence") + 
+  xlab("TAS") + 
+  ylim(1,5) +
+  theme_classic()
+```
+## Liking
+### Valence
+```{r valence model}
+valencemodellikingsum <- lmer(valence~affectcat*liking + (1 | participant), data = sum) 
+tab_model(valencemodel)
+
+interactions::sim_slopes(valencemodelliking,
+                                pred = likekey.keys,
+                                modx = affectcat)
+
+sjPlot::plot_model(model = valencemodelliking,
+                   type = "int",
+                   mdrt.values = "meansd",
+                   title = "Mean Self Report Valence",
+                   legend.title = "Liking Rating",
+                   grparticipant = FALSE) + 
+  ggplot2::ylim(1, 5) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") + 
+  xlab("Affective Category") +
+  ylab ("Rated Valence") + 
+  theme_classic()
+
+
+interactions::interact_plot(valencemodelliking,
+                            pred = likekey.keys,
+                            modx = affectcat,
+                            interval = TRUE)  + 
+  ylab("Rated Valence") + 
+  xlab("Song Liking") + 
+  theme_classic()
+```
+
+
+
+```{r}
+tascor <- lmer(liking~affectcat*TAS + (1 | participant), data = sum)
+
+tab_model(tascor)
+
+sjPlot::plot_model(model = tascor,
+                   type = "int")
+
+interactions::interact_plot(model = tascor,
+                            pred = TAS,
+                            modx = affectcat)
+
+interactions::probe_interaction(model = tascor,
+                                pred = TAS,
+                                modx = affectcat)
+
+```
+
+
+## GitHub Documents
+
+This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+
+## Including Code
+
+You can include R code in the document as follows:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

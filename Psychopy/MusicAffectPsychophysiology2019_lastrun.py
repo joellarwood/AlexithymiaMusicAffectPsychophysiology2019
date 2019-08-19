@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Thu May 30 15:57:12 2019
+    on Tue Aug 20 09:38:45 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -47,7 +47,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/uqjlarwo/Desktop/git/AlexithymiaMusicAffectPsychophysiology2019/Psychopy/MusicAffectPsychophysiology2019_lastrun.py',
+    originPath='/Users/joellarwood/Desktop/git/AlexithymiaMusicAffectPsychophysiology2019/Psychopy/MusicAffectPsychophysiology2019_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -86,7 +86,7 @@ PracMusicClock = core.Clock()
 practice = sound.Sound('prac.wav', secs=-1, stereo=True)
 practice.setVolume(2)
 import serial
-port = serial.Serial(port = "/dev/tty.usbserial-BBTKUSBTTL", 
+port = serial.Serial(port = "/dev/tty.usbserial-00002114", 
                     baudrate = 115200, 
                     timeout=1) 
 

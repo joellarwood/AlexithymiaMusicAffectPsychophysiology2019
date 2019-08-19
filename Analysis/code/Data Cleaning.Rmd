@@ -1,0 +1,150 @@
+---
+title: "Data Cleaning"
+output: github_document
+---
+
+# Survey Data 
+```{r}
+survey <- read_csv(file = "../data/SurveyData.csv")
+vis_dat(survey) 
+vis_miss(survey) 
+
+survey <- genderRecode(input=survey, 
+                       genderColName = "gender", 
+                       method = "narrow",
+                       outputColName = "gender_recode", 
+                       missingValuesObjectName = NA,
+                       customDictionary = data.frame(stringsAsFactors=FALSE,
+                                                     Input = c("girl/female"),
+                                                     Output = c("female")))
+
+survey <- survey %>% mutate(yearsplay = as.factor(yearsplay) %>% recode("6" = "5+"))
+```
+
+##Create scores 
+###Alexithymia
+```{r create TAS}
+survey <- survey %>% 
+  mutate(tas_4r = 6 - .$tas_4, #Reverse code items
+         tas_5r = 6 - .$tas_5,
+         tas_10r = 6 - .$tas_10,
+         tas_18r = 6 - .$tas_18,
+         tas_19r = 6 - .$tas_19)
+
+EOTlist <- c("tas_5r", "tas_8", "tas_10r", "tas_15", "tas_16", "tas_18r", "tas_19r", "tas_20")
+DDFlist <- c("tas_2", "tas_4r", "tas_11", "tas_12", "tas_17")
+DIFlist <- c("tas_1", "tas_3", "tas_6", "tas_7", "tas_9", "tas_13", "tas_14")
+
+
+survey <- survey %>% mutate(participant = survey$id,
+                            EOT = select(survey, EOTlist) %>% rowSums() %>% as.numeric(),
+                            DDF = select(survey, DDFlist) %>% rowSums() %>% as.numeric(),
+                            DIF = select(survey,DIFlist) %>% rowSums() %>% as.numeric(),
+                            TAS = select(survey, EOTlist, DDFlist, DIFlist) %>% rowSums() %>% as.numeric(),
+                            TASc = as.numeric(scale(TAS, scale = FALSE)))
+
+alpha(select(survey, EOTlist))$total$raw_alpha
+alpha(select(survey, DDFlist))$total$raw_alpha
+alpha(select(survey,DIFlist))$total$raw_alpha
+alpha(select(survey,EOTlist, DDFlist, DIFlist))$total$raw_alpha 
+```
+
+###DASS
+```{r create DASS}
+# S (Stress) Q1, 6, 8, 11, 12, 14, 18
+# A (Anxiety) Q2, 4, 7, 9, 15, 19, 20
+# D (Depression) Q3, 5, 10, 13, 16, 17, 21 
+
+#stresslist <- c("DASS_1", "DASS_6", "DASS_8", "DASS_11", "DASS_12", "DASS_14", "DASS_18")
+#anxietylist <- c("DASS_2", "DASS_4", "DASS_7", "DASS_9", "DASS_15", "DASS_19", "DASS_20")
+depressionlist <- c("DASS_3", "DASS_5", "DASS_10", "DASS_13", "DASS_16", "DASS_17", "DASS_21")
+
+survey <- survey %>% mutate(participant = .$id,
+                             #stress = select(survey, stresslist) %>% rowSums() ,
+                             #anxiety = select(survey,anxietylist) %>% rowSums(),
+                             depression = select(survey,depressionlist) %>% rowSums())
+
+
+alpha(select(survey, depressionlist))$total$raw_alpha
+```
+# PsychoPy Data 
+
+```{r load psychopy, message = FALSE, warning = FALSE}
+raw <- readbulk::read_bulk(directory = "../data/PsychoPyData", fun = read_csv)
+```
+
+# Identify Practice Trails and create trial ID
+```{r new variable creation}
+raw <- raw %>% 
+  mutate(prac = if_else(is.na(.$songmark), "practice", "trial"),
+         participant = as.numeric(participant),
+         trialnum = songtrials.thisRepN + 1,
+         affectcat = as.factor(recode(affectcat,
+                                      "1" = "High Arousal/Positive Valence",
+                                      "2" = "High Arousal/Negative Valence",
+                                      "3" = "Low Arousal/Negative Valence",
+                                      "4" = "Low Arousal/Positve Valence")),
+         arousal = as.factor(recode(arousal, 
+                                    "1" = "Low",
+                                    "2" = "high")),
+         valence = as.factor(recode(valence,
+                                    "1" = "Negative",
+                                    "2" = "Positive"))) %>% 
+  unite(col = trialunique,
+        participant, songmark, trialnum,
+        remove = FALSE)
+```
+
+## Clean word data 
+```{r clean word data}
+emotionwords <- raw %>% 
+  filter (WordResponse.keys > 0) %>% #emotion responses
+  select(trialunique,
+         Word,
+         WordResponse.keys) %>% 
+  spread(key = Word, value = WordResponse.keys) # spread so each trial is only 1 column
+
+vis_dat(emotionwords)
+```
+
+Mean trials completed per participant were  `r print(nrow(wordspread)/max(trials$participant))`
+
+## Affect ratings
+```{r affect ratings}
+affectrating <- raw %>% filter(!is.na(arousalkey.keys)) %>% select(trialunique,
+                                                              participant,
+                                                              songmark,
+                                                              affectcat, 
+                                                              valence,
+                                                              arousal,
+                                                              valencekey.keys,
+                                                              arousalkey.keys,
+                                                              likekey.keys,
+                                                              prac)
+
+vis_dat(affectrating)
+```
+
+```{r merge words and affect ratings}
+joinedaffectemo <- full_join(affectrating, wordspread, 
+                             by = "trialunique")
+
+
+scores <- survey %>% select(participant, depression, EOT, DDF, DIF, TAS, gender_recode, musichours, yearsplay)
+
+joined <- full_join(joinedaffectemo, scores,
+                    by = "participant") %>% 
+  mutate(id = as.factor(participant),
+         songmark = as.factor(songmark))
+
+vis_dat(joined)
+
+write_csv(joined, path = "../data/PsychoPyProcessed.csv")
+write_csv(survey, "../data/ProcessedSurvey" )
+```
+
+
+
+
+
+

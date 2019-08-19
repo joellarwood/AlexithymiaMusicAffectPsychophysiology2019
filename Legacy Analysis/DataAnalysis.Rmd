@@ -1,0 +1,447 @@
+---
+title: "Data Analysis"
+output: github_document
+---
+
+
+
+```{r setup, include=TRUE, message = FALSE}
+library(tidyverse)
+library(readbulk)
+library(psych)
+library(lme4)
+library(knitr)
+library(emmeans)
+library(sjPlot)
+library(irr)
+#devtools::install_github("ropenscilabs/gendercodeR")
+library(gendercodeR)
+library(tableone)
+library(visdat)
+library(Hmisc)
+library(naniar)
+library(corrplot)
+#devtools::install_github("ropensci/skimr") 
+library(skimr)
+```
+# Self Report Data 
+```{r check self report, message = FALSE}
+survey <- read_csv(file = "SurveyData.csv")
+vis_dat(survey) 
+vis_miss(survey) 
+```
+
+## Recode gender
+```{r recode gender, message = FALSE}
+survey <- genderRecode(input=survey, 
+                       genderColName = "gender", 
+                       method = "narrow",
+                       outputColName = "gender_recode", 
+                       missingValuesObjectName = NA,
+                       customDictionary = data.frame(stringsAsFactors=FALSE,
+                                                     Input = c("girl/female"),
+                                                     Output = c("female")))
+```
+
+## Describe demographics 
+```{r describe demographics}
+survey %>% select(age, musichours) %>% psych::describe() %>% kable(digits = 3)
+survey <- survey %>% mutate(yearsplay = as.factor(yearsplay) %>% recode("6" = "5+"))
+CreateTableOne(vars = c("gender_recode", "yearsplay"), data = survey) %>% kableone()
+```
+
+##Create scores 
+###Alexithymia
+```{r create TAS}
+survey <- survey %>% mutate(tas_4r = 6 - .$tas_4, #Reverse code items
+                            tas_5r = 6 - .$tas_5,
+                            tas_10r = 6 - .$tas_10,
+                            tas_18r = 6 - .$tas_18,
+                            tas_19r = 6 - .$tas_19)
+EOTlist <- c("tas_5r", "tas_8", "tas_10r", "tas_15", "tas_16", "tas_18r", "tas_19r", "tas_20")
+DDFlist <- c("tas_2", "tas_4r", "tas_11", "tas_12", "tas_17")
+DIFlist <- c("tas_1", "tas_3", "tas_6", "tas_7", "tas_9", "tas_13", "tas_14")
+
+
+tas <- survey %>% transmute(participant = survey$id,
+                            EOT = select(survey, EOTlist) %>% rowSums() %>% as.numeric(),
+                            DDF = select(survey, DDFlist) %>% rowSums() %>% as.numeric(),
+                            DIF = select(survey,DIFlist) %>% rowSums() %>% as.numeric(),
+                            TAS = select(survey, EOTlist, DDFlist, DIFlist) %>% rowSums() %>% as.numeric(),
+                            TASc = as.numeric(scale(TAS, scale = FALSE)))
+
+alpha(select(survey, EOTlist))$total$raw_alpha
+alpha(select(survey, DDFlist))$total$raw_alpha
+alpha(select(survey,DIFlist))$total$raw_alpha
+alpha(select(survey,EOTlist, DDFlist, DIFlist))$total$raw_alpha 
+```
+
+###DASS
+```{r create DASS}
+# S (Stress) Q1, 6, 8, 11, 12, 14, 18
+# A (Anxiety) Q2, 4, 7, 9, 15, 19, 20
+# D (Depression) Q3, 5, 10, 13, 16, 17, 21 
+
+stresslist <- c("DASS_1", "DASS_6", "DASS_8", "DASS_11", "DASS_12", "DASS_14", "DASS_18")
+anxietylist <- c("DASS_2", "DASS_4", "DASS_7", "DASS_9", "DASS_15", "DASS_19", "DASS_20")
+depressionlist <- c("DASS_3", "DASS_5", "DASS_10", "DASS_13", "DASS_16", "DASS_17", "DASS_21")
+
+dass <- survey %>% transmute(participant = .$id,
+                             stress = select(survey, stresslist) %>% rowSums() ,
+                             anxiety = select(survey,anxietylist) %>% rowSums(),
+                             depression = select(survey,depressionlist) %>% rowSums())
+
+
+alpha(select(survey, depressionlist))$total$raw_alpha
+```
+
+##Join scores
+```{r joined TAS and DASS}
+scores <- full_join(dass, tas, by = "participant")
+scores %>% select(-participant) %>% psych::describe() %>% kable(digits = 2)
+```
+#Data Wrangle 
+##Load in Data
+```{r load psychopy, message = FALSE, warning = FALSE}
+raw <- readbulk::read_bulk(directory = "PsychoPyData", fun = read_csv)
+raw %>% sample_n(100) %>% vis_dat()
+```
+## set up data
+```{r set up psychopy data}
+
+trials <- drop_na(raw, songmark) # remove practice trials. Song mark only given during experiment
+
+trials <- trials %>% mutate(participant = as.numeric(participant),
+                            trialnum = songtrials.thisRepN + 1) 
+
+trials <- trials %>% unite(col = trialunique,
+                           participant, songmark, trialnum,
+                           remove = FALSE) # give each trial for each participant a unique ID
+
+```
+## Label facotrs
+```{r label factors}
+trials <- trials %>% mutate(affectcat = as.factor(recode(affectcat,
+                                                         "1" = "High Arousal/Positive Valence",
+                                                         "2" = "High Arousal/Negative Valence",
+                                                         "3" = "Low Arousal/Negative Valence",
+                                                         "4" = "Low Arousal/Positve Valence")),
+                            arousal = as.factor(recode(arousal, 
+                                                       "1" = "Low",
+                                                       "2" = "high")),
+                            valence = as.factor(recode(valence,
+                                                       "1" = "Negative",
+                                                       "2" = "Positive")),
+                            participant = as.numeric(participant))
+```
+
+# Data wrangle emotion words
+```{r wrangle words}
+wordresponse <- trials %>% filter (WordResponse.keys > 0) %>% select(trialunique,
+                                                                    Word,
+                                                                    WordResponse.keys)
+
+
+wordspread <- wordresponse %>% spread(key = Word, value = WordResponse.keys)
+vis_dat(wordspread)
+print(nrow(wordspread)/max(trials$participant)) # get mean trials per participant
+```
+
+## Affect ratings
+```{r affect ratings}
+affectrating <- trials %>% filter(!is.na(arousalkey.keys)) %>% select(trialunique,
+                                                              participant,
+                                                              songmark,
+                                                              affectcat, 
+                                                              valence,
+                                                              arousal,
+                                                              valencekey.keys,
+                                                              arousalkey.keys,
+                                                              likekey.keys)
+
+vis_dat(affectrating)
+```
+
+##Merge affect and emotion ratings
+```{r merge words and affect ratings}
+joinedaffectemo <- full_join(affectrating, wordspread, 
+                             by = "trialunique")
+vis_dat(joinedaffectemo) 
+```
+
+##Merge with questioniarre responses 
+```{r merge psychopy with survey}
+joined <- full_join(joinedaffectemo, scores,
+                    by = "participant")
+
+joined <- mutate(joined,
+                 id = as.factor(participant),
+                 songmark = as.factor(songmark))
+vis_dat(joined)
+
+```
+
+# Describe data 
+```{r describe data}
+
+joined %>% select(TAS, TASc, depression) %>% skimr::skim() %>% skimr::kable() #Describe TAS and depression
+
+joined %>% select(affectcat, songmark, arousalkey.keys, valencekey.keys) %>% group_by(affectcat) %>% skimr::skim(-affectcat, -songmark) %>% skimr::kable() # describe self report song ratings
+
+select(joined, affectcat, arousalkey.keys, valencekey.keys, TAS, songmark) %>%  psych::describeBy(group = c("affectcat")) 
+```
+# Emotion Differentiation 
+## Create list of words
+```{r emotion word list}
+poslist <- c("ACTIVE", "ALERT", "EXCITED", "HAPPY", "TENDER") #CHECK ALERT
+neglist <- c("ANGRY", "ANXIOUS", "ASHAMED", "FRUSTRATED", "GUILTY", "SAD", "SCARED")
+```
+
+# Create negative and postive song data sets and participant list 
+```{r split by song valence}
+negstim <- joinedaffectemo %>% filter(valence == "Negative")
+posstim <- joinedaffectemo %>% filter(valence == "Positive")
+
+participant <- (unique(joinedaffectemo$participant)) 
+```
+
+## Negative Stimuli
+```{r negative songs emotion differentiation}
+icc_list_negstim=NULL
+for(i in participant){
+  participant_select <- filter(negstim, participant == i)
+  stim_select <- select(participant_select, neglist)
+  icc <- irr::icc(stim_select, model = "twoway", unit = "average")
+  icc_temp <- icc$value
+  row_temp <- c(i, icc_temp)
+  icc_list_negstim=rbind(icc_list_negstim,row_temp)
+  print(icc_temp)
+} 
+
+colnames(icc_list_negstim)=c("participant","ICCneg")
+
+icc_list_negstim=as_tibble(icc_list_negstim)%>% replace_with_na_all(condition = ~.x < 0) #make data frame and remove below 0, neg numbers cannot be interpreted 
+
+```
+
+## Positive Stimuli
+```{r positive songs emotion differentiation}
+icc_list_posstim=NULL
+for(i in participant){
+  participant_select <- filter(posstim, participant == i) #select participant for loop
+  stim_select <- select(participant_select, poslist) #select scores for positive words
+  icc <- irr::icc(stim_select, model = "twoway", unit = "average") # get ICC for words for participant
+  icc_temp <- icc$value #extract ICC
+  row_temp <- c(i, icc_temp) # create participant row
+  icc_list_posstim=rbind(icc_list_posstim,row_temp) 
+  print(icc_temp)
+} 
+
+colnames(icc_list_posstim) <- c("participant","ICCpos")
+icc_list_posstim <-as_tibble(icc_list_posstim) %>% replace_with_na_all(condition = ~.x < 0) #make data frame and remove below 0, neg numbers cannot be interpreted 
+
+```
+
+#Join ICC, make values inverse 
+```{r join emotion differentiation}
+joinedICC <- full_join(icc_list_posstim, icc_list_negstim, by = "participant")  %>% full_join(scores, by = "participant")
+
+joinedICC <- joinedICC %>%  mutate(ICCneg_r = 1 - .$ICCneg, # reverse, higher scores = higher differentiation
+                                   ICCneg_fz_r = -1* (fisherz(ICCneg)), #fisher z tranformation and reverse so that higher score = higher differentiation
+                                   ICCpos_r = 1 - .$ICCpos,# reverse, higher scores = higher differentiation
+                                   ICCpos_fz_r = -1*(fisherz(ICCpos)))#fisher z tranformation and reverse so that higher score = higher differentiation
+
+joinedICC %>% select(contains("ICC")) %>% skimr::skim() %>% skimr::kable()
+
+```
+
+# Emotion Differentiation Correlations
+```{r Differentiation Correlations}
+
+DiffCorVar <- select(joinedICC, ICCneg_r, ICCneg_fz_r, ICCpos_r, ICCpos_fz_r, TAS)
+DiffCorMatrix <- cor(select(joinedICC, ICCneg_r, ICCneg_fz_r, ICCpos_r, ICCpos_fz_r, TAS)) #variables for correlation
+p.mat <- cor.mtest(DiffCorVar)
+
+DiffCorPlot <- corrplot(corr = cor(DiffCorVar, use = "complete.obs"),
+                        method = c("ellipse"),
+                        type = c("upper"),
+                        sig.level = c(.001, .01, .05),
+                        p.mat = cor.mtest(DiffCorVar)$p,
+                        insig = c("label_sig"))
+
+```
+
+
+# Describe and Plot Valence Self Report
+```{r Valence self report GLM}
+valencemodel <- lmer(valencekey.keys~affectcat*TAS + (1 | id) +(1 | songmark), data = joined) 
+
+tab_model(valencemodel)
+
+plot_model(valencemodel, type = "pred")$affectcat 
+
+emmeans(valencemodel, "affectcat") %>% pairs() %>% knitr::kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
+
+sjPlot::plot_model(model = valencemodel,
+                   type ="int",
+                   mdrt.values = "meansd")
+
+interactions::interact_plot(model = valencemodel,
+              pred = TAS,
+              modx = affectcat,
+              x.label = "Alexithymia",
+              y.label = "Rated Valence")
+
+interactions::sim_slopes(model = valencemodel,
+                         pred = TAS,
+                         modx = affectcat,
+                         )
+
+sjPlot::plot_model(model = lmer(valencekey.keys~songmark*TAS + (1 |id) , data = joined) ,
+                   type ="int",
+                   mdrt.values = "meansd")
+```
+
+# Describe and Plot Arousal
+```{r Arousal self report GLM}
+arousalmodel <- lme4::lmer(formula = arousalkey.keys~affectcat*TAS + (1 |participant) +(1 |songmark), data = joined) 
+
+tab_model(arousalmodel)
+
+anova(arousalmodel)
+
+plot_model(arousalmodel, type = "pred")$affectcat 
+
+emmeans(arousalmodel, "affectcat") %>% pairs() %>% knitr::kable(caption = "Pairwise comparisons of main effect of song affect category for arousal ratings", digits = 3)
+
+interactions::interact_plot(model = arousalmodel,
+              pred = TAS,
+              modx = affectcat,
+              x.label = "Alexithymia",
+              y.label = "Rated arousal")
+
+interactions::sim_slopes(model = arousalmodel,
+                         pred = TAS,
+                         modx = affectcat,
+                         )
+
+sjPlot::plot_model(model = arousalmodel,
+                   type ="int",
+                   mdrt.values = "meansd")
+
+interactions::sim_slopes(model = arousalmodel,
+                         pred = TAS,
+                         modx = affectcat)
+
+sjPlot::plot_model(model = lmer(arousalkey.keys~songmark*TAS + (1 |id) , data = joined) ,
+                   type ="int",
+                   mdrt.values = "meansd")
+```
+
+```{r}
+joined %>% select(valencekey.keys, arousalkey.keys, songmark) %>% dplyr::group_by(songmark) %>% skimr::skim() %>% skimr::kable()
+```
+
+# Liking in model
+## Valence
+```{r Valence by liking}
+likingmodelv <- lmer(valencekey.keys~affectcat*likekey.keys + (1 | id) +(1 | songmark), data = joined) 
+
+tab_model(likingmodelv)
+
+anova(likingmodelv)
+
+emmeans(likingmodelv, "affectcat") %>% pairs() %>% knitr::kable(caption = "Pairwise comparisons of main effect of song affect category for valence ratings", digits = 3)
+
+interactions::interact_plot(model = likingmodelv,
+              pred = likekey.keys,
+              modx = affectcat,
+              x.label = "Liking",
+              y.label = "Rated Valence")
+
+interactions::sim_slopes(model = likingmodelv,
+                         pred = likekey.keys,
+                         modx = affectcat,
+                         )
+
+sjPlot::plot_model(model = likingmodelv,
+                   type ="int",
+                   mdrt.values = "meansd")
+```
+
+## Arousal 
+```{r arousal by liking}
+likingmodela <- lmer(arousalkey.keys~affectcat*likekey.keys + (1 | id) +(1 | songmark), data = joined) 
+
+tab_model(likingmodela)
+
+anova(likingmodela)
+
+emmeans(likingmodela, "affectcat") %>% pairs() %>% knitr::kable(caption = "Pairwise comparisons of main effect of song affect category for arousal ratings", digits = 3)
+
+interactions::interact_plot(model = likingmodela,
+              pred = likekey.keys,
+              modx = affectcat,
+              x.label = "Liking",
+              y.label = "Rated arousal")
+
+interactions::sim_slopes(model = likingmodela,
+                         pred = likekey.keys,
+                         modx = affectcat,
+                         )
+
+sjPlot::plot_model(model = likingmodela,
+                   type ="int",
+                   mdrt.values = "meansd")
+```
+# GLMMs with liking as a control variable 
+## High Arousal and Negative Valence
+### Valence
+```{r}
+HighArNegVaValence <- lmer(valencekey.keys~likekey.keys+TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "High Arousal/Negative Valence"))) 
+```
+
+### Arousal
+```{r}
+HighArNegVaArousal <- lmer(arousalkey.keys~likekey.keys + TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "High Arousal/Negative Valence"))) 
+```
+## High Arousal Positive Valence
+###Valence
+```{r}
+HighArPosVaValence <- lmer(valencekey.keys~likekey.keys+TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "High Arousal/Positive Valence"))) 
+```
+
+### Arousal
+```{r}
+HighArPosVaArousal <- lmer(arousalkey.keys~likekey.keys + TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "High Arousal/Positive Valence"))) 
+```
+
+## Low Arousal/ negative valence 
+```{r}
+LowArNegVaValence <- lmer(valencekey.keys~likekey.keys+TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "Low Arousal/Negative Valence"))) 
+```
+
+### Arousal
+```{r}
+LowArNegVaArousal <- lmer(arousalkey.keys~likekey.keys + TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "Low Arousal/Negative Valence"))) 
+```
+
+## Low Arousal/ Positive valence 
+```{r}
+LowArPosVaValence <- lmer(valencekey.keys~likekey.keys + TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "Low Arousal/Positve Valence"))) 
+```
+
+### Arousal
+```{r}
+LowArPosVaArousal <- lmer(arousalkey.keys~likekey.keys + TAS  + (1 | id) +(1 | songmark), data = (filter(joined, affectcat == "Low Arousal/Positve Valence"))) 
+```
+
+## Models 
+```{r}
+sjPlot::tab_model(HighArNegVaArousal, HighArPosVaArousal, LowArNegVaArousal, LowArPosVaArousal, dv.labels = c("High Arousal / Negative Valence", "High Arousal / Positive Valence", "Low Arousal / Negative Valence", "Low Arousal / Positive Valence") )
+```
+
+```{r}
+sjPlot::tab_model(HighArNegVaValence, HighArPosVaValence, LowArNegVaValence, LowArPosVaValence)
+```
+

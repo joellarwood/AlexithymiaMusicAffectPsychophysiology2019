@@ -1,0 +1,48 @@
+---
+title: "Factor Analysis"
+output: github_document
+---
+EOTlist <- c("tas_5r", "tas_8", "tas_10r", "tas_15", "tas_16", "tas_18r", "tas_19r", "tas_20")
+DDFlist <- c("tas_2", "tas_4r", "tas_11", "tas_12", "tas_17")
+DIFlist <- c("tas_1", "tas_3", "tas_6", "tas_7", "tas_9", "tas_13", "tas_14")
+
+```{r CFA3Fac}
+
+ThreeFac <- ' EOT =~ tas_5r + tas_8 + tas_10r + tas_15 + tas_16 + tas_18r + tas_19r + tas_20
+              DDF =~ tas_2 + tas_4r + tas_11 + tas_12 + tas_17
+              DIF =~ tas_1 + tas_3 + tas_6 + tas_7 + tas_9 + tas_13 + tas_14 '
+
+ThreeFacCFA <- cfa(ThreeFac, data = survey)
+
+summary(ThreeFacCFA, fit.measures = TRUE)
+    
+```
+
+```{r CFA2Fac}
+
+TwoFac <- ' EOT =~ tas_5r + tas_8 + tas_10r + tas_15 + tas_16 + tas_18r + tas_19r + tas_20
+            DDFI =~ tas_2 + tas_4r + tas_11 + tas_12 + tas_17 + tas_1 + tas_3 + tas_6 + tas_7 + tas_9 + tas_13 + tas_14 '
+
+TwoFacCFA <- cfa(TwoFac, data = survey)
+
+summary(TwoFacCFA, fit.measures = TRUE)
+    
+```
+
+```{r 1facCFA}
+
+OneFac <- ' TAS =~ tas_5r + tas_8 + tas_10r + tas_15 + tas_16 + tas_18r + tas_19r + tas_20 + tas_2 + tas_4r + tas_11 + tas_12 + tas_17 + tas_1 + tas_3 + tas_6 + tas_7 + tas_9 + tas_13 + tas_14 '
+
+OneFacCFA <- cfa(OneFac, data = survey)
+
+summary(OneFacCFA, fit.measures = TRUE)
+    
+```
+
+```{r compare}
+
+anova(ThreeFacCFA, TwoFacCFA, OneFacCFA)
+
+```
+
+
