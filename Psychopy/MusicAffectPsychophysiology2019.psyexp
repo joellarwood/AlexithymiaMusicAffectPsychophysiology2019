@@ -84,7 +84,7 @@
         <Param name="volume" updates="constant" val="2" valType="code"/>
       </SoundComponent>
       <CodeComponent name="PracMark">
-        <Param name="Begin Experiment" updates="constant" val="import serial&amp;#10;port = serial.Serial(port = &quot;/dev/tty.usbserial-00002114&quot;, &amp;#10;                    baudrate = 115200, &amp;#10;                    timeout=1) " valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import serial&amp;#10;port = serial.Serial(port = &quot;/dev/tty.usbserial-00001114&quot;, &amp;#10;                    baudrate = 115200, &amp;#10;                    timeout=1) " valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="port.write('10'.encode())&amp;#10;" valType="extendedCode"/>
