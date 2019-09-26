@@ -1,0 +1,21 @@
+﻿Instruction,Word,n,WordResponse.keys_raw,WordResponse.rt_mean,WordResponse.rt_raw,WordResponse.rt_std,order
+To what extent did the music make you feel ,SAD,1.0,'1',1.5176821947097778,1.5176821947097778,0.0,5.0
+To what extent did the music make you feel ,ANXIOUS ,1.0,'1',1.4018973112106323,1.4018973112106323,0.0,2.0
+To what extent did the music make you feel ,ANGRY,1.0,'1',1.2673652172088623,1.2673652172088623,0.0,9.0
+To what extent did the music make you feel ,FRUSTRATED,1.0,'1',4.489225387573242,4.489225387573242,0.0,0.0
+To what extent did the music make you feel ,ASHAMED,1.0,'1',1.4679573774337769,1.4679573774337769,0.0,4.0
+To what extent did the music make you feel ,GUILTY,1.0,'1',2.3352129459381104,2.3352129459381104,0.0,7.0
+To what extent did the music make you feel ,HAPPY,1.0,'3',2.9692537784576416,2.9692537784576416,0.0,3.0
+To what extent did the music make you feel ,EXCITED,1.0,'2',2.287203788757324,2.287203788757324,0.0,8.0
+To what extent did the music make you feel ,ALERT,1.0,'2',2.9503490924835205,2.9503490924835205,0.0,10.0
+To what extent did the music make you feel ,ACTIVE,1.0,'3',2.719710350036621,2.719710350036621,0.0,6.0
+To what extent did the music make you feel ,TENDER,1.0,'2',5.433714866638184,5.433714866638184,0.0,11.0
+To what extent did the music make you feel ,SCARED,1.0,'1',2.0499472618103027,2.0499472618103027,0.0,1.0
+
+extraInfo
+participant,116
+session,001
+date,2019_Sep_26_1115
+expName,MusicAffectPsychophysiology2019
+psychopyVersion,3.0.5
+frameRate,None
