@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.5),
-    on Thu Sep 26 17:02:22 2019
+    on Wed Oct 23 16:14:08 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -86,7 +86,7 @@ PracMusicClock = core.Clock()
 practice = sound.Sound('prac.wav', secs=-1, stereo=True)
 practice.setVolume(2)
 import serial
-port = serial.Serial(port = "/dev/tty.usbserial-00001414", 
+port = serial.Serial(port = "/dev/tty.usbserial-00402414", 
                     baudrate = 115200, 
                     timeout=1) 
 
