@@ -143,7 +143,7 @@ scores <- survey %>% select(participant,
                             DDF, 
                             DIF, 
                             TAS, 
-                            #gender_recode, 
+                            gender_recode, 
                             musichours, 
                             yearsplay)
 
