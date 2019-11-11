@@ -1,6 +1,8 @@
 ---
 title: "Linear Models"
 output: github_document
+editor_options: 
+  chunk_output_type: inline
 ---
 Linear Models without Physiology 
 
@@ -13,10 +15,16 @@ vis_dat(filtered)
 # Self Report Data 
 ## Valence Self Report 
 ```{r valence model}
-valencemodel <- lmer(valencekey.keys~affectcat*TAS + (1 | participant) +(1 | songmark), data = filtered) 
+library(lme4)
+library(sjPlot)
+valencemodel <- lmer(valencekey.keys~affectcat:TAS + (1 | participant) +(1 | songmark), data = filtered) 
 tab_model(valencemodel)
 
-anova(valencemodel)
+valencemodelcontrol <- lmer(valencekey.keys~affectcat:TAS + affectcat:depression + affectcat:likekey.keys + (1 | participant) +(1 | songmark), data = filtered) 
+
+tab_model(valencemodelcontrol)
+anova(valencemodel, valencemodelcontrol)
+
 
 sjPlot::plot_model(model = valencemodel,
                    type = "int",
@@ -41,12 +49,13 @@ interactions::interact_plot(valencemodel,
 
 ## Arousal Self Report
 ```{r arousal model}
-arousalmodel <- lmer(arousalkey.keys~affectcat*TAS + (1 | participant) +(1 | songmark), data = filtered) 
+arousalmodel <- lmer(arousalkey.keys~affectcat:TAS + (1 | participant) +(1 | songmark), data = filtered) 
 tab_model(arousalmodel)
 
-interactions::sim_slopes(arousalmodel,
-                                pred = TAS,
-                                modx = affectcat)
+arousalmodelcontrol <- lmer(arousalkey.keys~affectcat:TAS + likekey.keys:affectcat + likekey.keys:TAS + likekey.keys:depression + likekey.keys:affectcat + depression:TAS + (1 | participant) +(1 | songmark), data = filtered) 
+
+tab_model(arousalmodelcontrol)
+
 
 sjPlot::plot_model(model = arousalmodel,
                    type = "int",
