@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="joellarwood" />
+
+<meta name="date" content="2019-11-14" />
+
+<title>Descriptives of Data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Descriptives of Data</h1>
+<h4 class="author">joellarwood</h4>
+<h4 class="date">2019-11-14</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-11-14
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>AlexithymiaMusicAffectPsychophysiology2019/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.4.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191111code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191111)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191111code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191111)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree428efc7e54b3a51e79accfe69c74a165ebcc619dtargetblank428efc7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/428efc7e54b3a51e79accfe69c74a165ebcc619d" target="_blank">428efc7</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree428efc7e54b3a51e79accfe69c74a165ebcc619dtargetblank428efc7a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    Archives/.DS_Store
+    Ignored:    Archives/JULY Analysis ARCHIVE/.DS_Store
+    Ignored:    Archives/JULY Analysis ARCHIVE/.RData
+    Ignored:    Archives/JULY Analysis ARCHIVE/.Rhistory
+    Ignored:    Archives/JULY Analysis ARCHIVE/.Rproj.user/
+    Ignored:    Archives/JULY Analysis ARCHIVE/First19Data/.DS_Store
+    Ignored:    Archives/JULY Analysis ARCHIVE/data/.DS_Store
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.DS_Store
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.RData
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rhistory
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rproj.user/
+    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.DS_Store
+    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.Rhistory
+    Ignored:    Archives/Novembe Analysis ARCHIVE/data/.DS_Store
+    Ignored:    JULY Analysis ARCHIVE/
+    Ignored:    Psychopy/.DS_Store
+    Ignored:    data/.DS_Store
+    Ignored:    dataAnalysis/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/AffectRatings.rmd
+    Untracked:  analysis/describe.rmd
+    Untracked:  docs/figure/AffectRatings.rmd/
+    Untracked:  docs/figure/describe.rmd/
+
+Unstaged changes:
+    Deleted:    Analysis/affectrating.rmd
+    Modified:   Analysis/data_cleaning.rmd
+    Modified:   Analysis/index.Rmd
+    Modified:   data/PsychoPyProcessed.csv
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<pre><code>── Attaching packages ─────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>✔ ggplot2 3.2.1     ✔ purrr   0.3.3
+✔ tibble  2.1.3     ✔ dplyr   0.8.3
+✔ tidyr   1.0.0     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
+<pre><code>── Conflicts ────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>Loading required package: magrittr</code></pre>
+<pre><code>
+Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:purrr&#39;:
+
+    set_names</code></pre>
+<pre><code>The following object is masked from &#39;package:tidyr&#39;:
+
+    extract</code></pre>
+<div id="self-report-descriptives" class="section level1">
+<h1>Self Report Descriptives</h1>
+<div id="demographics-and-questionairres" class="section level2">
+<h2>Demographics and Questionairres</h2>
+<div id="age" class="section level3">
+<h3>Age</h3>
+<pre class="r"><code>tableone::CreateCatTable(vars = &quot;age&quot;, data = demographics)</code></pre>
+<pre><code>         
+          Overall   
+  n       121       
+  age (%)           
+     17   28 (23.5) 
+     21    3 ( 2.5) 
+     18   44 (37.0) 
+     20   15 (12.6) 
+     23    1 ( 0.8) 
+     25    2 ( 1.7) 
+     19   19 (16.0) 
+     28    1 ( 0.8) 
+     50    1 ( 0.8) 
+     22    4 ( 3.4) 
+     47    1 ( 0.8) </code></pre>
+<pre class="r"><code>ggplot2::ggplot(demographics, aes(age)) + 
+  geom_bar(fill = &quot;light blue&quot;) + 
+  theme_classic() </code></pre>
+<p><img src="figure/describe.rmd/Age-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggpubr::ggdensity(data = demographics, 
+                  x = &quot;age_num&quot;, 
+                  add = &quot;mean&quot;, 
+                  fill = &quot;blue&quot;) </code></pre>
+<p><img src="figure/describe.rmd/Age-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The mean age was 19.1428571 with a SD of 4.2491988</p>
+</div>
+<div id="gender" class="section level3">
+<h3>Gender</h3>
+<pre class="r"><code>tableone::CreateCatTable(vars = &quot;gender&quot;, data = demographics)</code></pre>
+<pre><code>               
+                Overall   
+  n             121       
+  gender (%)              
+     male       21 (17.6) 
+     female     97 (81.5) 
+     non-binary  1 ( 0.8) </code></pre>
+<pre class="r"><code>ggplot2::ggplot(demographics, aes(gender)) + 
+  geom_bar(fill = &quot;light blue&quot;) + 
+  theme_classic()</code></pre>
+<p><img src="figure/describe.rmd/gender-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="years-played" class="section level3">
+<h3>Years Played</h3>
+<pre class="r"><code>tableone::CreateCatTable(vars = &quot;yearsplay&quot;, data = demographics)</code></pre>
+<pre><code>               
+                Overall   
+  n             121       
+  yearsplay (%)           
+     0          23 (19.3) 
+     1          11 ( 9.2) 
+     2          12 (10.1) 
+     3           9 ( 7.6) 
+     4          11 ( 9.2) 
+     5           3 ( 2.5) 
+     5+         50 (42.0) </code></pre>
+<pre class="r"><code>ggplot2::ggplot(demographics, aes(yearsplay)) + 
+  geom_bar(fill = &quot;light blue&quot;) + 
+  theme_classic()</code></pre>
+<p><img src="figure/describe.rmd/yearsplay-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="alexithymia-and-depression" class="section level3">
+<h3>Alexithymia and Depression</h3>
+<pre class="r"><code>demographics %&gt;% select(TAS, DIF, DDF, EOT, depression) %&gt;% skimr::skim()</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 121 
+ n variables: 5 
+
+── Variable type:numeric ───────────────────────────────────────────────────────────────────
+   variable missing complete   n  mean    sd p0  p25 p50 p75 p100     hist
+        DDF       2      119 121 14.13  4.26  5 12    13  17   25 ▂▅▆▇▅▆▁▁
+ depression       2      119 121  4.71  3.97  0  1.5   4   7   18 ▇▂▅▃▁▁▁▁
+        DIF       2      119 121 17.5   5.33  8 14    17  21   34 ▃▆▇▇▃▂▁▁
+        EOT       2      119 121 18.69  4.13  9 16    19  21   29 ▁▅▃▇▅▃▂▁
+        TAS       2      119 121 50.31 10.44 29 42    50  58   77 ▂▅▇▅▆▅▁▁</code></pre>
+<pre class="r"><code>##Critical correlaion is .18
+
+demographics %&gt;% 
+  select(TAS, DIF, DDF, EOT, depression) %&gt;% 
+  drop_na() %&gt;% 
+  corrr::correlate() %&gt;% 
+  corrr::network_plot(min_cor = .18, 
+                      colors = c(&quot;red&quot;,&quot;green&quot;, &quot;blue&quot;))</code></pre>
+<p><img src="figure/describe.rmd/selfreportmeasures-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="songs" class="section level2">
+<h2>Songs</h2>
+<div id="valence" class="section level3">
+<h3>Valence</h3>
+<pre class="r"><code>affectdat &lt;- songdata %&gt;% 
+  group_by(songmark) %&gt;% 
+  summarise(mean_Valence = mean(valencekey.keys), 
+            sd_Valence = sd(valencekey.keys), 
+            mean_Arousal = mean(arousalkey.keys), 
+            sd_Arousal = sd(arousalkey.keys)) %&gt;% 
+  pivot_longer(-songmark, 
+               names_to = c(&quot;.value&quot;, &quot;Dimension&quot;), 
+               names_sep = &quot;_&quot;, 
+               values_drop_na = TRUE)
+
+ggpubr::ggviolin(data = drop_na(songdata), 
+                 x = &quot;songmark&quot;,
+                 xlab = &quot;song&quot;,
+                 y = &quot;valencekey.keys&quot;, 
+                 ylab = &quot;valence rating&quot;,
+                 fill = &quot;valence&quot;,
+                 ylim = c(1,5), 
+                 add = &quot;mean&quot;, 
+                 caption = &quot;Dot indicates mean&quot;)</code></pre>
+<p><img src="figure/describe.rmd/valenceplot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggpubr::ggviolin(data = drop_na(songdata), 
+                 x = &quot;songmark&quot;,
+                 xlab = &quot;song&quot;,
+                 y = &quot;arousalkey.keys&quot;, 
+                 ylab = &quot;arousal rating&quot;,
+                 fill = &quot;arousal&quot;,
+                 ylim = c(1,5), 
+                 add = &quot;mean&quot;, 
+                 caption = &quot;Dot inidcates mean&quot;)</code></pre>
+<p><img src="figure/describe.rmd/arousal-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="specific-emotions" class="section level3">
+<h3>Specific Emotions</h3>
+<p>Each song and its target emotion are presented along with the mean ratings for that song.</p>
+<p>On visual observation it seems altert and maybe active are arousal rather valence discriminant</p>
+<pre class="r"><code>emotionratinglong &lt;- songdata %&gt;% 
+  select(songmark, targetemotion, affectcat, contains(&quot;rating&quot;)) %&gt;% 
+  pivot_longer(cols = contains(&quot;rating&quot;), 
+             names_to = &quot;emotion&quot;, 
+             values_to = &quot;rating&quot;
+             )
+
+describeratings &lt;- emotionratinglong %&gt;% 
+  group_by(songmark, emotion) %&gt;% 
+  summarise(Mean = round(mean(rating), digits = 2), 
+            SD = round(sd(rating), digits = 2)) %&gt;% 
+  drop_na() %&gt;% 
+  mutate(target = if_else(songmark &lt;= 4, 
+                          &quot;Fear&quot;, if_else(songmark == 5 | songmark == 6 | songmark == 7 | songmark == 8, 
+                                          &quot;Happy&quot;, if_else(songmark == 9 | songmark == 10 | songmark == 11 | songmark == 12,
+                                                           &quot;Sad&quot;, &quot;Tender&quot;))
+                          ), 
+         song = glue::glue(&quot;{target}_{songmark}&quot;)) 
+
+ggplot2::ggplot(describeratings, 
+                aes(x = emotion, 
+                    y = Mean, 
+                    fill = emotion
+                )) +
+  ggplot2::geom_errorbar(aes(ymin = Mean-SD, 
+                             ymax = Mean + SD)) +
+  facet_wrap(&quot;song&quot;) +
+  geom_bar(stat = &quot;identity&quot;) +
+  theme_classic ()+
+  theme(axis.text.x = element_text(size = 8, 
+                                   angle = 270))</code></pre>
+<p><img src="figure/describe.rmd/specificemotions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>describeratings %&gt;% 
+  mutate(Mean_SD = glue::glue(&quot;{Mean} ({SD})&quot;)) %&gt;% 
+  select(song, emotion, Mean_SD) %&gt;% 
+  pivot_wider(names_from = emotion, 
+              values_from = Mean_SD) %&gt;% 
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">songmark</th>
+<th align="left">song</th>
+<th align="left">ACTIVE_rating</th>
+<th align="left">ALERT_rating</th>
+<th align="left">ANGRY_rating</th>
+<th align="left">ANXIOUS_rating</th>
+<th align="left">ASHAMED_rating</th>
+<th align="left">EXCITED_rating</th>
+<th align="left">FRUSTRATED_rating</th>
+<th align="left">GUILTY_rating</th>
+<th align="left">HAPPY_rating</th>
+<th align="left">SAD_rating</th>
+<th align="left">SCARED_rating</th>
+<th align="left">TENDER_rating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Fear_1</td>
+<td align="left">2.9 (1.15)</td>
+<td align="left">3.66 (1.05)</td>
+<td align="left">1.98 (1.06)</td>
+<td align="left">3.12 (1.19)</td>
+<td align="left">1.24 (0.54)</td>
+<td align="left">2.11 (1.12)</td>
+<td align="left">1.83 (1.03)</td>
+<td align="left">1.36 (0.73)</td>
+<td align="left">1.38 (0.71)</td>
+<td align="left">1.3 (0.65)</td>
+<td align="left">2.77 (1.22)</td>
+<td align="left">1.33 (0.7)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Fear_2</td>
+<td align="left">2.32 (1.12)</td>
+<td align="left">3.69 (1.01)</td>
+<td align="left">1.54 (0.81)</td>
+<td align="left">3.77 (1.12)</td>
+<td align="left">1.3 (0.64)</td>
+<td align="left">1.63 (0.95)</td>
+<td align="left">1.8 (1.11)</td>
+<td align="left">1.46 (0.81)</td>
+<td align="left">1.17 (0.48)</td>
+<td align="left">1.53 (0.84)</td>
+<td align="left">3.71 (1.15)</td>
+<td align="left">1.37 (0.8)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Fear_3</td>
+<td align="left">2.63 (1.1)</td>
+<td align="left">3.2 (1.03)</td>
+<td align="left">1.64 (0.87)</td>
+<td align="left">2.8 (1.12)</td>
+<td align="left">1.23 (0.57)</td>
+<td align="left">2.01 (1.06)</td>
+<td align="left">1.65 (0.91)</td>
+<td align="left">1.45 (0.78)</td>
+<td align="left">1.43 (0.81)</td>
+<td align="left">1.27 (0.58)</td>
+<td align="left">2.36 (1.11)</td>
+<td align="left">1.31 (0.68)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Fear_4</td>
+<td align="left">2.92 (1.15)</td>
+<td align="left">3.64 (1.07)</td>
+<td align="left">1.67 (0.87)</td>
+<td align="left">3 (1.25)</td>
+<td align="left">1.25 (0.55)</td>
+<td align="left">2.27 (1.18)</td>
+<td align="left">1.73 (0.99)</td>
+<td align="left">1.33 (0.67)</td>
+<td align="left">1.39 (0.72)</td>
+<td align="left">1.37 (0.71)</td>
+<td align="left">2.58 (1.23)</td>
+<td align="left">1.33 (0.68)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Happy_5</td>
+<td align="left">3.24 (1.06)</td>
+<td align="left">2.7 (1.17)</td>
+<td align="left">1.04 (0.21)</td>
+<td align="left">1.26 (0.6)</td>
+<td align="left">1.04 (0.2)</td>
+<td align="left">3.26 (1.07)</td>
+<td align="left">1.06 (0.28)</td>
+<td align="left">1.05 (0.26)</td>
+<td align="left">3.5 (0.96)</td>
+<td align="left">1.11 (0.4)</td>
+<td align="left">1.07 (0.29)</td>
+<td align="left">1.8 (0.86)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Happy_6</td>
+<td align="left">2.92 (1.15)</td>
+<td align="left">2.74 (1.11)</td>
+<td align="left">1.08 (0.32)</td>
+<td align="left">1.41 (0.72)</td>
+<td align="left">1.1 (0.42)</td>
+<td align="left">2.96 (1.19)</td>
+<td align="left">1.17 (0.54)</td>
+<td align="left">1.1 (0.32)</td>
+<td align="left">2.77 (1.08)</td>
+<td align="left">1.14 (0.41)</td>
+<td align="left">1.17 (0.48)</td>
+<td align="left">1.65 (0.86)</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">Happy_7</td>
+<td align="left">3.31 (0.99)</td>
+<td align="left">2.93 (1.2)</td>
+<td align="left">1.11 (0.41)</td>
+<td align="left">1.27 (0.59)</td>
+<td align="left">1.03 (0.19)</td>
+<td align="left">3.48 (1.1)</td>
+<td align="left">1.15 (0.46)</td>
+<td align="left">1.04 (0.19)</td>
+<td align="left">3.35 (1.05)</td>
+<td align="left">1.11 (0.37)</td>
+<td align="left">1.1 (0.41)</td>
+<td align="left">1.64 (0.77)</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">Happy_8</td>
+<td align="left">3.66 (1.06)</td>
+<td align="left">2.81 (1.27)</td>
+<td align="left">1.05 (0.26)</td>
+<td align="left">1.18 (0.46)</td>
+<td align="left">1.03 (0.16)</td>
+<td align="left">3.68 (1.07)</td>
+<td align="left">1.1 (0.41)</td>
+<td align="left">1.03 (0.17)</td>
+<td align="left">3.77 (1.05)</td>
+<td align="left">1.05 (0.22)</td>
+<td align="left">1.04 (0.23)</td>
+<td align="left">1.63 (0.87)</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">Sad_9</td>
+<td align="left">1.36 (0.63)</td>
+<td align="left">1.62 (0.87)</td>
+<td align="left">1.16 (0.47)</td>
+<td align="left">2.01 (1.01)</td>
+<td align="left">1.69 (0.86)</td>
+<td align="left">1.28 (0.59)</td>
+<td align="left">1.4 (0.82)</td>
+<td align="left">1.78 (0.91)</td>
+<td align="left">1.5 (0.82)</td>
+<td align="left">2.89 (1.18)</td>
+<td align="left">1.53 (0.8)</td>
+<td align="left">2.55 (1.12)</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">Sad_10</td>
+<td align="left">1.17 (0.43)</td>
+<td align="left">1.36 (0.66)</td>
+<td align="left">1.19 (0.54)</td>
+<td align="left">1.86 (0.95)</td>
+<td align="left">1.8 (0.97)</td>
+<td align="left">1.16 (0.49)</td>
+<td align="left">1.37 (0.75)</td>
+<td align="left">1.87 (0.98)</td>
+<td align="left">1.33 (0.7)</td>
+<td align="left">3.2 (1.11)</td>
+<td align="left">1.51 (0.84)</td>
+<td align="left">2.56 (1.12)</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">Sad_11</td>
+<td align="left">1.38 (0.68)</td>
+<td align="left">1.92 (0.97)</td>
+<td align="left">1.32 (0.6)</td>
+<td align="left">2.44 (1.12)</td>
+<td align="left">1.81 (0.95)</td>
+<td align="left">1.27 (0.57)</td>
+<td align="left">1.55 (0.85)</td>
+<td align="left">1.97 (1.01)</td>
+<td align="left">1.24 (0.53)</td>
+<td align="left">2.87 (1.11)</td>
+<td align="left">2 (0.93)</td>
+<td align="left">2.01 (1)</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">Sad_12</td>
+<td align="left">1.21 (0.51)</td>
+<td align="left">1.37 (0.59)</td>
+<td align="left">1.16 (0.47)</td>
+<td align="left">1.78 (0.93)</td>
+<td align="left">1.66 (0.92)</td>
+<td align="left">1.16 (0.47)</td>
+<td align="left">1.34 (0.76)</td>
+<td align="left">1.77 (0.92)</td>
+<td align="left">1.39 (0.72)</td>
+<td align="left">3.37 (1.17)</td>
+<td align="left">1.42 (0.72)</td>
+<td align="left">2.76 (1.17)</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="left">Tender_13</td>
+<td align="left">1.66 (0.81)</td>
+<td align="left">1.55 (0.76)</td>
+<td align="left">1.07 (0.38)</td>
+<td align="left">1.37 (0.7)</td>
+<td align="left">1.19 (0.5)</td>
+<td align="left">1.64 (0.81)</td>
+<td align="left">1.18 (0.54)</td>
+<td align="left">1.23 (0.49)</td>
+<td align="left">2.4 (1.11)</td>
+<td align="left">1.95 (1)</td>
+<td align="left">1.1 (0.3)</td>
+<td align="left">2.78 (1.18)</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="left">Tender_14</td>
+<td align="left">1.83 (0.93)</td>
+<td align="left">1.73 (0.93)</td>
+<td align="left">1.07 (0.3)</td>
+<td align="left">1.38 (0.66)</td>
+<td align="left">1.18 (0.49)</td>
+<td align="left">2.05 (1.03)</td>
+<td align="left">1.19 (0.52)</td>
+<td align="left">1.17 (0.43)</td>
+<td align="left">2.77 (1.12)</td>
+<td align="left">1.81 (0.9)</td>
+<td align="left">1.08 (0.34)</td>
+<td align="left">2.9 (1.23)</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">Tender_15</td>
+<td align="left">1.49 (0.72)</td>
+<td align="left">1.52 (0.72)</td>
+<td align="left">1.06 (0.28)</td>
+<td align="left">1.43 (0.79)</td>
+<td align="left">1.17 (0.48)</td>
+<td align="left">1.58 (0.8)</td>
+<td align="left">1.26 (0.63)</td>
+<td align="left">1.19 (0.49)</td>
+<td align="left">2.57 (1.16)</td>
+<td align="left">1.83 (0.92)</td>
+<td align="left">1.18 (0.48)</td>
+<td align="left">2.84 (1.24)</td>
+</tr>
+<tr class="even">
+<td align="right">16</td>
+<td align="left">Tender_16</td>
+<td align="left">2.02 (0.98)</td>
+<td align="left">1.85 (1)</td>
+<td align="left">1.07 (0.32)</td>
+<td align="left">1.37 (0.74)</td>
+<td align="left">1.17 (0.49)</td>
+<td align="left">2.21 (1.05)</td>
+<td align="left">1.18 (0.52)</td>
+<td align="left">1.23 (0.59)</td>
+<td align="left">2.88 (1.16)</td>
+<td align="left">1.76 (0.94)</td>
+<td align="left">1.14 (0.48)</td>
+<td align="left">2.84 (1.24)</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># ggpubr::ggbarplot(drop_na(emotionratinglong), 
+#                  x = &quot;emotion&quot;, 
+#                  y = &quot;rating&quot;, 
+#                  ylim = c(1,5),
+#                  facet = &quot;songmark&quot;, 
+#                  fill = &quot;targetemotion&quot;, 
+#                  xtickslab.rt = 45, 
+#                  font.xtickslab = 8)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] tableone_0.10.0 ggpubr_0.2.3    magrittr_1.5    corrr_0.4.0    
+ [5] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.3    
+ [9] readr_1.3.1     tidyr_1.0.0     tibble_2.1.3    ggplot2_3.2.1  
+[13] tidyverse_1.2.1
+
+loaded via a namespace (and not attached):
+ [1] ggrepel_0.8.1     Rcpp_1.0.2        lubridate_1.7.4  
+ [4] here_0.1          lattice_0.20-38   assertthat_0.2.1 
+ [7] zeallot_0.1.0     rprojroot_1.3-2   digest_0.6.22    
+[10] R6_2.4.0          cellranger_1.1.0  backports_1.1.5  
+[13] survey_3.36       evaluate_0.14     httr_1.4.1       
+[16] highr_0.8         pillar_1.4.2      rlang_0.4.1      
+[19] lazyeval_0.2.2    readxl_1.3.1      rstudioapi_0.10  
+[22] Matrix_1.2-17     rmarkdown_1.16    labeling_0.3     
+[25] splines_3.6.1     munsell_0.5.0     broom_0.5.2      
+[28] compiler_3.6.1    modelr_0.1.4      xfun_0.10        
+[31] pkgconfig_2.0.3   htmltools_0.4.0   mitools_2.4      
+[34] tidyselect_0.2.5  workflowr_1.4.0   crayon_1.3.4     
+[37] withr_2.1.2       grid_3.6.1        nlme_3.1-140     
+[40] jsonlite_1.6      gtable_0.3.0      lifecycle_0.1.0  
+[43] DBI_1.0.0         git2r_0.26.1      scales_1.0.0     
+[46] cli_1.1.0         stringi_1.4.3     ggsignif_0.6.0   
+[49] fs_1.3.1          skimr_1.0.7       xml2_1.2.2       
+[52] ellipsis_0.3.0    generics_0.0.2    vctrs_0.2.0      
+[55] tools_3.6.1       glue_1.3.1        hms_0.5.0        
+[58] survival_2.44-1.1 yaml_2.2.0        colorspace_1.4-1 
+[61] rvest_0.3.4       knitr_1.25        haven_2.1.1      </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

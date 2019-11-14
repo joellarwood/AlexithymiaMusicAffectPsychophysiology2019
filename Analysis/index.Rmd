@@ -1,0 +1,15 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+This site provides a version controlled and computationally reproducible record of analysis for *Facial and Electrodermal responses to music across alexithymia*
+
+You can navigate to pages describing each step of the anbalysis (except for the psychophysiology pre-processing) using the top bar. 
+
+The data can be accessed in this [folder](https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/master/analysis/data) on the project [repository](https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019). You can also se archives of my work on this project data to early 2019 in this [folder](https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/master/Archives)

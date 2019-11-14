@@ -1,0 +1,261 @@
+---
+title: "Data Cleaning"
+author: "joellarwood"
+date: "2019-11-11"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: inline
+---
+
+Here the data import, processing, and cleaning steps taken can be followed and visualised 
+
+```{r loadin, echo = FALSE, results = FALSE, message = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(tidyverse)
+library(gendercodeR)
+library(skimr)
+library(readbulk)
+library(visdat)
+library(psych)
+```
+
+```{r importsurvey, results = FALSE}
+survey <- read_csv(file = here::here("data", "RawSurvey.csv"))
+```
+
+```{r factorecode, results = FALSE}
+
+survey <- survey %>% 
+  mutate(gender_recoded = recode_gender(gender = gender, 
+                                         fill = TRUE) %>% as_factor(), 
+         yearsplay = as_factor(yearsplay) %>% recode("6" = "5+"),
+         )
+
+levels(survey$gender_recoded)
+levels(survey$yearsplay)
+
+survey <- survey %>% 
+  mutate(gender_recoded = fct_recode(gender_recoded, 
+                                     female = "Girl/Female"))
+levels(survey$gender_recoded)
+```
+
+# Create scores 
+## Alexithymia
+```{r create TAS, echo = FALSE}
+survey <- survey %>% 
+  mutate(tas_4r = 6 - .$tas_4, #Reverse code items
+         tas_5r = 6 - .$tas_5,
+         tas_10r = 6 - .$tas_10,
+         tas_18r = 6 - .$tas_18,
+         tas_19r = 6 - .$tas_19)
+
+EOTlist <- c("tas_5r", "tas_8", "tas_10r", "tas_15", "tas_16", "tas_18r", "tas_19r", "tas_20")
+DDFlist <- c("tas_2", "tas_4r", "tas_11", "tas_12", "tas_17")
+DIFlist <- c("tas_1", "tas_3", "tas_6", "tas_7", "tas_9", "tas_13", "tas_14")
+
+
+survey <- survey %>% mutate(EOT = select(survey, EOTlist) %>% rowSums() %>% as.numeric(),
+                            DDF = select(survey, DDFlist) %>% rowSums() %>% as.numeric(),
+                            DIF = select(survey,DIFlist) %>% rowSums() %>% as.numeric(),
+                            TAS = select(survey, EOTlist, DDFlist, DIFlist) %>% rowSums() %>% as.numeric(),
+                            TASc = as.numeric(scale(TAS, scale = FALSE)))
+# EOT alpha
+eotalpha <- psych::alpha(select(survey, EOTlist))$total$raw_alpha
+
+# DDF alpha
+ddfalpha <- psych::alpha(select(survey, DDFlist))$total$raw_alpha
+
+#DIF alpha
+difalpha <- psych::alpha(select(survey,DIFlist))$total$raw_alpha
+
+# TAS total alpha
+tasalpha <- psych::alpha(select(survey,EOTlist, DDFlist, DIFlist))$total$raw_alpha
+```
+The internal consistency for total alerxithymia scores was `r tasalpha`
+
+The internal consistency for DDF was `r ddfalpha`  
+The internal consistency for DIF was `r difalpha`  
+The internal consistency for EOT was `r eotalpha`
+
+## Depression
+
+```{r create DASS, results = FALSE}
+# S (Stress) Q1, 6, 8, 11, 12, 14, 18
+# A (Anxiety) Q2, 4, 7, 9, 15, 19, 20
+# D (Depression) Q3, 5, 10, 13, 16, 17, 21 
+
+#stresslist <- c("DASS_1", "DASS_6", "DASS_8", "DASS_11", "DASS_12", "DASS_14", "DASS_18")
+#anxietylist <- c("DASS_2", "DASS_4", "DASS_7", "DASS_9", "DASS_15", "DASS_19", "DASS_20")
+depressionlist <- c("DASS_3", "DASS_5", "DASS_10", "DASS_13", "DASS_16", "DASS_17", "DASS_21")
+
+survey <- survey %>% 
+  mutate(depression = select(survey, depressionlist) %>% rowSums()
+                            )
+
+
+depalpha <- psych::alpha(select(survey, depressionlist))$total$raw_alpha
+
+```
+The internal consistency for depression was `r depalpha`  
+
+# PsychoPy Data 
+
+```{r load psychopy, message = FALSE, warning = FALSE}
+raw <- readbulk::read_bulk(directory = here::here("data", "PsychoPyData"), fun = read_csv)
+```
+
+# Identify Practice Trails and create trial ID
+```{r new variable creation}
+raw <- raw %>% 
+  mutate(prac = if_else(is.na(.$songmark), "practice", "trial"),
+         id = as.numeric(participant),
+         trialnum = songtrials.thisRepN + 1,
+         affectcat = as.factor(recode(affectcat,
+                                      "1" = "High Arousal/Positive Valence",
+                                      "2" = "High Arousal/Negative Valence",
+                                      "3" = "Low Arousal/Negative Valence",
+                                      "4" = "Low Arousal/Positve Valence")),
+         targetemotion = as.factor(recode(affectcat, 
+                                          "High Arousal/Positive Valence" = "Happy",
+                                          "High Arousal/Negative Valence" = "Fear",
+                                          "Low Arousal/Negative Valence" = "Sad",
+                                          "Low Arousal/Positve Valence" = "Tender")),
+         arousal = as.factor(recode(arousal, 
+                                    "1" = "Low",
+                                    "2" = "high")),
+         valence = as.factor(recode(valence,
+                                    "1" = "Negative",
+                                    "2" = "Positive"))) %>% 
+  unite(col = trialunique,
+        id, songmark, trialnum,
+        remove = FALSE)
+```
+
+## Clean word data 
+### Ratings 
+```{r clean word data}
+emotionwords <- raw %>% 
+  filter (WordResponse.keys > 0 & prac == "trial") %>% #emotion responses from trials
+  select(trialunique,
+         Word,
+         WordResponse.keys) %>% 
+  spread(key = Word, value = WordResponse.keys) # spread so each trial is only 1 column
+
+vis_dat(emotionwords)
+```
+### Reaction times
+```{r wordRT}
+emotionwordsRT <- raw %>% 
+  filter (WordResponse.keys > 0 & prac == "trial") %>% #emotion responses from trials
+  select(trialunique,
+         Word,
+         WordResponse.rt) %>% 
+  spread(key = Word, value = WordResponse.rt)
+vis_dat(emotionwordsRT)
+```
+### Joined
+```{r joinRTandRating}
+emotionwords <- left_join(emotionwords, 
+                          emotionwordsRT, 
+                          by = "trialunique", 
+                          suffix = c("_rating", "_RT"))
+vis_dat(emotionwords)
+```
+
+## Affect ratings
+```{r affect ratings}
+affectrating <- raw %>% 
+  filter(!is.na(arousalkey.keys) & prac == "trial") %>%
+  select(trialunique,
+         id,
+         songmark,
+         affectcat, 
+         valence,
+         arousal,
+         valencekey.keys,
+         valencekey.rt,
+         arousalkey.keys,
+         valencekey.rt,
+         likekey.keys,
+         likekey.rt,
+         prac)
+
+vis_dat(affectrating)
+```
+
+## Putting datasets together
+```{r merge words and affect ratings}
+joinedaffectemo <- full_join(emotionwords, affectrating, 
+                             by = "trialunique")
+
+
+scores <- survey %>% select(id, 
+                            depression, 
+                            EOT, 
+                            DDF, 
+                            DIF, 
+                            TAS, 
+                            gender_recoded, 
+                            musichours, 
+                            yearsplay)
+
+joined <- full_join(joinedaffectemo, scores,
+                    by = "id") 
+
+vis_dat(joined)
+
+write_csv(joined, path = here::here("data", "PsychoPyProcessed.csv"))
+write_csv(survey, path = here::here("data", "ProcessedSurvey.csv" ))
+```
+
+# Describe data 
+
+```{r}
+descriptives_joined <- joined %>% 
+  filter(!is.na(id)) %>% 
+  group_by(id) %>% 
+  summarise(trialscompleted = n(), 
+            DDF = mean(DDF), 
+            EOT = mean(EOT), 
+            DIF = mean(DIF), 
+            TAS = mean(TAS), 
+            DEP = mean(depression), 
+            ) 
+
+descriptives_survey <- scores %>% 
+  filter(!is.na(id)) %>% 
+  group_by(id) %>% 
+  summarise(trialscompleted = n(), 
+            DDF = mean(DDF), 
+            EOT = mean(EOT), 
+            DIF = mean(DIF), 
+            TAS = mean(TAS), 
+            DEP = mean(depression), 
+            ) 
+descriptives_both <- full_join(descriptives_joined, descriptives_survey, by = "id") 
+
+descriptives_both <- descriptives_both %>% 
+  mutate(EQdep = if_else(identical(DEP.x, DEP.y), 
+                         "equal", "not"), 
+         EQtas = if_else(identical(TAS.x, TAS.y), 
+                         "equal", "not"), 
+         EQeot = if_else(identical(EOT.x, EOT.y), 
+                         "equal", "not"), 
+         EQddf = if_else(identical(DDF.x, DDF.y), 
+                         "equal", "not"), 
+         EQdif = if_else(identical(DIF.x, DIF.y), 
+                         "equal", "not")) 
+
+tableone::CreateTableOne(data = select(descriptives_both, 
+                                       -contains("y"),
+                                       -contains("id"),
+                                       contains("EQ"))) %>% 
+  tableone::kableone(caption = "Descriptives of survey results. EQ variables indicate proportion of descriptive statistics that were identical across the survey dataset and the joined dataset indicating no errors in joining/manipulation")
+```
+
+
+
+
+
+
