@@ -21,6 +21,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -245,6 +246,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -267,7 +271,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">analysis</a>
+      <a class="navbar-brand" href="index.html">Physiology and Musicla Emotions in Alexithymia</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -275,10 +279,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="about.html">About</a>
+  <a href="data_cleaning.html">Data Preparation</a>
 </li>
 <li>
-  <a href="license.html">License</a>
+  <a href="describe.html">Description of Self Report</a>
+</li>
+<li>
+  <a href="AffectRatings.html">Self-Report analysis</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -296,6 +303,14 @@ div.section {
 </style>
 
 <div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
 
@@ -324,13 +339,13 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-11
+<strong>Last updated:</strong> 2019-11-14
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>dataAnalysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>AlexithymiaMusicAffectPsychophysiology2019/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
@@ -355,10 +370,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree75221d66385750fe907bad2c7b6d29a6f3abc013targetblank75221d6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/75221d66385750fe907bad2c7b6d29a6f3abc013" target="_blank">75221d6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree6c84622f01920c1ed1430d74c15b80a7242834d3targetblank6c84622a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/6c84622f01920c1ed1430d74c15b80a7242834d3" target="_blank">6c84622</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree75221d66385750fe907bad2c7b6d29a6f3abc013targetblank75221d6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree6c84622f01920c1ed1430d74c15b80a7242834d3targetblank6c84622a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -366,480 +381,30 @@ Great! You are using Git for version control. Tracking code development and conn
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    Archives/.DS_Store
+    Ignored:    Archives/JULY Analysis ARCHIVE/.DS_Store
+    Ignored:    Archives/JULY Analysis ARCHIVE/.RData
+    Ignored:    Archives/JULY Analysis ARCHIVE/.Rhistory
+    Ignored:    Archives/JULY Analysis ARCHIVE/.Rproj.user/
+    Ignored:    Archives/JULY Analysis ARCHIVE/First19Data/.DS_Store
+    Ignored:    Archives/JULY Analysis ARCHIVE/data/.DS_Store
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.DS_Store
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.RData
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rhistory
+    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rproj.user/
+    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.DS_Store
+    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.Rhistory
+    Ignored:    Archives/Novembe Analysis ARCHIVE/data/.DS_Store
+    Ignored:    JULY Analysis ARCHIVE/
     Ignored:    Psychopy/.DS_Store
-
-Untracked files:
-    Untracked:  JULY Analysis ARCHIVE/
-    Untracked:  Novembe Analysis ARCHIVE/
-    Untracked:  dataAnalysis/
+    Ignored:    data/.DS_Store
+    Ignored:    dataAnalysis/.DS_Store
 
 Unstaged changes:
-    Deleted:    .Rprofile
-    Deleted:    .httr-oauth
-    Deleted:    AlexithymiaMusicAffectPsychophysiology2019.Rproj
-    Deleted:    Analysis/Analysis.Rproj
-    Deleted:    Analysis/Factor Analysis.Rmd
-    Deleted:    Analysis/_site.yml
-    Deleted:    Analysis/about.Rmd
-    Deleted:    Analysis/code/Data Cleaning.Rmd
-    Deleted:    Analysis/code/Differentiation.Rmd
-    Deleted:    Analysis/code/Linear Models.Rmd
-    Deleted:    Analysis/code/PsychoPyProcessed.csv
-    Deleted:    Analysis/code/Summarised Data.Rmd
-    Deleted:    Analysis/code/Untitled.R
-    Deleted:    Analysis/code/run.R
-    Deleted:    Analysis/data/PhysiologyAdded.csv
-    Deleted:    Analysis/data/PhysiologyData/001.xls
-    Deleted:    Analysis/data/PhysiologyData/002.xls
-    Deleted:    Analysis/data/PhysiologyData/003.xls
-    Deleted:    Analysis/data/PhysiologyData/004.xls
-    Deleted:    Analysis/data/PhysiologyData/005.xls
-    Deleted:    Analysis/data/PhysiologyData/006.xls
-    Deleted:    Analysis/data/PhysiologyData/007.xls
-    Deleted:    Analysis/data/PhysiologyData/008.xls
-    Deleted:    Analysis/data/PhysiologyData/009.xls
-    Deleted:    Analysis/data/PhysiologyData/010.xls
-    Deleted:    Analysis/data/PhysiologyData/011.xls
-    Deleted:    Analysis/data/PhysiologyData/012.xls
-    Deleted:    Analysis/data/PhysiologyData/013.xls
-    Deleted:    Analysis/data/PhysiologyData/014.xls
-    Deleted:    Analysis/data/PhysiologyData/015.xls
-    Deleted:    Analysis/data/PhysiologyData/016.xls
-    Deleted:    Analysis/data/PhysiologyData/017.xls
-    Deleted:    Analysis/data/PhysiologyData/018.xls
-    Deleted:    Analysis/data/PhysiologyData/019.xls
-    Deleted:    Analysis/data/PhysiologyData/020.xls
-    Deleted:    Analysis/data/PhysiologyData/021.xls
-    Deleted:    Analysis/data/PhysiologyData/022.xls
-    Deleted:    Analysis/data/PhysiologyData/023.xls
-    Deleted:    Analysis/data/PhysiologyData/024.xls
-    Deleted:    Analysis/data/PhysiologyData/025.xls
-    Deleted:    Analysis/data/PhysiologyData/026.xls
-    Deleted:    Analysis/data/PhysiologyData/027.xls
-    Deleted:    Analysis/data/PhysiologyData/028.xls
-    Deleted:    Analysis/data/PhysiologyData/029.xls
-    Deleted:    Analysis/data/PhysiologyData/030.xls
-    Deleted:    Analysis/data/PhysiologyData/031.xls
-    Deleted:    Analysis/data/PhysiologyData/032.xls
-    Deleted:    Analysis/data/PhysiologyData/033.xls
-    Deleted:    Analysis/data/PhysiologyData/034.xls
-    Deleted:    Analysis/data/PhysiologyData/036.xls
-    Deleted:    Analysis/data/PhysiologyData/037.xls
-    Deleted:    Analysis/data/PhysiologyData/038.xls
-    Deleted:    Analysis/data/PhysiologyData/039.xls
-    Deleted:    Analysis/data/PhysiologyData/040.xls
-    Deleted:    Analysis/data/PhysiologyData/041.xls
-    Deleted:    Analysis/data/PhysiologyData/042.xls
-    Deleted:    Analysis/data/PhysiologyData/044.xls
-    Deleted:    Analysis/data/PhysiologyData/045.xls
-    Deleted:    Analysis/data/PhysiologyData/046.xls
-    Deleted:    Analysis/data/PhysiologyData/047.xls
-    Deleted:    Analysis/data/PhysiologyData/048.xls
-    Deleted:    Analysis/data/PhysiologyData/049.xls
-    Deleted:    Analysis/data/PhysiologyData/050.xls
-    Deleted:    Analysis/data/PhysiologyData/051.xls
-    Deleted:    Analysis/data/PhysiologyData/052.xls
-    Deleted:    Analysis/data/PhysiologyData/053.xls
-    Deleted:    Analysis/data/PhysiologyData/054.xls
-    Deleted:    Analysis/data/PhysiologyData/055.xls
-    Deleted:    Analysis/data/PhysiologyData/056.xls
-    Deleted:    Analysis/data/PhysiologyData/057.xls
-    Deleted:    Analysis/data/PhysiologyData/058.xls
-    Deleted:    Analysis/data/PhysiologyData/059.xls
-    Deleted:    Analysis/data/PhysiologyData/060.xls
-    Deleted:    Analysis/data/PhysiologyData/061.xls
-    Deleted:    Analysis/data/PhysiologyData/062.xls
-    Deleted:    Analysis/data/PhysiologyData/063.xls
-    Deleted:    Analysis/data/PhysiologyData/064.xls
-    Deleted:    Analysis/data/PhysiologyData/065.xls
-    Deleted:    Analysis/data/PhysiologyData/066.xls
-    Deleted:    Analysis/data/PhysiologyData/067.xls
-    Deleted:    Analysis/data/PhysiologyData/068.xls
-    Deleted:    Analysis/data/PhysiologyData/069.xls
-    Deleted:    Analysis/data/PhysiologyData/070.xls
-    Deleted:    Analysis/data/PhysiologyData/071.xls
-    Deleted:    Analysis/data/PhysiologyData/~$031.xlsx
-    Deleted:    Analysis/data/PrePsychoPhys.csv
-    Deleted:    Analysis/data/ProcessedSurvey
-    Deleted:    Analysis/data/PsychoPyData/001_MusicAffectPsychophysiology2019_2019_May_07_0907.csv
-    Deleted:    Analysis/data/PsychoPyData/002_MusicAffectPsychophysiology2019_2019_May_07_1008.csv
-    Deleted:    Analysis/data/PsychoPyData/003_MusicAffectPsychophysiology2019_2019_May_07_1111.csv
-    Deleted:    Analysis/data/PsychoPyData/004_MusicAffectPsychophysiology2019_2019_May_07_1301.csv
-    Deleted:    Analysis/data/PsychoPyData/005_MusicAffectPsychophysiology2019_2019_May_07_1410.csv
-    Deleted:    Analysis/data/PsychoPyData/006_MusicAffectPsychophysiology2019_2019_May_07_1511.csv
-    Deleted:    Analysis/data/PsychoPyData/007_MusicAffectPsychophysiology2019_2019_May_07_1612.csv
-    Deleted:    Analysis/data/PsychoPyData/008_MusicAffectPsychophysiology2019_2019_May_08_1311.csv
-    Deleted:    Analysis/data/PsychoPyData/009_MusicAffectPsychophysiology2019_2019_May_08_1412.csv
-    Deleted:    Analysis/data/PsychoPyData/010_MusicAffectPsychophysiology2019_2019_May_08_1606.csv
-    Deleted:    Analysis/data/PsychoPyData/011_MusicAffectPsychophysiology2019_2019_May_09_0917.csv
-    Deleted:    Analysis/data/PsychoPyData/012_MusicAffectPsychophysiology2019_2019_May_09_1020.csv
-    Deleted:    Analysis/data/PsychoPyData/013_MusicAffectPsychophysiology2019_2019_May_09_1118.csv
-    Deleted:    Analysis/data/PsychoPyData/014_MusicAffectPsychophysiology2019_2019_May_09_1306.csv
-    Deleted:    Analysis/data/PsychoPyData/015_MusicAffectPsychophysiology2019_2019_May_09_1414.csv
-    Deleted:    Analysis/data/PsychoPyData/016_MusicAffectPsychophysiology2019_2019_May_09_1515.csv
-    Deleted:    Analysis/data/PsychoPyData/017_MusicAffectPsychophysiology2019_2019_May_09_1618.csv
-    Deleted:    Analysis/data/PsychoPyData/018_MusicAffectPsychophysiology2019_2019_May_10_1114.csv
-    Deleted:    Analysis/data/PsychoPyData/019_MusicAffectPsychophysiology2019_2019_May_10_1520.csv
-    Deleted:    Analysis/data/PsychoPyData/020_MusicAffectPsychophysiology2019_2019_May_13_1007.csv
-    Deleted:    Analysis/data/PsychoPyData/021_MusicAffectPsychophysiology2019_2019_May_13_1110.csv
-    Deleted:    Analysis/data/PsychoPyData/022_MusicAffectPsychophysiology2019_2019_May_13_1314.csv
-    Deleted:    Analysis/data/PsychoPyData/023_MusicAffectPsychophysiology2019_2019_May_13_1413.csv
-    Deleted:    Analysis/data/PsychoPyData/024_MusicAffectPsychophysiology2019_2019_May_13_1509.csv
-    Deleted:    Analysis/data/PsychoPyData/025_MusicAffectPsychophysiology2019_2019_May_13_1612.csv
-    Deleted:    Analysis/data/PsychoPyData/026_MusicAffectPsychophysiology2019_2019_May_14_0855.csv
-    Deleted:    Analysis/data/PsychoPyData/027_MusicAffectPsychophysiology2019_2019_May_14_1009.csv
-    Deleted:    Analysis/data/PsychoPyData/028_MusicAffectPsychophysiology2019_2019_May_14_1112.csv
-    Deleted:    Analysis/data/PsychoPyData/029_MusicAffectPsychophysiology2019_2019_May_14_1312.csv
-    Deleted:    Analysis/data/PsychoPyData/030_MusicAffectPsychophysiology2019_2019_May_14_1410.csv
-    Deleted:    Analysis/data/PsychoPyData/031_MusicAffectPsychophysiology2019_2019_May_14_1511.csv
-    Deleted:    Analysis/data/PsychoPyData/032_MusicAffectPsychophysiology2019_2019_May_14_1612.csv
-    Deleted:    Analysis/data/PsychoPyData/033_MusicAffectPsychophysiology2019_2019_May_15_1311.csv
-    Deleted:    Analysis/data/PsychoPyData/034_MusicAffectPsychophysiology2019_2019_May_15_1410.csv
-    Deleted:    Analysis/data/PsychoPyData/035_MusicAffectPsychophysiology2019_2019_May_16_0914.csv
-    Deleted:    Analysis/data/PsychoPyData/036_MusicAffectPsychophysiology2019_2019_May_16_1110.csv
-    Deleted:    Analysis/data/PsychoPyData/037_MusicAffectPsychophysiology2019_2019_May_16_1310.csv
-    Deleted:    Analysis/data/PsychoPyData/038_MusicAffectPsychophysiology2019_2019_May_16_1359.csv
-    Deleted:    Analysis/data/PsychoPyData/039_MusicAffectPsychophysiology2019_2019_May_16_1518.csv
-    Deleted:    Analysis/data/PsychoPyData/040_MusicAffectPsychophysiology2019_2019_May_17_0911.csv
-    Deleted:    Analysis/data/PsychoPyData/041_MusicAffectPsychophysiology2019_2019_May_17_1011.csv
-    Deleted:    Analysis/data/PsychoPyData/042_MusicAffectPsychophysiology2019_2019_May_17_1110.csv
-    Deleted:    Analysis/data/PsychoPyData/043_MusicAffectPsychophysiology2019_2019_May_17_1415.csv
-    Deleted:    Analysis/data/PsychoPyData/044_MusicAffectPsychophysiology2019_2019_May_17_1515.csv
-    Deleted:    Analysis/data/PsychoPyData/045_MusicAffectPsychophysiology2019_2019_May_17_1617.csv
-    Deleted:    Analysis/data/PsychoPyData/046_MusicAffectPsychophysiology2019_2019_May_20_1114.csv
-    Deleted:    Analysis/data/PsychoPyData/047_MusicAffectPsychophysiology2019_2019_May_20_1310.csv
-    Deleted:    Analysis/data/PsychoPyData/048_MusicAffectPsychophysiology2019_2019_May_20_1417.csv
-    Deleted:    Analysis/data/PsychoPyData/049_MusicAffectPsychophysiology2019_2019_May_20_1514.csv
-    Deleted:    Analysis/data/PsychoPyData/050_MusicAffectPsychophysiology2019_2019_May_20_1621.csv
-    Deleted:    Analysis/data/PsychoPyData/051_MusicAffectPsychophysiology2019_2019_May_21_0910.csv
-    Deleted:    Analysis/data/PsychoPyData/052_MusicAffectPsychophysiology2019_2019_May_21_1010.csv
-    Deleted:    Analysis/data/PsychoPyData/053_MusicAffectPsychophysiology2019_2019_May_21_1106.csv
-    Deleted:    Analysis/data/PsychoPyData/054_MusicAffectPsychophysiology2019_2019_May_21_1404.csv
-    Deleted:    Analysis/data/PsychoPyData/055_MusicAffectPsychophysiology2019_2019_May_21_1504.csv
-    Deleted:    Analysis/data/PsychoPyData/056_MusicAffectPsychophysiology2019_2019_May_21_1613.csv
-    Deleted:    Analysis/data/PsychoPyData/057_MusicAffectPsychophysiology2019_2019_May_23_1406.csv
-    Deleted:    Analysis/data/PsychoPyData/058_MusicAffectPsychophysiology2019_2019_May_23_1524.csv
-    Deleted:    Analysis/data/PsychoPyData/059_MusicAffectPsychophysiology2019_2019_May_23_1609.csv
-    Deleted:    Analysis/data/PsychoPyData/060_MusicAffectPsychophysiology2019_2019_May_27_1009.csv
-    Deleted:    Analysis/data/PsychoPyData/061_MusicAffectPsychophysiology2019_2019_May_27_1107.csv
-    Deleted:    Analysis/data/PsychoPyData/062_MusicAffectPsychophysiology2019_2019_May_27_1403.csv
-    Deleted:    Analysis/data/PsychoPyData/063_MusicAffectPsychophysiology2019_2019_May_27_1508.csv
-    Deleted:    Analysis/data/PsychoPyData/064_MusicAffectPsychophysiology2019_2019_May_27_1609.csv
-    Deleted:    Analysis/data/PsychoPyData/065_MusicAffectPsychophysiology2019_2019_May_28_1212.csv
-    Deleted:    Analysis/data/PsychoPyData/066_MusicAffectPsychophysiology2019_2019_May_28_1502.csv
-    Deleted:    Analysis/data/PsychoPyData/067_MusicAffectPsychophysiology2019_2019_May_28_1610.csv
-    Deleted:    Analysis/data/PsychoPyData/068_MusicAffectPsychophysiology2019_2019_May_30_1312.csv
-    Deleted:    Analysis/data/PsychoPyData/069_MusicAffectPsychophysiology2019_2019_May_30_1413.csv
-    Deleted:    Analysis/data/PsychoPyData/070_MusicAffectPsychophysiology2019_2019_May_30_1509.csv
-    Deleted:    Analysis/data/PsychoPyData/071_MusicAffectPsychophysiology2019_2019_May_30_1610.csv
-    Deleted:    Analysis/data/PsychoPyData/072_MusicAffectPsychophysiology2019_2019_Aug_26_1014.csv
-    Deleted:    Analysis/data/PsychoPyData/073_MusicAffectPsychophysiology2019_2019_Aug_26_1112.csv
-    Deleted:    Analysis/data/PsychoPyData/074_MusicAffectPsychophysiology2019_2019_Aug_26_1313.csv
-    Deleted:    Analysis/data/PsychoPyData/075_MusicAffectPsychophysiology2019_2019_Aug_26_1501.csv
-    Deleted:    Analysis/data/PsychoPyData/076_MusicAffectPsychophysiology2019_2019_Aug_27_0905.csv
-    Deleted:    Analysis/data/PsychoPyData/077_MusicAffectPsychophysiology2019_2019_Aug_27_1005.csv
-    Deleted:    Analysis/data/PsychoPyData/078_MusicAffectPsychophysiology2019_2019_Aug_27_1108.csv
-    Deleted:    Analysis/data/PsychoPyData/079_MusicAffectPsychophysiology2019_2019_Aug_27_1320.csv
-    Deleted:    Analysis/data/PsychoPyData/080_MusicAffectPsychophysiology2019_2019_Aug_27_1412.csv
-    Deleted:    Analysis/data/PsychoPyData/081_MusicAffectPsychophysiology2019_2019_Aug_27_1507.csv
-    Deleted:    Analysis/data/PsychoPyData/082_MusicAffectPsychophysiology2019_2019_Aug_28_0909.csv
-    Deleted:    Analysis/data/PsychoPyData/083_MusicAffectPsychophysiology2019_2019_Aug_28_1010.csv
-    Deleted:    Analysis/data/PsychoPyData/084_MusicAffectPsychophysiology2019_2019_Aug_28_1113.csv
-    Deleted:    Analysis/data/PsychoPyData/085_MusicAffectPsychophysiology2019_2019_Aug_28_1212.csv
-    Deleted:    Analysis/data/PsychoPyData/086_MusicAffectPsychophysiology2019_2019_Aug_28_1417.csv
-    Deleted:    Analysis/data/PsychoPyData/087_MusicAffectPsychophysiology2019_2019_Aug_28_1511.csv
-    Deleted:    Analysis/data/PsychoPyData/088_MusicAffectPsychophysiology2019_2019_Aug_28_1625.csv
-    Deleted:    Analysis/data/PsychoPyData/089_MusicAffectPsychophysiology2019_2019_Aug_29_0913.csv
-    Deleted:    Analysis/data/PsychoPyData/090_MusicAffectPsychophysiology2019_2019_Aug_29_1009.csv
-    Deleted:    Analysis/data/PsychoPyData/091_MusicAffectPsychophysiology2019_2019_Aug_29_1106.csv
-    Deleted:    Analysis/data/PsychoPyData/092_MusicAffectPsychophysiology2019_2019_Aug_29_1308.csv
-    Deleted:    Analysis/data/PsychoPyData/093_MusicAffectPsychophysiology2019_2019_Aug_29_1408.csv
-    Deleted:    Analysis/data/PsychoPyData/094_MusicAffectPsychophysiology2019_2019_Sep_02_0912.csv
-    Deleted:    Analysis/data/PsychoPyData/095_MusicAffectPsychophysiology2019_2019_Sep_02_1006.csv
-    Deleted:    Analysis/data/PsychoPyData/096_MusicAffectPsychophysiology2019_2019_Sep_02_1108.csv
-    Deleted:    Analysis/data/PsychoPyData/097_MusicAffectPsychophysiology2019_2019_Sep_02_1404.csv
-    Deleted:    Analysis/data/PsychoPyData/098_MusicAffectPsychophysiology2019_2019_Sep_03_1106.csv
-    Deleted:    Analysis/data/PsychoPyData/099_MusicAffectPsychophysiology2019_2019_Sep_03_1307.csv
-    Deleted:    Analysis/data/PsychoPyData/100_MusicAffectPsychophysiology2019_2019_Sep_03_1412.csv
-    Deleted:    Analysis/data/PsychoPyData/101_MusicAffectPsychophysiology2019_2019_Sep_04_0905.csv
-    Deleted:    Analysis/data/PsychoPyData/102_MusicAffectPsychophysiology2019_2019_Sep_04_1015.csv
-    Deleted:    Analysis/data/PsychoPyData/103_MusicAffectPsychophysiology2019_2019_Sep_04_1112.csv
-    Deleted:    Analysis/data/PsychoPyData/104_MusicAffectPsychophysiology2019_2019_Sep_05_0910.csv
-    Deleted:    Analysis/data/PsychoPyData/105_MusicAffectPsychophysiology2019_2019_Sep_05_1012.csv
-    Deleted:    Analysis/data/PsychoPyData/107_MusicAffectPsychophysiology2019_2019_Sep_05_1408.csv
-    Deleted:    Analysis/data/PsychoPyData/108_MusicAffectPsychophysiology2019_2019_Sep_05_1512.csv
-    Deleted:    Analysis/data/PsychoPyData/109_MusicAffectPsychophysiology2019_2019_Sep_05_1612.csv
-    Deleted:    Analysis/data/PsychoPyData/110_MusicAffectPsychophysiology2019_2019_Sep_10_1309.csv
-    Deleted:    Analysis/data/PsychoPyData/111_MusicAffectPsychophysiology2019_2019_Sep_10_1418.csv
-    Deleted:    Analysis/data/PsychoPyData/112_MusicAffectPsychophysiology2019_2019_Sep_11_1118.csv
-    Deleted:    Analysis/data/PsychoPyData/113_MusicAffectPsychophysiology2019_2019_Sep_11_1516.csv
-    Deleted:    Analysis/data/PsychoPyData/114_MusicAffectPsychophysiology2019_2019_Sep_19_1009.csv
-    Deleted:    Analysis/data/PsychoPyData/115_MusicAffectPsychophysiology2019_2019_Sep_23_1011.csv
-    Deleted:    Analysis/data/PsychoPyData/116_MusicAffectPsychophysiology2019_2019_Sep_26_1115.csv
-    Deleted:    Analysis/data/PsychoPyData/117_MusicAffectPsychophysiology2019_2019_Sep_26_1411.csv
-    Deleted:    Analysis/data/PsychoPyData/118_MusicAffectPsychophysiology2019_2019_Sep_26_1458.csv
-    Deleted:    Analysis/data/PsychoPyData/119_MusicAffectPsychophysiology2019_2019_Sep_26_1712.csv
-    Deleted:    Analysis/data/PsychoPyData/120_MusicAffectPsychophysiology2019_2019_Oct_23_1524.csv
-    Deleted:    Analysis/data/PsychoPyData/121_MusicAffectPsychophysiology2019_2019_Oct_23_1626.csv
-    Deleted:    Analysis/data/PsychoPyProcessed.csv
-    Deleted:    Analysis/data/SurveyData.csv
-    Deleted:    Analysis/data/SurveyData_24_10_19.csv
-    Deleted:    Analysis/dataPsychoPyProcessed.csv
-    Deleted:    Analysis/index.Rmd
-    Deleted:    Analysis/install.R
-    Deleted:    Analysis/license.Rmd
-    Deleted:    Analysis/results/DiffCorrelations.rtf
-    Deleted:    Analysis/runtime
-    Deleted:    Legacy Analysis/.gitignore
-    Deleted:    Legacy Analysis/AlexithymiaMusicAffectPsychophysiology2019.Rproj
-    Deleted:    Legacy Analysis/DataAnalysis.Rmd
-    Deleted:    Legacy Analysis/Example Script + Data/Kalokerinos et al emotion differentiation script.R
-    Deleted:    Legacy Analysis/Example Script + Data/Study 1_longit_low compliance ps removed.sav
-    Deleted:    Legacy Analysis/Example Script + Data/Study 1_longit_preprocessing complete.sav
-    Deleted:    Legacy Analysis/Example Script + Data/Study 2_exam_preprocessing complete.sav
-    Deleted:    Legacy Analysis/First19.Rmd
-    Deleted:    Legacy Analysis/First19.md
-    Deleted:    Legacy Analysis/First19Data/001_MusicAffectPsychophysiology2019_2019_May_07_0907.csv
-    Deleted:    Legacy Analysis/First19Data/002_MusicAffectPsychophysiology2019_2019_May_07_1008.csv
-    Deleted:    Legacy Analysis/First19Data/003_MusicAffectPsychophysiology2019_2019_May_07_1111.csv
-    Deleted:    Legacy Analysis/First19Data/004_MusicAffectPsychophysiology2019_2019_May_07_1301.csv
-    Deleted:    Legacy Analysis/First19Data/005_MusicAffectPsychophysiology2019_2019_May_07_1410.csv
-    Deleted:    Legacy Analysis/First19Data/006_MusicAffectPsychophysiology2019_2019_May_07_1511.csv
-    Deleted:    Legacy Analysis/First19Data/007_MusicAffectPsychophysiology2019_2019_May_07_1612.csv
-    Deleted:    Legacy Analysis/First19Data/008_MusicAffectPsychophysiology2019_2019_May_08_1311.csv
-    Deleted:    Legacy Analysis/First19Data/009_MusicAffectPsychophysiology2019_2019_May_08_1412.csv
-    Deleted:    Legacy Analysis/First19Data/010_MusicAffectPsychophysiology2019_2019_May_08_1606.csv
-    Deleted:    Legacy Analysis/First19Data/011_MusicAffectPsychophysiology2019_2019_May_09_0917.csv
-    Deleted:    Legacy Analysis/First19Data/012_MusicAffectPsychophysiology2019_2019_May_09_1020.csv
-    Deleted:    Legacy Analysis/First19Data/013_MusicAffectPsychophysiology2019_2019_May_09_1118.csv
-    Deleted:    Legacy Analysis/First19Data/014_MusicAffectPsychophysiology2019_2019_May_09_1306.csv
-    Deleted:    Legacy Analysis/First19Data/015_MusicAffectPsychophysiology2019_2019_May_09_1414.csv
-    Deleted:    Legacy Analysis/First19Data/016_MusicAffectPsychophysiology2019_2019_May_09_1515.csv
-    Deleted:    Legacy Analysis/First19Data/017_MusicAffectPsychophysiology2019_2019_May_09_1618.csv
-    Deleted:    Legacy Analysis/First19Data/018_MusicAffectPsychophysiology2019_2019_May_10_1114.csv
-    Deleted:    Legacy Analysis/First19Data/019_MusicAffectPsychophysiology2019_2019_May_10_1520.csv
-    Deleted:    Legacy Analysis/First19Data/first19Qual.csv
-    Deleted:    Legacy Analysis/JoinedSurveyAffectSelfReport.csv
-    Deleted:    Legacy Analysis/PsychoPyData/001_MusicAffectPsychophysiology2019_2019_May_07_0907.csv
-    Deleted:    Legacy Analysis/PsychoPyData/002_MusicAffectPsychophysiology2019_2019_May_07_1008.csv
-    Deleted:    Legacy Analysis/PsychoPyData/003_MusicAffectPsychophysiology2019_2019_May_07_1111.csv
-    Deleted:    Legacy Analysis/PsychoPyData/004_MusicAffectPsychophysiology2019_2019_May_07_1301.csv
-    Deleted:    Legacy Analysis/PsychoPyData/005_MusicAffectPsychophysiology2019_2019_May_07_1410.csv
-    Deleted:    Legacy Analysis/PsychoPyData/006_MusicAffectPsychophysiology2019_2019_May_07_1511.csv
-    Deleted:    Legacy Analysis/PsychoPyData/007_MusicAffectPsychophysiology2019_2019_May_07_1612.csv
-    Deleted:    Legacy Analysis/PsychoPyData/008_MusicAffectPsychophysiology2019_2019_May_08_1311.csv
-    Deleted:    Legacy Analysis/PsychoPyData/009_MusicAffectPsychophysiology2019_2019_May_08_1412.csv
-    Deleted:    Legacy Analysis/PsychoPyData/010_MusicAffectPsychophysiology2019_2019_May_08_1606.csv
-    Deleted:    Legacy Analysis/PsychoPyData/011_MusicAffectPsychophysiology2019_2019_May_09_0917.csv
-    Deleted:    Legacy Analysis/PsychoPyData/012_MusicAffectPsychophysiology2019_2019_May_09_1020.csv
-    Deleted:    Legacy Analysis/PsychoPyData/013_MusicAffectPsychophysiology2019_2019_May_09_1118.csv
-    Deleted:    Legacy Analysis/PsychoPyData/014_MusicAffectPsychophysiology2019_2019_May_09_1306.csv
-    Deleted:    Legacy Analysis/PsychoPyData/015_MusicAffectPsychophysiology2019_2019_May_09_1414.csv
-    Deleted:    Legacy Analysis/PsychoPyData/016_MusicAffectPsychophysiology2019_2019_May_09_1515.csv
-    Deleted:    Legacy Analysis/PsychoPyData/017_MusicAffectPsychophysiology2019_2019_May_09_1618.csv
-    Deleted:    Legacy Analysis/PsychoPyData/018_MusicAffectPsychophysiology2019_2019_May_10_1114.csv
-    Deleted:    Legacy Analysis/PsychoPyData/019_MusicAffectPsychophysiology2019_2019_May_10_1520.csv
-    Deleted:    Legacy Analysis/PsychoPyData/020_MusicAffectPsychophysiology2019_2019_May_13_1007.csv
-    Deleted:    Legacy Analysis/PsychoPyData/021_MusicAffectPsychophysiology2019_2019_May_13_1110.csv
-    Deleted:    Legacy Analysis/PsychoPyData/022_MusicAffectPsychophysiology2019_2019_May_13_1314.csv
-    Deleted:    Legacy Analysis/PsychoPyData/023_MusicAffectPsychophysiology2019_2019_May_13_1413.csv
-    Deleted:    Legacy Analysis/PsychoPyData/024_MusicAffectPsychophysiology2019_2019_May_13_1509.csv
-    Deleted:    Legacy Analysis/PsychoPyData/025_MusicAffectPsychophysiology2019_2019_May_13_1612.csv
-    Deleted:    Legacy Analysis/PsychoPyData/026_MusicAffectPsychophysiology2019_2019_May_14_0855.csv
-    Deleted:    Legacy Analysis/PsychoPyData/027_MusicAffectPsychophysiology2019_2019_May_14_1009.csv
-    Deleted:    Legacy Analysis/PsychoPyData/028_MusicAffectPsychophysiology2019_2019_May_14_1112.csv
-    Deleted:    Legacy Analysis/PsychoPyData/029_MusicAffectPsychophysiology2019_2019_May_14_1312.csv
-    Deleted:    Legacy Analysis/PsychoPyData/030_MusicAffectPsychophysiology2019_2019_May_14_1410.csv
-    Deleted:    Legacy Analysis/PsychoPyData/031_MusicAffectPsychophysiology2019_2019_May_14_1511.csv
-    Deleted:    Legacy Analysis/PsychoPyData/032_MusicAffectPsychophysiology2019_2019_May_14_1612.csv
-    Deleted:    Legacy Analysis/PsychoPyData/033_MusicAffectPsychophysiology2019_2019_May_15_1311.csv
-    Deleted:    Legacy Analysis/PsychoPyData/034_MusicAffectPsychophysiology2019_2019_May_15_1410.csv
-    Deleted:    Legacy Analysis/PsychoPyData/035_MusicAffectPsychophysiology2019_2019_May_16_0914.csv
-    Deleted:    Legacy Analysis/PsychoPyData/036_MusicAffectPsychophysiology2019_2019_May_16_1110.csv
-    Deleted:    Legacy Analysis/PsychoPyData/037_MusicAffectPsychophysiology2019_2019_May_16_1310.csv
-    Deleted:    Legacy Analysis/PsychoPyData/038_MusicAffectPsychophysiology2019_2019_May_16_1359.csv
-    Deleted:    Legacy Analysis/PsychoPyData/039_MusicAffectPsychophysiology2019_2019_May_16_1518.csv
-    Deleted:    Legacy Analysis/PsychoPyData/040_MusicAffectPsychophysiology2019_2019_May_17_0911.csv
-    Deleted:    Legacy Analysis/PsychoPyData/041_MusicAffectPsychophysiology2019_2019_May_17_1011.csv
-    Deleted:    Legacy Analysis/PsychoPyData/042_MusicAffectPsychophysiology2019_2019_May_17_1110.csv
-    Deleted:    Legacy Analysis/PsychoPyData/043_MusicAffectPsychophysiology2019_2019_May_17_1415.csv
-    Deleted:    Legacy Analysis/PsychoPyData/044_MusicAffectPsychophysiology2019_2019_May_17_1515.csv
-    Deleted:    Legacy Analysis/PsychoPyData/045_MusicAffectPsychophysiology2019_2019_May_17_1617.csv
-    Deleted:    Legacy Analysis/PsychoPyData/046_MusicAffectPsychophysiology2019_2019_May_20_1114.csv
-    Deleted:    Legacy Analysis/PsychoPyData/047_MusicAffectPsychophysiology2019_2019_May_20_1310.csv
-    Deleted:    Legacy Analysis/PsychoPyData/048_MusicAffectPsychophysiology2019_2019_May_20_1417.csv
-    Deleted:    Legacy Analysis/PsychoPyData/049_MusicAffectPsychophysiology2019_2019_May_20_1514.csv
-    Deleted:    Legacy Analysis/PsychoPyData/050_MusicAffectPsychophysiology2019_2019_May_20_1621.csv
-    Deleted:    Legacy Analysis/PsychoPyData/051_MusicAffectPsychophysiology2019_2019_May_21_0910.csv
-    Deleted:    Legacy Analysis/PsychoPyData/052_MusicAffectPsychophysiology2019_2019_May_21_1010.csv
-    Deleted:    Legacy Analysis/PsychoPyData/053_MusicAffectPsychophysiology2019_2019_May_21_1106.csv
-    Deleted:    Legacy Analysis/PsychoPyData/054_MusicAffectPsychophysiology2019_2019_May_21_1404.csv
-    Deleted:    Legacy Analysis/PsychoPyData/055_MusicAffectPsychophysiology2019_2019_May_21_1504.csv
-    Deleted:    Legacy Analysis/PsychoPyData/056_MusicAffectPsychophysiology2019_2019_May_21_1613.csv
-    Deleted:    Legacy Analysis/PsychoPyData/057_MusicAffectPsychophysiology2019_2019_May_23_1406.csv
-    Deleted:    Legacy Analysis/PsychoPyData/058_MusicAffectPsychophysiology2019_2019_May_23_1524.csv
-    Deleted:    Legacy Analysis/PsychoPyData/059_MusicAffectPsychophysiology2019_2019_May_23_1609.csv
-    Deleted:    Legacy Analysis/PsychoPyData/060_MusicAffectPsychophysiology2019_2019_May_27_1009.csv
-    Deleted:    Legacy Analysis/PsychoPyData/061_MusicAffectPsychophysiology2019_2019_May_27_1107.csv
-    Deleted:    Legacy Analysis/PsychoPyData/062_MusicAffectPsychophysiology2019_2019_May_27_1403.csv
-    Deleted:    Legacy Analysis/PsychoPyData/063_MusicAffectPsychophysiology2019_2019_May_27_1508.csv
-    Deleted:    Legacy Analysis/PsychoPyData/064_MusicAffectPsychophysiology2019_2019_May_27_1609.csv
-    Deleted:    Legacy Analysis/PsychoPyData/065_MusicAffectPsychophysiology2019_2019_May_28_1212.csv
-    Deleted:    Legacy Analysis/PsychoPyData/066_MusicAffectPsychophysiology2019_2019_May_28_1502.csv
-    Deleted:    Legacy Analysis/PsychoPyData/067_MusicAffectPsychophysiology2019_2019_May_28_1610.csv
-    Deleted:    Legacy Analysis/PsychoPyData/068_MusicAffectPsychophysiology2019_2019_May_30_1312.csv
-    Deleted:    Legacy Analysis/PsychoPyData/069_MusicAffectPsychophysiology2019_2019_May_30_1413.csv
-    Deleted:    Legacy Analysis/PsychoPyData/070_MusicAffectPsychophysiology2019_2019_May_30_1509.csv
-    Deleted:    Legacy Analysis/PsychoPyData/071_MusicAffectPsychophysiology2019_2019_May_30_1610.csv
-    Deleted:    Legacy Analysis/SurveyData.csv
-    Deleted:    Legacy Analysis/data/PhysiologyData/001.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/002.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/003.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/004.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/005.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/006.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/007.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/008.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/009.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/010.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/011.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/012.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/013.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/014.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/015.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/016.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/017.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/018.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/019.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/020.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/021.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/022.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/023.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/024.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/025.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/026.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/027.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/028.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/029.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/030.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/031.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/032.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/033.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/034.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/036.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/037.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/038.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/039.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/040.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/041.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/042.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/044.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/045.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/046.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/047.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/048.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/049.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/050.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/051.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/052.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/053.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/054.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/055.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/056.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/057.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/058.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/059.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/060.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/061.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/062.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/063.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/064.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/065.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/066.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/067.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/068.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/069.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/070.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/071.xls
-    Deleted:    Legacy Analysis/data/PhysiologyData/~$031.xlsx
-    Deleted:    Legacy Analysis/data/PsychoPyData/001_MusicAffectPsychophysiology2019_2019_May_07_0907.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/002_MusicAffectPsychophysiology2019_2019_May_07_1008.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/003_MusicAffectPsychophysiology2019_2019_May_07_1111.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/004_MusicAffectPsychophysiology2019_2019_May_07_1301.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/005_MusicAffectPsychophysiology2019_2019_May_07_1410.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/006_MusicAffectPsychophysiology2019_2019_May_07_1511.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/007_MusicAffectPsychophysiology2019_2019_May_07_1612.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/008_MusicAffectPsychophysiology2019_2019_May_08_1311.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/009_MusicAffectPsychophysiology2019_2019_May_08_1412.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/010_MusicAffectPsychophysiology2019_2019_May_08_1606.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/011_MusicAffectPsychophysiology2019_2019_May_09_0917.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/012_MusicAffectPsychophysiology2019_2019_May_09_1020.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/013_MusicAffectPsychophysiology2019_2019_May_09_1118.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/014_MusicAffectPsychophysiology2019_2019_May_09_1306.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/015_MusicAffectPsychophysiology2019_2019_May_09_1414.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/016_MusicAffectPsychophysiology2019_2019_May_09_1515.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/017_MusicAffectPsychophysiology2019_2019_May_09_1618.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/018_MusicAffectPsychophysiology2019_2019_May_10_1114.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/019_MusicAffectPsychophysiology2019_2019_May_10_1520.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/020_MusicAffectPsychophysiology2019_2019_May_13_1007.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/021_MusicAffectPsychophysiology2019_2019_May_13_1110.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/022_MusicAffectPsychophysiology2019_2019_May_13_1314.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/023_MusicAffectPsychophysiology2019_2019_May_13_1413.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/024_MusicAffectPsychophysiology2019_2019_May_13_1509.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/025_MusicAffectPsychophysiology2019_2019_May_13_1612.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/026_MusicAffectPsychophysiology2019_2019_May_14_0855.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/027_MusicAffectPsychophysiology2019_2019_May_14_1009.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/028_MusicAffectPsychophysiology2019_2019_May_14_1112.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/029_MusicAffectPsychophysiology2019_2019_May_14_1312.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/030_MusicAffectPsychophysiology2019_2019_May_14_1410.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/031_MusicAffectPsychophysiology2019_2019_May_14_1511.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/032_MusicAffectPsychophysiology2019_2019_May_14_1612.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/033_MusicAffectPsychophysiology2019_2019_May_15_1311.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/034_MusicAffectPsychophysiology2019_2019_May_15_1410.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/035_MusicAffectPsychophysiology2019_2019_May_16_0914.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/036_MusicAffectPsychophysiology2019_2019_May_16_1110.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/037_MusicAffectPsychophysiology2019_2019_May_16_1310.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/038_MusicAffectPsychophysiology2019_2019_May_16_1359.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/039_MusicAffectPsychophysiology2019_2019_May_16_1518.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/040_MusicAffectPsychophysiology2019_2019_May_17_0911.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/041_MusicAffectPsychophysiology2019_2019_May_17_1011.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/042_MusicAffectPsychophysiology2019_2019_May_17_1110.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/043_MusicAffectPsychophysiology2019_2019_May_17_1415.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/044_MusicAffectPsychophysiology2019_2019_May_17_1515.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/045_MusicAffectPsychophysiology2019_2019_May_17_1617.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/046_MusicAffectPsychophysiology2019_2019_May_20_1114.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/047_MusicAffectPsychophysiology2019_2019_May_20_1310.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/048_MusicAffectPsychophysiology2019_2019_May_20_1417.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/049_MusicAffectPsychophysiology2019_2019_May_20_1514.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/050_MusicAffectPsychophysiology2019_2019_May_20_1621.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/051_MusicAffectPsychophysiology2019_2019_May_21_0910.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/052_MusicAffectPsychophysiology2019_2019_May_21_1010.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/053_MusicAffectPsychophysiology2019_2019_May_21_1106.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/054_MusicAffectPsychophysiology2019_2019_May_21_1404.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/055_MusicAffectPsychophysiology2019_2019_May_21_1504.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/056_MusicAffectPsychophysiology2019_2019_May_21_1613.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/057_MusicAffectPsychophysiology2019_2019_May_23_1406.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/058_MusicAffectPsychophysiology2019_2019_May_23_1524.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/059_MusicAffectPsychophysiology2019_2019_May_23_1609.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/060_MusicAffectPsychophysiology2019_2019_May_27_1009.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/061_MusicAffectPsychophysiology2019_2019_May_27_1107.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/062_MusicAffectPsychophysiology2019_2019_May_27_1403.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/063_MusicAffectPsychophysiology2019_2019_May_27_1508.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/064_MusicAffectPsychophysiology2019_2019_May_27_1609.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/065_MusicAffectPsychophysiology2019_2019_May_28_1212.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/066_MusicAffectPsychophysiology2019_2019_May_28_1502.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/067_MusicAffectPsychophysiology2019_2019_May_28_1610.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/068_MusicAffectPsychophysiology2019_2019_May_30_1312.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/069_MusicAffectPsychophysiology2019_2019_May_30_1413.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/070_MusicAffectPsychophysiology2019_2019_May_30_1509.csv
-    Deleted:    Legacy Analysis/data/PsychoPyData/071_MusicAffectPsychophysiology2019_2019_May_30_1610.csv
-    Deleted:    Legacy Analysis/joinedISRE.csv
-    Deleted:    Legacy Analysis/selfreportlong.csv
-    Deleted:    _workflowr.yml
-    Deleted:    code/README.md
-    Deleted:    data/README.md
-    Deleted:    docs/.nojekyll
-    Deleted:    output/README.md
+    Modified:   Analysis/_site.yml
+    Modified:   Analysis/describe.rmd
 
 </code></pre>
 <p>
@@ -852,9 +417,103 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/844afe8beb7b60719bba34d59c05d8ee1077a265/docs/about.html" target="_blank">844afe8</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-11
+</td>
+<td>
+wflow project progress
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/75221d66385750fe907bad2c7b6d29a6f3abc013/analysis/about.Rmd" target="_blank">75221d6</a>
+</td>
+<td>
+joellarwood
+</td>
+<td>
+2019-11-11
+</td>
+<td>
+Start workflowr project.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/f200098bd81983d3025dcdb9a084ad0506b93833/analysis/about.Rmd" target="_blank">f200098</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-02-25
+</td>
+<td>
+add files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/f200098bd81983d3025dcdb9a084ad0506b93833/docs/about.html" target="_blank">f200098</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-02-25
+</td>
+<td>
+add files
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -906,6 +565,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
