@@ -1,0 +1,184 @@
+---
+title: "Descriptives of Data"
+author: "joellarwood"
+date: "2019-11-14"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(tidyverse)
+library(corrr)
+library(ggpubr)
+library(tableone)
+```
+
+# Self Report Descriptives 
+
+## Demographics and Questionairres 
+
+```{r LoadDemographics, echo = FALSE}
+demographics <- read_csv(here::here("data", "ProcessedSurvey.csv")) %>% 
+  select(age, yearsplay, musichours, gender_recoded, TAS, EOT, DIF, DDF, depression) %>% 
+  mutate(age = as_factor(age) %>% recode("18 years" = "18"), 
+         gender = as_factor(gender_recoded), 
+         yearsplay = as_factor(yearsplay) %>% fct_relevel("0", "1", "2", "3", "4", "5", "5+"), 
+         age_num = as.numeric(as.character(age)))
+```
+
+### Age 
+```{r Age}
+tableone::CreateCatTable(vars = "age", data = demographics)
+
+ggplot2::ggplot(demographics, aes(age)) + 
+  geom_bar(fill = "light blue") + 
+  theme_classic() 
+
+ggpubr::ggdensity(data = demographics, 
+                  x = "age_num", 
+                  add = "mean", 
+                  fill = "blue") 
+
+```
+
+The mean age was `r mean(demographics$age_num, na.rm = TRUE)` with a SD of `r sd(demographics$age_num, na.rm = TRUE)`
+
+### Gender
+
+```{r gender}
+
+tableone::CreateCatTable(vars = "gender", data = demographics)
+
+ggplot2::ggplot(demographics, aes(gender)) + 
+  geom_bar(fill = "light blue") + 
+  theme_classic()
+
+```
+
+
+### Years Played
+
+```{r yearsplay}
+tableone::CreateCatTable(vars = "yearsplay", data = demographics)
+
+ggplot2::ggplot(demographics, aes(yearsplay)) + 
+  geom_bar(fill = "light blue") + 
+  theme_classic()
+```
+
+### Alexithymia and Depression
+
+```{r selfreportmeasures}
+demographics %>% select(TAS, DIF, DDF, EOT, depression) %>% skimr::skim()
+
+##Critical correlaion is .18
+
+demographics %>% 
+  select(TAS, DIF, DDF, EOT, depression) %>% 
+  drop_na() %>% 
+  corrr::correlate() %>% 
+  corrr::network_plot(min_cor = .18, 
+                      colors = c("red","green", "blue"))
+```
+
+## Songs 
+### Valence
+```{r importpsychopy, echo = FALSE}
+
+songdata <- read_csv(here::here("data", "PsychoPyProcessed.csv"))
+
+```
+
+```{r valenceplot}
+
+affectdat <- songdata %>% 
+  group_by(songmark) %>% 
+  summarise(mean_Valence = mean(valencekey.keys), 
+            sd_Valence = sd(valencekey.keys), 
+            mean_Arousal = mean(arousalkey.keys), 
+            sd_Arousal = sd(arousalkey.keys)) %>% 
+  pivot_longer(-songmark, 
+               names_to = c(".value", "Dimension"), 
+               names_sep = "_", 
+               values_drop_na = TRUE)
+
+ggpubr::ggviolin(data = drop_na(songdata), 
+                 x = "songmark",
+                 xlab = "song",
+                 y = "valencekey.keys", 
+                 ylab = "valence rating",
+                 fill = "valence",
+                 ylim = c(1,5), 
+                 add = "mean", 
+                 caption = "Dot indicates mean")
+```
+
+```{r arousal}
+ggpubr::ggviolin(data = drop_na(songdata), 
+                 x = "songmark",
+                 xlab = "song",
+                 y = "arousalkey.keys", 
+                 ylab = "arousal rating",
+                 fill = "arousal",
+                 ylim = c(1,5), 
+                 add = "mean", 
+                 caption = "Dot inidcates mean")
+```
+
+### Specific Emotions 
+
+Each song and its target emotion are presented along with the mean ratings for that song. 
+
+On visual observation it seems altert and maybe active are arousal rather valence discriminant
+
+```{r specificemotions}
+emotionratinglong <- songdata %>% 
+  select(songmark, targetemotion, affectcat, contains("rating")) %>% 
+  pivot_longer(cols = contains("rating"), 
+             names_to = "emotion", 
+             values_to = "rating"
+             )
+
+describeratings <- emotionratinglong %>% 
+  group_by(songmark, emotion) %>% 
+  summarise(Mean = round(mean(rating), digits = 2), 
+            SD = round(sd(rating), digits = 2)) %>% 
+  drop_na() %>% 
+  mutate(target = if_else(songmark <= 4, 
+                          "Fear", if_else(songmark == 5 | songmark == 6 | songmark == 7 | songmark == 8, 
+                                          "Happy", if_else(songmark == 9 | songmark == 10 | songmark == 11 | songmark == 12,
+                                                           "Sad", "Tender"))
+                          ), 
+         song = glue::glue("{target}_{songmark}")) 
+
+ggplot2::ggplot(describeratings, 
+                aes(x = emotion, 
+                    y = Mean, 
+                    fill = emotion
+                )) +
+  ggplot2::geom_errorbar(aes(ymin = Mean-SD, 
+                             ymax = Mean + SD)) +
+  facet_wrap("song") +
+  geom_bar(stat = "identity") +
+  theme_classic ()+
+  theme(axis.text.x = element_text(size = 8, 
+                                   angle = 270))
+
+describeratings %>% 
+  mutate(Mean_SD = glue::glue("{Mean} ({SD})")) %>% 
+  select(song, emotion, Mean_SD) %>% 
+  pivot_wider(names_from = emotion, 
+              values_from = Mean_SD) %>% 
+  knitr::kable()
+# ggpubr::ggbarplot(drop_na(emotionratinglong), 
+#                  x = "emotion", 
+#                  y = "rating", 
+#                  ylim = c(1,5),
+#                  facet = "songmark", 
+#                  fill = "targetemotion", 
+#                  xtickslab.rt = 45, 
+#                  font.xtickslab = 8)
+```
+

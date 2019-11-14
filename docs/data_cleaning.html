@@ -410,7 +410,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-11
+<strong>Last updated:</strong> 2019-11-14
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -501,10 +501,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree844afe8beb7b60719bba34d59c05d8ee1077a265targetblank844afe8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/844afe8beb7b60719bba34d59c05d8ee1077a265" target="_blank">844afe8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree428efc7e54b3a51e79accfe69c74a165ebcc619dtargetblank428efc7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/428efc7e54b3a51e79accfe69c74a165ebcc619d" target="_blank">428efc7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree844afe8beb7b60719bba34d59c05d8ee1077a265targetblank844afe8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree428efc7e54b3a51e79accfe69c74a165ebcc619dtargetblank428efc7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -534,14 +534,16 @@ Ignored files:
     Ignored:    dataAnalysis/.DS_Store
 
 Untracked files:
-    Untracked:  data/ProcessedSurvey.csv
-    Untracked:  data/RawSurvey.csv
-    Untracked:  docs/figure/
+    Untracked:  analysis/AffectRatings.rmd
+    Untracked:  analysis/describe.rmd
+    Untracked:  docs/figure/AffectRatings.rmd/
+    Untracked:  docs/figure/describe.rmd/
 
 Unstaged changes:
-    Modified:   Analysis/_site.yml
+    Deleted:    Analysis/affectrating.rmd
     Modified:   Analysis/data_cleaning.rmd
-    Deleted:    data/SurveyData_24_10_19.csv
+    Modified:   Analysis/index.Rmd
+    Modified:   data/PsychoPyProcessed.csv
 
 </code></pre>
 <p>
@@ -580,6 +582,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+rmd
+</td>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/428efc7e54b3a51e79accfe69c74a165ebcc619d/analysis/data_cleaning.rmd" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+<td>
+file location fixed using here::here
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/428efc7e54b3a51e79accfe69c74a165ebcc619d/docs/data_cleaning.html" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+<td>
+file location fixed using here::here
+</td>
+</tr>
 <tr>
 <td>
 rmd
@@ -665,6 +701,11 @@ depalpha &lt;- psych::alpha(select(survey, depressionlist))$total$raw_alpha</cod
                                       &quot;2&quot; = &quot;High Arousal/Negative Valence&quot;,
                                       &quot;3&quot; = &quot;Low Arousal/Negative Valence&quot;,
                                       &quot;4&quot; = &quot;Low Arousal/Positve Valence&quot;)),
+         targetemotion = as.factor(recode(affectcat, 
+                                          &quot;High Arousal/Positive Valence&quot; = &quot;Happy&quot;,
+                                          &quot;High Arousal/Negative Valence&quot; = &quot;Fear&quot;,
+                                          &quot;Low Arousal/Negative Valence&quot; = &quot;Sad&quot;,
+                                          &quot;Low Arousal/Positve Valence&quot; = &quot;Tender&quot;)),
          arousal = as.factor(recode(arousal, 
                                     &quot;1&quot; = &quot;Low&quot;,
                                     &quot;2&quot; = &quot;high&quot;)),
@@ -686,7 +727,47 @@ depalpha &lt;- psych::alpha(select(survey, depressionlist))$total$raw_alpha</cod
   spread(key = Word, value = WordResponse.keys) # spread so each trial is only 1 column
 
 vis_dat(emotionwords)</code></pre>
-<p><img src="figure/data_cleaning.rmd/clean%20word%20data-1.png" width="672" style="display: block; margin: auto;" /> ### Reaction times</p>
+<p><img src="figure/data_cleaning.rmd/clean%20word%20data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-clean-word-data-1">
+Past versions of “clean word data-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-clean-word-data-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/428efc7e54b3a51e79accfe69c74a165ebcc619d/docs/figure/data_cleaning.rmd/clean word data-1.png" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="reaction-times" class="section level3">
+<h3>Reaction times</h3>
 <pre class="r"><code>emotionwordsRT &lt;- raw %&gt;% 
   filter (WordResponse.keys &gt; 0 &amp; prac == &quot;trial&quot;) %&gt;% #emotion responses from trials
   select(trialunique,
@@ -694,13 +775,90 @@ vis_dat(emotionwords)</code></pre>
          WordResponse.rt) %&gt;% 
   spread(key = Word, value = WordResponse.rt)
 vis_dat(emotionwordsRT)</code></pre>
-<p><img src="figure/data_cleaning.rmd/wordRT-1.png" width="672" style="display: block; margin: auto;" /> ### Joined</p>
+<p><img src="figure/data_cleaning.rmd/wordRT-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-wordRT-1">
+Past versions of wordRT-1.png
+</button>
+</p>
+<div id="fig-wordRT-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/428efc7e54b3a51e79accfe69c74a165ebcc619d/docs/figure/data_cleaning.rmd/wordRT-1.png" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="joined" class="section level3">
+<h3>Joined</h3>
 <pre class="r"><code>emotionwords &lt;- left_join(emotionwords, 
                           emotionwordsRT, 
                           by = &quot;trialunique&quot;, 
                           suffix = c(&quot;_rating&quot;, &quot;_RT&quot;))
 vis_dat(emotionwords)</code></pre>
 <p><img src="figure/data_cleaning.rmd/joinRTandRating-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-joinRTandRating-1">
+Past versions of joinRTandRating-1.png
+</button>
+</p>
+<div id="fig-joinRTandRating-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/428efc7e54b3a51e79accfe69c74a165ebcc619d/docs/figure/data_cleaning.rmd/joinRTandRating-1.png" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="affect-ratings" class="section level2">
@@ -723,6 +881,43 @@ vis_dat(emotionwords)</code></pre>
 
 vis_dat(affectrating)</code></pre>
 <p><img src="figure/data_cleaning.rmd/affect%20ratings-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-affect-ratings-1">
+Past versions of “affect ratings-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-affect-ratings-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/428efc7e54b3a51e79accfe69c74a165ebcc619d/docs/figure/data_cleaning.rmd/affect ratings-1.png" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="putting-datasets-together" class="section level2">
 <h2>Putting datasets together</h2>
@@ -745,6 +940,43 @@ joined &lt;- full_join(joinedaffectemo, scores,
 
 vis_dat(joined)</code></pre>
 <p><img src="figure/data_cleaning.rmd/merge%20words%20and%20affect%20ratings-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-merge-words-and-affect-ratings-1">
+Past versions of “merge words and affect ratings-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-merge-words-and-affect-ratings-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/428efc7e54b3a51e79accfe69c74a165ebcc619d/docs/figure/data_cleaning.rmd/merge words and affect ratings-1.png" target="_blank">428efc7</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>write_csv(joined, path = here::here(&quot;data&quot;, &quot;PsychoPyProcessed.csv&quot;))
 write_csv(survey, path = here::here(&quot;data&quot;, &quot;ProcessedSurvey.csv&quot; ))</code></pre>
 </div>
@@ -876,7 +1108,7 @@ other attached packages:
  [1] psych_1.8.12           visdat_0.5.3           readbulk_1.1.2        
  [4] skimr_1.0.7            gendercodeR_0.0.0.9000 forcats_0.4.0         
  [7] stringr_1.4.0          dplyr_0.8.3            purrr_0.3.3           
-[10] readr_1.3.1            tidyr_0.8.3            tibble_2.1.3          
+[10] readr_1.3.1            tidyr_1.0.0            tibble_2.1.3          
 [13] ggplot2_3.2.1          tidyverse_1.2.1       
 
 loaded via a namespace (and not attached):
@@ -889,21 +1121,21 @@ loaded via a namespace (and not attached):
 [19] highr_0.8         httr_1.4.1        pillar_1.4.2     
 [22] rlang_0.4.1       lazyeval_0.2.2    readxl_1.3.1     
 [25] rstudioapi_0.10   whisker_0.4       Matrix_1.2-17    
-[28] rmarkdown_1.16    labeling_0.3      splines_3.6.1    
+[28] rmarkdown_1.16    splines_3.6.1     labeling_0.3     
 [31] foreign_0.8-71    munsell_0.5.0     broom_0.5.2      
 [34] compiler_3.6.1    modelr_0.1.4      xfun_0.10        
 [37] pkgconfig_2.0.3   mnormt_1.5-5      mitools_2.4      
 [40] htmltools_0.4.0   tidyselect_0.2.5  tableone_0.10.0  
 [43] workflowr_1.4.0   crayon_1.3.4      withr_2.1.2      
 [46] grid_3.6.1        DBI_1.0.0         nlme_3.1-140     
-[49] jsonlite_1.6      gtable_0.3.0      git2r_0.26.1     
-[52] magrittr_1.5      scales_1.0.0      cli_1.1.0        
-[55] stringi_1.4.3     fs_1.3.1          xml2_1.2.2       
-[58] ellipsis_0.3.0    vctrs_0.2.0       generics_0.0.2   
-[61] tools_3.6.1       glue_1.3.1        hms_0.5.0        
-[64] survival_2.44-1.1 parallel_3.6.1    yaml_2.2.0       
-[67] colorspace_1.4-1  rvest_0.3.4       knitr_1.25       
-[70] haven_2.1.1      </code></pre>
+[49] jsonlite_1.6      gtable_0.3.0      lifecycle_0.1.0  
+[52] git2r_0.26.1      magrittr_1.5      scales_1.0.0     
+[55] cli_1.1.0         stringi_1.4.3     fs_1.3.1         
+[58] xml2_1.2.2        ellipsis_0.3.0    generics_0.0.2   
+[61] vctrs_0.2.0       tools_3.6.1       glue_1.3.1       
+[64] hms_0.5.0         survival_2.44-1.1 parallel_3.6.1   
+[67] yaml_2.2.0        colorspace_1.4-1  rvest_0.3.4      
+[70] knitr_1.25        haven_2.1.1      </code></pre>
 </div>
 </div>
 
