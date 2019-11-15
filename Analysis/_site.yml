@@ -1,16 +1,11 @@
-name: "Physiology and Musicla Emotions in Alexithymia"
+name: "Physiology and Musical Emotions in Alexithymia"
 output_dir: ../docs
 navbar:
-  title: "analysis"
+  title: "Physiology and Musical Emotions in Alexithymia"
   left:
   - text: Home
     href: index.html
-  - text: Data Preparation
-    href: data_cleaning.html
-  - text: Description of Self Report
-    href: describe.html
-  - text: Self-Report analysis
-    href: AffectRatings.html
+
 output:
   workflowr::wflow_html:
     toc: yes

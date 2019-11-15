@@ -91,6 +91,7 @@ songdata <- read_csv(here::here("data", "PsychoPyProcessed.csv"))
 
 ```
 
+### Arousal
 ```{r valenceplot}
 
 affectdat <- songdata %>% 
@@ -135,7 +136,7 @@ On visual observation it seems altert and maybe active are arousal rather valenc
 
 ```{r specificemotions}
 emotionratinglong <- songdata %>% 
-  select(songmark, targetemotion, affectcat, contains("rating")) %>% 
+  select(songmark, affectcat, contains("rating")) %>% 
   pivot_longer(cols = contains("rating"), 
              names_to = "emotion", 
              values_to = "rating"
@@ -172,13 +173,5 @@ describeratings %>%
   pivot_wider(names_from = emotion, 
               values_from = Mean_SD) %>% 
   knitr::kable()
-# ggpubr::ggbarplot(drop_na(emotionratinglong), 
-#                  x = "emotion", 
-#                  y = "rating", 
-#                  ylim = c(1,5),
-#                  facet = "songmark", 
-#                  fill = "targetemotion", 
-#                  xtickslab.rt = 45, 
-#                  font.xtickslab = 8)
 ```
 
