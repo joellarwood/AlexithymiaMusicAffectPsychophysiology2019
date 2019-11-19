@@ -343,21 +343,12 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Physiology and Musicla Emotions in Alexithymia</a>
+      <a class="navbar-brand" href="index.html">Physiology and Musical Emotions in Alexithymia</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="data_cleaning.html">Data Preparation</a>
-</li>
-<li>
-  <a href="describe.html">Description of Self Report</a>
-</li>
-<li>
-  <a href="AffectRatings.html">Self-Report analysis</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -413,7 +404,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-14
+<strong>Last updated:</strong> 2019-11-17
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -504,10 +495,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree6c84622f01920c1ed1430d74c15b80a7242834d3targetblank6c84622a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/6c84622f01920c1ed1430d74c15b80a7242834d3" target="_blank">6c84622</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree492e77665dd7ffd04d891d6345d1424d563eb0d2targetblank492e776a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/492e77665dd7ffd04d891d6345d1424d563eb0d2" target="_blank">492e776</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree6c84622f01920c1ed1430d74c15b80a7242834d3targetblank6c84622a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree492e77665dd7ffd04d891d6345d1424d563eb0d2targetblank492e776a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -536,11 +527,7 @@ Ignored files:
     Ignored:    data/.DS_Store
     Ignored:    dataAnalysis/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/figure/
-
 Unstaged changes:
-    Modified:   Analysis/_site.yml
     Modified:   Analysis/describe.rmd
 
 </code></pre>
@@ -585,6 +572,40 @@ Message
 rmd
 </td>
 <td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/492e77665dd7ffd04d891d6345d1424d563eb0d2/analysis/describe.rmd" target="_blank">492e776</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-15
+</td>
+<td>
+update layout
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/492e77665dd7ffd04d891d6345d1424d563eb0d2/docs/describe.html" target="_blank">492e776</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-15
+</td>
+<td>
+update layout
+</td>
+</tr>
+<tr>
+<td>
+rmd
+</td>
+<td>
 <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/20bc296819e1b85e817c9955f9eeb8bf213f2465/analysis/describe.rmd" target="_blank">20bc296</a>
 </td>
 <td>
@@ -621,23 +642,11 @@ workflowr deploy
 </div>
 </div>
 </div>
-<pre><code>── Attaching packages ─────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>✔ ggplot2 3.2.1     ✔ purrr   0.3.3
-✔ tibble  2.1.3     ✔ dplyr   0.8.3
-✔ tidyr   1.0.0     ✔ stringr 1.4.0
-✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>── Conflicts ────────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre><code>Loading required package: magrittr</code></pre>
-<pre><code>
-Attaching package: &#39;magrittr&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:purrr&#39;:
-
-    set_names</code></pre>
-<pre><code>The following object is masked from &#39;package:tidyr&#39;:
-
-    extract</code></pre>
+<pre class="r"><code>knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(tidyverse)
+library(corrr)
+library(ggpubr)
+library(tableone)</code></pre>
 <div id="self-report-descriptives" class="section level1">
 <h1>Self Report Descriptives</h1>
 <div id="demographics-and-questionairres" class="section level2">
@@ -660,7 +669,8 @@ Attaching package: &#39;magrittr&#39;</code></pre>
      50    1 ( 0.8) 
      22    4 ( 3.4) 
      47    1 ( 0.8) </code></pre>
-<pre class="r"><code>ggplot2::ggplot(demographics, aes(age)) + 
+<pre class="r"><code>ggplot2::ggplot(demographics, aes(age_num)) +
+  ggplot2::xlab(&quot;Age in years&quot;) +
   geom_bar(fill = &quot;light blue&quot;) + 
   theme_classic() </code></pre>
 <p><img src="figure/describe.rmd/Age-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -860,7 +870,7 @@ joellarwood
  n obs: 121 
  n variables: 5 
 
-── Variable type:numeric ───────────────────────────────────────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────
    variable missing complete   n  mean    sd p0  p25 p50 p75 p100     hist
         DDF       2      119 121 14.13  4.26  5 12    13  17   25 ▂▅▆▇▅▆▁▁
  depression       2      119 121  4.71  3.97  0  1.5   4   7   18 ▇▂▅▃▁▁▁▁
@@ -873,8 +883,7 @@ demographics %&gt;%
   select(TAS, DIF, DDF, EOT, depression) %&gt;% 
   drop_na() %&gt;% 
   corrr::correlate() %&gt;% 
-  corrr::network_plot(min_cor = .18, 
-                      colors = c(&quot;red&quot;,&quot;green&quot;, &quot;blue&quot;))</code></pre>
+  corrr::network_plot(colors = c(&quot;red&quot;,&quot;green&quot;, &quot;blue&quot;))</code></pre>
 <p><img src="figure/describe.rmd/selfreportmeasures-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-selfreportmeasures-1">
@@ -913,6 +922,36 @@ joellarwood
 </table>
 </div>
 </div>
+<pre class="r"><code>demographics %&gt;% 
+  select(TAS, DIF, DDF, EOT, depression) %&gt;% 
+  apaTables::apa.cor.table()</code></pre>
+<pre><code>
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable      M     SD    1          2           3          4          
+  1. TAS        50.31 10.44                                              
+                                                                         
+  2. DIF        17.50 5.33  .85**                                        
+                            [.79, .89]                                   
+                                                                         
+  3. DDF        14.13 4.26  .85**      .69**                             
+                            [.79, .90] [.59, .78]                        
+                                                                         
+  4. EOT        18.69 4.13  .56**      .13         .23*                  
+                            [.42, .67] [-.05, .31] [.05, .39]            
+                                                                         
+  5. depression 4.71  3.97  .44**      .52**       .36**      .05        
+                            [.28, .57] [.38, .64]  [.20, .51] [-.13, .23]
+                                                                         
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+* indicates p &lt; .05. ** indicates p &lt; .01.
+ </code></pre>
 </div>
 </div>
 <div id="songs" class="section level2">
@@ -1037,8 +1076,9 @@ joellarwood
   pivot_longer(cols = contains(&quot;rating&quot;), 
              names_to = &quot;emotion&quot;, 
              values_to = &quot;rating&quot;
-             )</code></pre>
-<pre class="r"><code>describeratings &lt;- emotionratinglong %&gt;% 
+             )
+
+describeratings &lt;- emotionratinglong %&gt;% 
   group_by(songmark, emotion) %&gt;% 
   summarise(Mean = round(mean(rating), digits = 2), 
             SD = round(sd(rating), digits = 2)) %&gt;% 
@@ -1048,8 +1088,9 @@ joellarwood
                                           &quot;Happy&quot;, if_else(songmark == 9 | songmark == 10 | songmark == 11 | songmark == 12,
                                                            &quot;Sad&quot;, &quot;Tender&quot;))
                           ), 
-         song = glue::glue(&quot;{target}_{songmark}&quot;)) </code></pre>
-<pre class="r"><code>ggplot2::ggplot(describeratings, 
+         song = glue::glue(&quot;{target}_{songmark}&quot;)) 
+
+ggplot2::ggplot(describeratings, 
                 aes(x = emotion, 
                     y = Mean, 
                     fill = emotion
@@ -1061,7 +1102,44 @@ joellarwood
   theme_classic ()+
   theme(axis.text.x = element_text(size = 8, 
                                    angle = 270))</code></pre>
-<p><img src="figure/describe.rmd/tmp2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/describe.rmd/specificemotions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-specificemotions-1">
+Past versions of specificemotions-1.png
+</button>
+</p>
+<div id="fig-specificemotions-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/20bc296819e1b85e817c9955f9eeb8bf213f2465/docs/figure/describe.rmd/specificemotions-1.png" target="_blank">20bc296</a>
+</td>
+<td>
+joellarwood
+</td>
+<td>
+2019-11-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>describeratings %&gt;% 
   mutate(Mean_SD = glue::glue(&quot;{Mean} ({SD})&quot;)) %&gt;% 
   select(song, emotion, Mean_SD) %&gt;% 
@@ -1379,8 +1457,8 @@ loaded via a namespace (and not attached):
  [4] here_0.1          lattice_0.20-38   assertthat_0.2.1 
  [7] zeallot_0.1.0     rprojroot_1.3-2   digest_0.6.22    
 [10] R6_2.4.0          cellranger_1.1.0  backports_1.1.5  
-[13] survey_3.36       evaluate_0.14     httr_1.4.1       
-[16] highr_0.8         pillar_1.4.2      rlang_0.4.1      
+[13] survey_3.36       evaluate_0.14     highr_0.8        
+[16] httr_1.4.1        pillar_1.4.2      rlang_0.4.1      
 [19] lazyeval_0.2.2    readxl_1.3.1      rstudioapi_0.10  
 [22] whisker_0.4       Matrix_1.2-17     rmarkdown_1.16   
 [25] labeling_0.3      splines_3.6.1     munsell_0.5.0    
@@ -1394,9 +1472,9 @@ loaded via a namespace (and not attached):
 [49] ggsignif_0.6.0    fs_1.3.1          skimr_1.0.7      
 [52] xml2_1.2.2        ellipsis_0.3.0    generics_0.0.2   
 [55] vctrs_0.2.0       tools_3.6.1       glue_1.3.1       
-[58] hms_0.5.0         survival_2.44-1.1 yaml_2.2.0       
-[61] colorspace_1.4-1  rvest_0.3.4       knitr_1.25       
-[64] haven_2.1.1      </code></pre>
+[58] hms_0.5.0         apaTables_2.0.5   survival_2.44-1.1
+[61] yaml_2.2.0        colorspace_1.4-1  rvest_0.3.4      
+[64] knitr_1.25        haven_2.1.1      </code></pre>
 </div>
 </div>
 </div>

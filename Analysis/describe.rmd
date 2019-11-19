@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r echo = FALSE}
+```{r message = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(tidyverse)
 library(corrr)
@@ -25,14 +25,16 @@ demographics <- read_csv(here::here("data", "ProcessedSurvey.csv")) %>%
   mutate(age = as_factor(age) %>% recode("18 years" = "18"), 
          gender = as_factor(gender_recoded), 
          yearsplay = as_factor(yearsplay) %>% fct_relevel("0", "1", "2", "3", "4", "5", "5+"), 
-         age_num = as.numeric(as.character(age)))
+         age_num = as.numeric(as.character(age))) %>% 
+  arrange(desc(age_num))
 ```
 
 ### Age 
 ```{r Age}
 tableone::CreateCatTable(vars = "age", data = demographics)
 
-ggplot2::ggplot(demographics, aes(age)) + 
+ggplot2::ggplot(demographics, aes(age_num)) +
+  ggplot2::xlab("Age in years") +
   geom_bar(fill = "light blue") + 
   theme_classic() 
 
@@ -79,8 +81,11 @@ demographics %>%
   select(TAS, DIF, DDF, EOT, depression) %>% 
   drop_na() %>% 
   corrr::correlate() %>% 
-  corrr::network_plot(min_cor = .18, 
-                      colors = c("red","green", "blue"))
+  corrr::network_plot(colors = c("red","green", "blue"))
+
+demographics %>% 
+  select(TAS, DIF, DDF, EOT, depression) %>% 
+  apaTables::apa.cor.table()
 ```
 
 ## Songs 
