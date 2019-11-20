@@ -386,7 +386,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -395,7 +395,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -404,10 +404,10 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-14
+<strong>Last updated:</strong> 2019-11-20
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>AlexithymiaMusicAffectPsychophysiology2019/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -423,12 +423,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -452,7 +452,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191111code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191111)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191111)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -495,10 +495,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree7112720ba8cb3edb0703be6c5bc46869148d7fdatargetblank7112720a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/7112720ba8cb3edb0703be6c5bc46869148d7fda" target="_blank">7112720</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree841c36741a5a0edbd25666c26b881671f564047btargetblank841c367a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/841c36741a5a0edbd25666c26b881671f564047b" target="_blank">841c367</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree7112720ba8cb3edb0703be6c5bc46869148d7fdatargetblank7112720a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree841c36741a5a0edbd25666c26b881671f564047btargetblank841c367a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -506,32 +506,79 @@ Great! You are using Git for version control. Tracking code development and conn
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    Archives/.DS_Store
-    Ignored:    Archives/JULY Analysis ARCHIVE/.DS_Store
-    Ignored:    Archives/JULY Analysis ARCHIVE/.RData
-    Ignored:    Archives/JULY Analysis ARCHIVE/.Rhistory
-    Ignored:    Archives/JULY Analysis ARCHIVE/.Rproj.user/
-    Ignored:    Archives/JULY Analysis ARCHIVE/First19Data/.DS_Store
-    Ignored:    Archives/JULY Analysis ARCHIVE/data/.DS_Store
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.DS_Store
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.RData
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rhistory
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rproj.user/
-    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.DS_Store
-    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.Rhistory
-    Ignored:    Archives/Novembe Analysis ARCHIVE/data/.DS_Store
-    Ignored:    JULY Analysis ARCHIVE/
+    Ignored:    Analysis/.DS_Store
+    Ignored:    Analysis/.RData
+    Ignored:    Analysis/.Rhistory
+    Ignored:    Analysis/.Rproj.user/
+    Ignored:    Analysis/data/.DS_Store
+    Ignored:    Analysis/data/PsychoPyData/.DS_Store
     Ignored:    Psychopy/.DS_Store
-    Ignored:    data/.DS_Store
-    Ignored:    dataAnalysis/.DS_Store
+
+Untracked files:
+    Untracked:  Analysis/figure/
 
 Unstaged changes:
-    Modified:   Analysis/_site.yml
-    Modified:   Analysis/data_cleaning.rmd
+    Modified:   Analysis/AffectRatings.rmd
     Modified:   Analysis/describe.rmd
-    Modified:   Analysis/index.Rmd
+
+Staged changes:
+    New:        Analysis/code/Data Cleaning.Rmd
+    New:        Analysis/code/Linear Models.Rmd
+    New:        Analysis/data/ProcessedSurvey
+    New:        Analysis/data/PsychoPyData/072_MusicAffectPsychophysiology2019_2019_Aug_26_1014.csv
+    New:        Analysis/data/PsychoPyData/073_MusicAffectPsychophysiology2019_2019_Aug_26_1112.csv
+    New:        Analysis/data/PsychoPyData/074_MusicAffectPsychophysiology2019_2019_Aug_26_1313.csv
+    New:        Analysis/data/PsychoPyData/075_MusicAffectPsychophysiology2019_2019_Aug_26_1501.csv
+    New:        Analysis/data/PsychoPyData/076_MusicAffectPsychophysiology2019_2019_Aug_27_0905.csv
+    New:        Analysis/data/PsychoPyData/077_MusicAffectPsychophysiology2019_2019_Aug_27_1005.csv
+    New:        Analysis/data/PsychoPyData/078_MusicAffectPsychophysiology2019_2019_Aug_27_1108.csv
+    New:        Analysis/data/PsychoPyData/079_MusicAffectPsychophysiology2019_2019_Aug_27_1320.csv
+    New:        Analysis/data/PsychoPyData/080_MusicAffectPsychophysiology2019_2019_Aug_27_1412.csv
+    New:        Analysis/data/PsychoPyData/081_MusicAffectPsychophysiology2019_2019_Aug_27_1507.csv
+    New:        Analysis/data/PsychoPyData/082_MusicAffectPsychophysiology2019_2019_Aug_28_0909.csv
+    New:        Analysis/data/PsychoPyData/083_MusicAffectPsychophysiology2019_2019_Aug_28_1010.csv
+    New:        Analysis/data/PsychoPyData/084_MusicAffectPsychophysiology2019_2019_Aug_28_1113.csv
+    New:        Analysis/data/PsychoPyData/085_MusicAffectPsychophysiology2019_2019_Aug_28_1212.csv
+    New:        Analysis/data/PsychoPyData/086_MusicAffectPsychophysiology2019_2019_Aug_28_1417.csv
+    New:        Analysis/data/PsychoPyData/087_MusicAffectPsychophysiology2019_2019_Aug_28_1511.csv
+    New:        Analysis/data/PsychoPyData/088_MusicAffectPsychophysiology2019_2019_Aug_28_1625.csv
+    New:        Analysis/data/PsychoPyData/089_MusicAffectPsychophysiology2019_2019_Aug_29_0913.csv
+    New:        Analysis/data/PsychoPyData/090_MusicAffectPsychophysiology2019_2019_Aug_29_1009.csv
+    New:        Analysis/data/PsychoPyData/091_MusicAffectPsychophysiology2019_2019_Aug_29_1106.csv
+    New:        Analysis/data/PsychoPyData/092_MusicAffectPsychophysiology2019_2019_Aug_29_1308.csv
+    New:        Analysis/data/PsychoPyData/093_MusicAffectPsychophysiology2019_2019_Aug_29_1408.csv
+    New:        Analysis/data/PsychoPyData/094_MusicAffectPsychophysiology2019_2019_Sep_02_0912.csv
+    New:        Analysis/data/PsychoPyData/095_MusicAffectPsychophysiology2019_2019_Sep_02_1006.csv
+    New:        Analysis/data/PsychoPyData/096_MusicAffectPsychophysiology2019_2019_Sep_02_1108.csv
+    New:        Analysis/data/PsychoPyData/097_MusicAffectPsychophysiology2019_2019_Sep_02_1404.csv
+    New:        Analysis/data/PsychoPyData/098_MusicAffectPsychophysiology2019_2019_Sep_03_1106.csv
+    New:        Analysis/data/PsychoPyData/099_MusicAffectPsychophysiology2019_2019_Sep_03_1307.csv
+    New:        Analysis/data/PsychoPyData/100_MusicAffectPsychophysiology2019_2019_Sep_03_1412.csv
+    New:        Analysis/data/PsychoPyData/101_MusicAffectPsychophysiology2019_2019_Sep_04_0905.csv
+    New:        Analysis/data/PsychoPyData/102_MusicAffectPsychophysiology2019_2019_Sep_04_1015.csv
+    New:        Analysis/data/PsychoPyData/103_MusicAffectPsychophysiology2019_2019_Sep_04_1112.csv
+    New:        Analysis/data/PsychoPyData/104_MusicAffectPsychophysiology2019_2019_Sep_05_0910.csv
+    New:        Analysis/data/PsychoPyData/105_MusicAffectPsychophysiology2019_2019_Sep_05_1012.csv
+    New:        Analysis/data/PsychoPyData/107_MusicAffectPsychophysiology2019_2019_Sep_05_1408.csv
+    New:        Analysis/data/PsychoPyData/108_MusicAffectPsychophysiology2019_2019_Sep_05_1512.csv
+    New:        Analysis/data/PsychoPyData/109_MusicAffectPsychophysiology2019_2019_Sep_05_1612.csv
+    New:        Analysis/data/PsychoPyData/110_MusicAffectPsychophysiology2019_2019_Sep_10_1309.csv
+    New:        Analysis/data/PsychoPyData/111_MusicAffectPsychophysiology2019_2019_Sep_10_1418.csv
+    New:        Analysis/data/PsychoPyData/112_MusicAffectPsychophysiology2019_2019_Sep_11_1118.csv
+    New:        Analysis/data/PsychoPyData/113_MusicAffectPsychophysiology2019_2019_Sep_11_1516.csv
+    New:        Analysis/data/PsychoPyData/114_MusicAffectPsychophysiology2019_2019_Sep_19_1009.csv
+    New:        Analysis/data/PsychoPyData/115_MusicAffectPsychophysiology2019_2019_Sep_23_1011.csv
+    New:        Analysis/data/PsychoPyData/116_MusicAffectPsychophysiology2019_2019_Sep_26_1115.csv
+    New:        Analysis/data/PsychoPyData/117_MusicAffectPsychophysiology2019_2019_Sep_26_1411.csv
+    New:        Analysis/data/PsychoPyData/118_MusicAffectPsychophysiology2019_2019_Sep_26_1458.csv
+    New:        Analysis/data/PsychoPyData/119_MusicAffectPsychophysiology2019_2019_Sep_26_1712.csv
+    New:        Analysis/data/survey_13_9_19.csv
+    New:        Analysis/data/survey_27_9_19.csv
+    New:        Analysis/install.R
+    Modified:   Archives/Novembe Analysis ARCHIVE/code/Differentiation.Rmd
+    Modified:   Archives/Novembe Analysis ARCHIVE/dataPsychoPyProcessed.csv
+    Modified:   Archives/Novembe Analysis ARCHIVE/results/DiffCorrelations.rtf
 
 </code></pre>
 <p>
@@ -575,6 +622,23 @@ Message
 html
 </td>
 <td>
+<a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/492e77665dd7ffd04d891d6345d1424d563eb0d2/docs/AffectRatings.html" target="_blank">492e776</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-15
+</td>
+<td>
+update layout
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
 <a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/7112720ba8cb3edb0703be6c5bc46869148d7fda/docs/AffectRatings.html" target="_blank">7112720</a>
 </td>
 <td>
@@ -592,7 +656,7 @@ Build site.
 rmd
 </td>
 <td>
-<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/20bc296819e1b85e817c9955f9eeb8bf213f2465/analysis/AffectRatings.rmd" target="_blank">20bc296</a>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/20bc296819e1b85e817c9955f9eeb8bf213f2465/Analysis/AffectRatings.rmd" target="_blank">20bc296</a>
 </td>
 <td>
 joellarwood
@@ -630,11 +694,13 @@ workflowr deploy
 </div>
 <div id="analysis-of-self-reported-experienced-affect" class="section level1">
 <h1>Analysis of self-reported experienced affect</h1>
+<p>For all analyses the fixed effect of Postive Valence and Low Arousal (or tender emotion) was the referent category.</p>
 <pre class="r"><code>knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(tidyverse)
 library(&quot;sjPlot&quot;)
 library(&quot;lmerTest&quot;)
 library(&quot;interactions&quot;)
+library(here)
 
 selfreport &lt;- read_csv(here::here(&quot;data&quot;, &quot;PsychoPyProcessed.csv&quot;)) %&gt;% 
   rename(ValenceRating = valencekey.keys, 
@@ -648,15 +714,16 @@ selfreport &lt;- read_csv(here::here(&quot;data&quot;, &quot;PsychoPyProcessed.c
 <div id="registered-hypothesis" class="section level3">
 <h3>Registered Hypothesis</h3>
 <p><strong>People high in alexithymia will judge their experience of valence as more neutral for negative but not positively valenced music.</strong></p>
+<p>From the table below we can see that there is a significant effect of alexithymia for songs that were positively valenced and negative in arousal. With higher ratings of alexithymia predicting more neutral ratings of experienced valence. This is not consistent with our predictions and can also be seen in the plot below</p>
 <pre class="r"><code>ValenceSelfConfirmRaw &lt;- lmer(ValenceRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =selfreport)
-tab_model(ValenceSelfConfirmRaw)</code></pre>
+tab_model(ValenceSelfConfirmRaw, show.std = &quot;std&quot;)</code></pre>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
 </th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-ValenceRating
+<th colspan="5" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Valence Rating
 </th>
 </tr>
 <tr>
@@ -667,7 +734,13 @@ Predictors
 Estimates
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+standardized CI
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 p
@@ -681,7 +754,11 @@ p
 3.67
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 3.14 – 4.21
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -695,7 +772,13 @@ High Arousal/Negative<br>Valence
 -2.29
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -2.79 – -1.80
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.95 – -0.61
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -709,7 +792,13 @@ High Arousal/Positive<br>Valence
 -0.05
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.55 – 0.44
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.19 – 0.15
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.839
@@ -723,7 +812,13 @@ Low Arousal/Negative<br>Valence
 -2.09
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -2.58 – -1.59
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.88 – -0.54
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -737,7 +832,13 @@ TAS
 -0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.09
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.02 – -0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.17 – -0.02
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.019</strong>
@@ -751,7 +852,13 @@ affectcatHigh Arousal/Negative Valence:TAS
 0.02
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.30
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.01 – 0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.17 – 0.43
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -765,7 +872,13 @@ affectcatHigh Arousal/Positive Valence:TAS
 0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.00 – 0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.04 – 0.30
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.008</strong>
@@ -779,14 +892,20 @@ affectcatLow Arousal/Negative Valence:TAS
 0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.01 – 0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.13 – 0.39
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
 </tr>
 <tr>
-<td colspan="4" style="font-weight:bold; text-align:left; padding-top:.8em;">
+<td colspan="6" style="font-weight:bold; text-align:left; padding-top:.8em;">
 Random Effects
 </td>
 </tr>
@@ -794,56 +913,56 @@ Random Effects
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 σ<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.70
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 τ<sub>00</sub> <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.21
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 τ<sub>00</sub> <sub>affectcat:songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.06
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 ICC
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.28
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 119
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N <sub>affectcat</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 4
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N <sub>songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 16
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="5">
 3762
 </td>
 </tr>
@@ -851,12 +970,11 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.411 / 0.574
 </td>
 </tr>
 </table>
-<p>An interaction is present such that the decrease in ratings of valence as alexithymia increases is greater when the music listened to is postive and low in arousal compared to all other song types</p>
 <pre class="r"><code>minusTAS &lt;- mean(selfreport$TAS, na.rm = TRUE)-sd(selfreport$TAS, na.rm = TRUE)
 
 plusTAS &lt;- mean(selfreport$TAS, na.rm = TRUE)+sd(selfreport$TAS, na.rm = TRUE)
@@ -927,22 +1045,119 @@ joellarwood
 </table>
 </div>
 </div>
+<p>In the table of slopes below it is evidenct that alexithymia only related to ratings of experienced valence when the song is positively valenced and low in arousal.</p>
 <pre class="r"><code>ValenceConfirmSlopesRaw &lt;- emmeans::emtrends(ValenceSelfConfirmRaw, 
                   specs = &quot;affectcat&quot;,
-                  var = &quot;TAS&quot;
-                  ) # calculates trend of alexithymia at each level of affectcat
+                  var = &quot;TAS&quot;) # calculates trend of alexithymia at each level of affectcat
 
-ValenceConfirmSlopesRaw</code></pre>
-<pre><code> affectcat                     TAS.trend      SE  df lower.CL upper.CL
- Low Arousal/Positve Valence    -0.01141 0.00483 191 -0.02093 -0.00188
- High Arousal/Negative Valence   0.00570 0.00483 191 -0.00383  0.01523
- High Arousal/Positive Valence  -0.00168 0.00483 191 -0.01121  0.00784
- Low Arousal/Negative Valence    0.00348 0.00483 191 -0.00604  0.01301
-
-Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.95 </code></pre>
-<p>Here we can see that the interaction is being drivn by decreases in ratings of experienced valence as alexithymia increases for songs that are positive and high in arousal while there is no relationship between alexithymia and experienced valence across any of the otehr song types.<br />
-Below is the full matrix of slope comparisons</p>
+knitr::kable(ValenceConfirmSlopesRaw, format = &quot;html&quot;, digits = 3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+affectcat
+</th>
+<th style="text-align:right;">
+TAS.trend
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence
+</td>
+<td style="text-align:right;">
+-0.011
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+190.909
+</td>
+<td style="text-align:right;">
+-0.021
+</td>
+<td style="text-align:right;">
+-0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+0.006
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+190.993
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+-0.002
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+190.857
+</td>
+<td style="text-align:right;">
+-0.011
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+190.808
+</td>
+<td style="text-align:right;">
+-0.006
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+</tr>
+</tbody>
+</table>
+<p>The contrast of the slopes shows that the slopes for all other fixed effects are not differnt to each otehr (but are all different to the slope for postively valenced songs that are low in arousal.</p>
 <pre class="r"><code>knitr::kable(pairs(ValenceConfirmSlopesRaw))</code></pre>
 <table>
 <thead>
@@ -1009,121 +1224,245 @@ Below is the full matrix of slope comparisons</p>
 </div>
 <div id="exploratory-tests" class="section level3">
 <h3>Exploratory tests</h3>
-<p>The model presented as confrimatory did not include potential covairates of liking of a song and of depression scores. Here I build models that add the liking by afectcat and depression by affectcat terms</p>
+<p>The model presented as confrimatory did not include potential covairates of liking of a song and of depression scores. Here I build models that add the liking by afectcat and depression by affectcat terms. The comparion of the models shows that the best fitting model includes the term for the liking of each song.</p>
 <pre class="r"><code>ValenceSelfPlusLiking &lt;- lmer(ValenceRating ~ affectcat*TAS + affectcat*LikingRating + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 
 ValenceSelfPlusDep &lt;- lmer(ValenceRating ~ affectcat*TAS + affectcat*depression + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 
 ValenceSelfPlusLikingPLusDep &lt;- lmer(ValenceRating ~ affectcat*TAS + affectcat*LikingRating + affectcat*depression + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 
-knitr::kable(anova(ValenceSelfPlusDep, ValenceSelfPlusLiking, ValenceSelfPlusLikingPLusDep))</code></pre>
+knitr::kable(anova(ValenceSelfPlusDep, ValenceSelfPlusLiking, ValenceSelfPlusLikingPLusDep), format = &quot;html&quot;)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="right">D</th>
-<th align="left">f</th>
-<th align="center">AIC</th>
-<th align="center">BIC</th>
-<th align="right">logLik d</th>
-<th align="left">eviance</th>
-<th align="right">Chisq C</th>
-<th>hi Df P</th>
-<th align="left">r(&gt;Chisq)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Df
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+logLik
+</th>
+<th style="text-align:right;">
+deviance
+</th>
+<th style="text-align:right;">
+Chisq
+</th>
+<th style="text-align:right;">
+Chi Df
+</th>
+<th style="text-align:right;">
+Pr(&gt;Chisq)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">ValenceSelfPlusDep</td>
-<td align="left">15</td>
-<td align="center">8831.256</td>
-<td align="center">8923.413</td>
-<td align="right">-4400.628</td>
-<td align="left">8801.256</td>
-<td align="right">NA</td>
-<td>NA</td>
-<td align="left">NA</td>
+<tr>
+<td style="text-align:left;">
+ValenceSelfPlusDep
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+8831.256
+</td>
+<td style="text-align:right;">
+8923.413
+</td>
+<td style="text-align:right;">
+-4400.628
+</td>
+<td style="text-align:right;">
+8801.256
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="right">ValenceSelfPlusLiking</td>
-<td align="left">15</td>
-<td align="center">7180.560</td>
-<td align="center">7272.717</td>
-<td align="right">-3575.280</td>
-<td align="left">7150.560</td>
-<td align="right">1650.696164</td>
-<td>0</td>
-<td align="left">0.0000000</td>
+<tr>
+<td style="text-align:left;">
+ValenceSelfPlusLiking
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+7180.560
+</td>
+<td style="text-align:right;">
+7272.717
+</td>
+<td style="text-align:right;">
+-3575.280
+</td>
+<td style="text-align:right;">
+7150.560
+</td>
+<td style="text-align:right;">
+1650.696164
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
 </tr>
-<tr class="odd">
-<td align="right">ValenceSelfPlusLikingPLusDep</td>
-<td align="left">19</td>
-<td align="center">7179.841</td>
-<td align="center">7296.574</td>
-<td align="right">-3570.921</td>
-<td align="left">7141.841</td>
-<td align="right">8.718672</td>
-<td>4</td>
-<td align="left">0.0685292</td>
+<tr>
+<td style="text-align:left;">
+ValenceSelfPlusLikingPLusDep
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+7179.841
+</td>
+<td style="text-align:right;">
+7296.574
+</td>
+<td style="text-align:right;">
+-3570.921
+</td>
+<td style="text-align:right;">
+7141.841
+</td>
+<td style="text-align:right;">
+8.718672
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0685292
+</td>
 </tr>
 </tbody>
 </table>
-<p>The comparison of models indicates that the best model is the one that includes the liking of the song covariate. Data for liking is not available for all participants but below I compare the models with and without liking.</p>
-<p>As can be seen blow the model with liking is preferred</p>
+<p>The model that included liking also fit the data better than the hypothesised model</p>
 <pre class="r"><code>SubsetValenceReg &lt;- lmer(ValenceRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 knitr::kable(anova(SubsetValenceReg, 
-      ValenceSelfPlusLiking))</code></pre>
+      ValenceSelfPlusLiking), format = &quot;html&quot;, digits = 3)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="right">D</th>
-<th align="left">f</th>
-<th align="center">AIC</th>
-<th align="center">BIC</th>
-<th align="right">logLik d</th>
-<th align="left">eviance</th>
-<th align="right">Chisq C</th>
-<th>hi Df P</th>
-<th align="left">r(&gt;Chisq)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Df
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+logLik
+</th>
+<th style="text-align:right;">
+deviance
+</th>
+<th style="text-align:right;">
+Chisq
+</th>
+<th style="text-align:right;">
+Chi Df
+</th>
+<th style="text-align:right;">
+Pr(&gt;Chisq)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">SubsetValenceReg</td>
-<td align="left">11</td>
-<td align="center">8845.185</td>
-<td align="center">8912.767</td>
-<td align="right">-4411.593</td>
-<td align="left">8823.185</td>
-<td align="right">NA</td>
-<td>NA</td>
-<td align="left">NA</td>
+<tr>
+<td style="text-align:left;">
+SubsetValenceReg
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+8845.185
+</td>
+<td style="text-align:right;">
+8912.767
+</td>
+<td style="text-align:right;">
+-4411.593
+</td>
+<td style="text-align:right;">
+8823.185
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="right">ValenceSelfPlusLiking</td>
-<td align="left">15</td>
-<td align="center">7180.560</td>
-<td align="center">7272.717</td>
-<td align="right">-3575.280</td>
-<td align="left">7150.560</td>
-<td align="right">1672.625</td>
-<td>4</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:left;">
+ValenceSelfPlusLiking
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+7180.560
+</td>
+<td style="text-align:right;">
+7272.717
+</td>
+<td style="text-align:right;">
+-3575.280
+</td>
+<td style="text-align:right;">
+7150.560
+</td>
+<td style="text-align:right;">
+1672.625
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
 </tbody>
 </table>
-<p>Here both models can be seen side by side.</p>
+<p>Here both models can be seen side by side. The second model is the model that included how much each song was liked. This model indicated that alexithymia predicted reduced experienced valence when the song was positive and low in arousal. However, this slope was only significantly different to the slopes for negatively valenced songs.</p>
 <pre class="r"><code>sjPlot::tab_model(SubsetValenceReg, 
-                  ValenceSelfPlusLiking)</code></pre>
+                  ValenceSelfPlusLiking,
+                  show.std = &quot;std&quot;)</code></pre>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
 </th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-ValenceRating
+<th colspan="5" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Valence Rating
 </th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-ValenceRating
+<th colspan="5" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Valence Rating
 </th>
 </tr>
 <tr>
@@ -1134,18 +1473,30 @@ Predictors
 Estimates
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+standardized CI
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 p
 </td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
 Estimates
 </td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col8">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col9">
 CI
 </td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  0">
+standardized CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  1">
 p
 </td>
 </tr>
@@ -1157,18 +1508,26 @@ p
 3.69
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 3.13 – 4.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 1.27
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 0.89 – 1.65
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -1180,18 +1539,30 @@ High Arousal/Negative<br>Valence
 -2.45
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.84
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -2.96 – -1.94
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-1.01 – -0.66
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.74
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -1.12 – -0.35
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.38 – -0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -1203,18 +1574,30 @@ High Arousal/Positive<br>Valence
 -0.09
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.59 – 0.42
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.20 – 0.14
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.739
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 0.43
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 0.03 – 0.83
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.01 – 0.28
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.034</strong>
 </td>
 </tr>
@@ -1226,18 +1609,30 @@ Low Arousal/Negative<br>Valence
 -2.22
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.76
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -2.72 – -1.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.93 – -0.58
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.74
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -1.13 – -0.35
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.38 – -0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -1249,18 +1644,30 @@ TAS
 -0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.02 – -0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.18 – -0.02
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.016</strong>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -0.01 – -0.00
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.11 – -0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.030</strong>
 </td>
 </tr>
@@ -1272,18 +1679,30 @@ affectcatHigh Arousal/Negative Valence:TAS
 0.02
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.01 – 0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.23 – 0.50
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.21
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 0.01 – 0.02
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.10 – 0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -1295,18 +1714,30 @@ affectcatHigh Arousal/Positive Valence:TAS
 0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.19
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.00 – 0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.06 – 0.32
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.005</strong>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 0.00
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -0.00 – 0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.07 – 0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 0.546
 </td>
 </tr>
@@ -1318,24 +1749,36 @@ affectcatLow Arousal/Negative Valence:TAS
 0.02
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.01 – 0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.18 – 0.45
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.18
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 0.00 – 0.02
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.08 – 0.29
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.001</strong>
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-LikingRating
+Liking Rating
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
@@ -1344,12 +1787,22 @@ LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.72
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.68 – 0.77
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.72
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.67
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.68 – 0.77
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.63 – 0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -1364,12 +1817,22 @@ affectcatHigh Arousal/Negative Valence:LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.28
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.34 – -0.22
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+-0.28
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.22
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.34 – -0.22
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.27 – -0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -1384,12 +1847,22 @@ affectcatHigh Arousal/Positive Valence:LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.12 – -0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+-0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.12 – -0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.14 – -0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.032</strong>
 </td>
 </tr>
@@ -1404,17 +1877,27 @@ affectcatLow Arousal/Negative Valence:LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.29
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.35 – -0.23
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+-0.29
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.27
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.35 – -0.23
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.33 – -0.21
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
 <tr>
-<td colspan="7" style="font-weight:bold; text-align:left; padding-top:.8em;">
+<td colspan="11" style="font-weight:bold; text-align:left; padding-top:.8em;">
 Random Effects
 </td>
 </tr>
@@ -1422,77 +1905,77 @@ Random Effects
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 σ<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.70
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.44
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 τ<sub>00</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.22 <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.07 <sub>id</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.06 <sub>affectcat:songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.02 <sub>affectcat:songmark</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 ICC
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.28
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.16
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 109 <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 109 <sub>id</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 4 <sub>affectcat</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 4 <sub>affectcat</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 16 <sub>songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 16 <sub>songmark</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="5">
 3442
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="5">
 3442
 </td>
 </tr>
@@ -1500,15 +1983,15 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.405 / 0.573
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.669 / 0.722
 </td>
 </tr>
 </table>
-<p>And here the slope estimates can be seen along with the pairwise comparions of the slopes</p>
+<p>Despite the interaction, alexithymia only related to ratings of experienced valence when the song is positively valenced and low in arousal.</p>
 <pre class="r"><code>ValenceExploreSlopes &lt;- emmeans::emtrends(ValenceSelfPlusLiking, var = &quot;TAS&quot;, specs = &quot;affectcat&quot;)
 
 summary(ValenceExploreSlopes)</code></pre>
@@ -1520,7 +2003,8 @@ summary(ValenceExploreSlopes)</code></pre>
 
 Degrees-of-freedom method: kenward-roger 
 Confidence level used: 0.95 </code></pre>
-<pre class="r"><code>knitr::kable(pairs(ValenceExploreSlopes))</code></pre>
+<p>The pairwise comparison of slopes adds more fidelity to the interaction. They indicate that the slopes for positvley valenced songs did not differ from eachother but that both postively valenced songs that were high in arousal and positively valenced songs that were low in arousal were significantly different to the slopes of the songs that were negatively valenced.</p>
+<pre class="r"><code>knitr::kable(pairs(ValenceExploreSlopes), type = &quot;html&quot;, digits = 3)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1535,51 +2019,51 @@ Confidence level used: 0.95 </code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">Low Arousal/Positve Valence - High Arousal/Negative Valence</td>
-<td align="right">-0.0119176</td>
-<td align="right">0.0030648</td>
+<td align="right">-0.012</td>
+<td align="right">0.003</td>
 <td align="right">3313.449</td>
-<td align="right">-3.8884795</td>
-<td align="right">0.0005950</td>
+<td align="right">-3.888</td>
+<td align="right">0.001</td>
 </tr>
 <tr class="even">
 <td align="left">Low Arousal/Positve Valence - High Arousal/Positive Valence</td>
-<td align="right">-0.0018495</td>
-<td align="right">0.0030609</td>
+<td align="right">-0.002</td>
+<td align="right">0.003</td>
 <td align="right">3312.854</td>
-<td align="right">-0.6042344</td>
-<td align="right">0.9307556</td>
+<td align="right">-0.604</td>
+<td align="right">0.931</td>
 </tr>
 <tr class="odd">
 <td align="left">Low Arousal/Positve Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0103924</td>
-<td align="right">0.0030609</td>
+<td align="right">-0.010</td>
+<td align="right">0.003</td>
 <td align="right">3313.105</td>
-<td align="right">-3.3951878</td>
-<td align="right">0.0038705</td>
+<td align="right">-3.395</td>
+<td align="right">0.004</td>
 </tr>
 <tr class="even">
 <td align="left">High Arousal/Negative Valence - High Arousal/Positive Valence</td>
-<td align="right">0.0100681</td>
-<td align="right">0.0030613</td>
+<td align="right">0.010</td>
+<td align="right">0.003</td>
 <td align="right">3311.718</td>
-<td align="right">3.2888626</td>
-<td align="right">0.0056074</td>
+<td align="right">3.289</td>
+<td align="right">0.006</td>
 </tr>
 <tr class="odd">
 <td align="left">High Arousal/Negative Valence - Low Arousal/Negative Valence</td>
-<td align="right">0.0015252</td>
-<td align="right">0.0030611</td>
+<td align="right">0.002</td>
+<td align="right">0.003</td>
 <td align="right">3311.754</td>
-<td align="right">0.4982699</td>
-<td align="right">0.9594740</td>
+<td align="right">0.498</td>
+<td align="right">0.959</td>
 </tr>
 <tr class="even">
 <td align="left">High Arousal/Positive Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0085429</td>
-<td align="right">0.0030574</td>
+<td align="right">-0.009</td>
+<td align="right">0.003</td>
 <td align="right">3311.506</td>
-<td align="right">-2.7942025</td>
-<td align="right">0.0268623</td>
+<td align="right">-2.794</td>
+<td align="right">0.027</td>
 </tr>
 </tbody>
 </table>
@@ -1589,15 +2073,17 @@ Confidence level used: 0.95 </code></pre>
 <h2>Affect Ratings</h2>
 <div id="registerd-hypothesis" class="section level3">
 <h3>Registerd Hypothesis</h3>
+<p><strong>People high in alexithymia will have judge thier experience of arousal as more neutral when the music is positively valenced but not when it is negatively valenced</strong></p>
+<p>From the table below it can be seen that alexithymia did not relate to self-reports of experienced arousal for songs that were positively valenced and low in arousal. It is also seen that the slopes of the other song catergries did not differ from the slope for positively valenced and low arousal songs. The slopes can also be seen in the plot below.]</p>
 <pre class="r"><code>ArousalSelfConfirmRaw &lt;- lmer(ArousalRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =selfreport)
-tab_model(ArousalSelfConfirmRaw)</code></pre>
+tab_model(ArousalSelfConfirmRaw, show.std = &quot;std&quot;)</code></pre>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
 </th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-ArousalRating
+<th colspan="5" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Arousal Rating
 </th>
 </tr>
 <tr>
@@ -1608,7 +2094,13 @@ Predictors
 Estimates
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+standardized CI
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 p
@@ -1622,7 +2114,11 @@ p
 2.39
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 1.80 – 2.99
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -1636,7 +2132,13 @@ High Arousal/Negative<br>Valence
 1.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.36
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.46 – 1.56
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.16 – 0.55
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.001</strong>
@@ -1650,7 +2152,13 @@ High Arousal/Positive<br>Valence
 1.46
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.51
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.90 – 2.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.32 – 0.71
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -1664,7 +2172,13 @@ Low Arousal/Negative<br>Valence
 -1.03
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.36
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -1.58 – -0.47
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.56 – -0.17
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.001</strong>
@@ -1678,7 +2192,13 @@ TAS
 -0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.01 – 0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.11 – 0.06
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.574
@@ -1692,7 +2212,13 @@ affectcatHigh Arousal/Negative Valence:TAS
 -0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.01 – 0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.22 – 0.03
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.129
@@ -1706,7 +2232,13 @@ affectcatHigh Arousal/Positive Valence:TAS
 -0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.01 – 0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.17 – 0.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.443
@@ -1720,14 +2252,20 @@ affectcatLow Arousal/Negative Valence:TAS
 0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.00 – 0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.00 – 0.24
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.060
 </td>
 </tr>
 <tr>
-<td colspan="4" style="font-weight:bold; text-align:left; padding-top:.8em;">
+<td colspan="6" style="font-weight:bold; text-align:left; padding-top:.8em;">
 Random Effects
 </td>
 </tr>
@@ -1735,56 +2273,56 @@ Random Effects
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 σ<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.60
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 τ<sub>00</sub> <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.25
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 τ<sub>00</sub> <sub>affectcat:songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.10
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 ICC
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.37
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 119
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N <sub>affectcat</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 4
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N <sub>songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 16
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="5">
 3762
 </td>
 </tr>
@@ -1792,12 +2330,11 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.381 / 0.608
 </td>
 </tr>
 </table>
-<p>No interaction between alexithymia and song type is indicated for ratings of experienced arousal</p>
 <pre class="r"><code>emmeans::emm_options(lmerTest.limit = 4000, 
                      pbkrtest.limit = 4000) # allow df calculations
 
@@ -1807,13 +2344,7 @@ ArousalConfirmGridRaw &lt;- emmeans::ref_grid(ArousalSelfConfirmRaw,
                                                                 &quot;High Arousal/Negative Valence&quot;,
                                                                 &quot;High Arousal/Positive Valence&quot;,
                                                                 &quot;Low Arousal/Negative Valence&quot;))) 
-
-
-ArousalConfirmGridRaw</code></pre>
-<pre><code>&#39;emmGrid&#39; object with variables:
-    affectcat = Low Arousal/Positve Valence, High Arousal/Negative Valence, High Arousal/Positive Valence, Low Arousal/Negative Valence
-    TAS = 39.837, 50.277, 60.718</code></pre>
-<pre class="r"><code>emmeans::emmip(ArousalConfirmGridRaw, 
+emmeans::emmip(ArousalConfirmGridRaw, 
                affectcat~TAS, 
                CIs = TRUE, 
                xlab = &quot;Alexithymia Scores&quot;, 
@@ -1863,81 +2394,262 @@ joellarwood
 </table>
 </div>
 </div>
+<p>The table of slopes also indicates that alexithymia did not relate to experiences of arousal for any of the songs.</p>
 <pre class="r"><code>ArousalConfirmSlopesRaw &lt;- emmeans::emtrends(ArousalSelfConfirmRaw, 
                   specs = &quot;affectcat&quot;,
-                  var = &quot;TAS&quot;
-                  ) # calculates trend of alexithymia at each level of affectcat
-
-summary(ArousalConfirmSlopesRaw)</code></pre>
-<pre><code> affectcat                     TAS.trend      SE  df lower.CL upper.CL
- Low Arousal/Positve Valence    -0.00285 0.00506 171 -0.01283  0.00714
- High Arousal/Negative Valence  -0.00807 0.00506 171 -0.01805  0.00192
- High Arousal/Positive Valence  -0.00548 0.00506 171 -0.01547  0.00450
- Low Arousal/Negative Valence    0.00362 0.00506 170 -0.00636  0.01361
-
-Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.95 </code></pre>
-<p>From the slopes we see that alexithymia is not relating to experienced arousal for any song type. Given this the pairwise comparions are of little importance but presented for interest.</p>
-<pre class="r"><code>knitr::kable(pairs(ArousalConfirmSlopesRaw))</code></pre>
+                  var = &quot;TAS&quot;)
+knitr::kable(ArousalConfirmSlopesRaw, format = &quot;html&quot;, digits = 3)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="left">contrast</th>
-<th align="right">estimate</th>
-<th align="right">SE</th>
-<th align="right">df</th>
-<th align="right">t.ratio</th>
-<th align="right">p.value</th>
+<tr>
+<th style="text-align:left;">
+affectcat
+</th>
+<th style="text-align:right;">
+TAS.trend
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Low Arousal/Positve Valence - High Arousal/Negative Valence</td>
-<td align="right">0.0052189</td>
-<td align="right">0.0034363</td>
-<td align="right">3625.034</td>
-<td align="right">1.5187694</td>
-<td align="right">0.4262550</td>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence
+</td>
+<td style="text-align:right;">
+-0.003
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+170.559
+</td>
+<td style="text-align:right;">
+-0.013
+</td>
+<td style="text-align:right;">
+0.007
+</td>
 </tr>
-<tr class="even">
-<td align="left">Low Arousal/Positve Valence - High Arousal/Positive Valence</td>
-<td align="right">0.0026341</td>
-<td align="right">0.0034351</td>
-<td align="right">3625.026</td>
-<td align="right">0.7668048</td>
-<td align="right">0.8694165</td>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.008
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+170.619
+</td>
+<td style="text-align:right;">
+-0.018
+</td>
+<td style="text-align:right;">
+0.002
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Low Arousal/Positve Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0064699</td>
-<td align="right">0.0034351</td>
-<td align="right">3625.131</td>
-<td align="right">-1.8834513</td>
-<td align="right">0.2352987</td>
+<tr>
+<td style="text-align:left;">
+High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+-0.005
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+170.522
+</td>
+<td style="text-align:right;">
+-0.015
+</td>
+<td style="text-align:right;">
+0.005
+</td>
 </tr>
-<tr class="even">
-<td align="left">High Arousal/Negative Valence - High Arousal/Positive Valence</td>
-<td align="right">-0.0025848</td>
-<td align="right">0.0034359</td>
-<td align="right">3625.032</td>
-<td align="right">-0.7522865</td>
-<td align="right">0.8757172</td>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+170.487
+</td>
+<td style="text-align:right;">
+-0.006
+</td>
+<td style="text-align:right;">
+0.014
+</td>
 </tr>
-<tr class="odd">
-<td align="left">High Arousal/Negative Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0116887</td>
-<td align="right">0.0034357</td>
-<td align="right">3625.056</td>
-<td align="right">-3.4021916</td>
-<td align="right">0.0037719</td>
+</tbody>
+</table>
+<p>From the slopes we see that alexithymia is not relating to experienced arousal for any song type. Given this the pairwise comparions are of little importance but presented for interest (and show that the only difference in slopes was between negatively valenced songs)</p>
+<pre class="r"><code>knitr::kable(pairs(ArousalConfirmSlopesRaw), format = &quot;html&quot;, digits = 3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+contrast
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+t.ratio
+</th>
+<th style="text-align:right;">
+p.value
+</th>
 </tr>
-<tr class="even">
-<td align="left">High Arousal/Positive Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0091039</td>
-<td align="right">0.0034346</td>
-<td align="right">3625.083</td>
-<td align="right">-2.6506197</td>
-<td align="right">0.0402571</td>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence - High Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3625.034
+</td>
+<td style="text-align:right;">
+1.519
+</td>
+<td style="text-align:right;">
+0.426
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence - High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3625.026
+</td>
+<td style="text-align:right;">
+0.767
+</td>
+<td style="text-align:right;">
+0.869
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence - Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.006
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3625.131
+</td>
+<td style="text-align:right;">
+-1.883
+</td>
+<td style="text-align:right;">
+0.235
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence - High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+-0.003
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3625.032
+</td>
+<td style="text-align:right;">
+-0.752
+</td>
+<td style="text-align:right;">
+0.876
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence - Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.012
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3625.056
+</td>
+<td style="text-align:right;">
+-3.402
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Positive Valence - Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.009
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3625.083
+</td>
+<td style="text-align:right;">
+-2.651
+</td>
+<td style="text-align:right;">
+0.040
+</td>
 </tr>
 </tbody>
 </table>
@@ -1951,54 +2663,127 @@ ArousalSelfPlusDep &lt;- lmer(ArousalRating ~ affectcat*TAS + affectcat*depressi
 
 ArousalSelfPlusLikingPLusDep &lt;- lmer(ArousalRating ~ affectcat*TAS + affectcat*LikingRating + affectcat*depression + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 
-knitr::kable(anova(ArousalSelfPlusDep, ArousalSelfPlusLiking, ArousalSelfPlusLikingPLusDep))</code></pre>
+knitr::kable(anova(ArousalSelfPlusDep, ArousalSelfPlusLiking, ArousalSelfPlusLikingPLusDep), 
+             format = &quot;html&quot;, 
+             digits = 3)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="right">D</th>
-<th align="left">f</th>
-<th align="center">AIC</th>
-<th align="center">BIC</th>
-<th align="right">logLik d</th>
-<th align="left">eviance</th>
-<th align="right">Chisq C</th>
-<th>hi Df P</th>
-<th align="left">r(&gt;Chisq)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Df
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+logLik
+</th>
+<th style="text-align:right;">
+deviance
+</th>
+<th style="text-align:right;">
+Chisq
+</th>
+<th style="text-align:right;">
+Chi Df
+</th>
+<th style="text-align:right;">
+Pr(&gt;Chisq)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">ArousalSelfPlusDep</td>
-<td align="left">15</td>
-<td align="center">8385.168</td>
-<td align="center">8477.325</td>
-<td align="right">-4177.584</td>
-<td align="left">8355.168</td>
-<td align="right">NA</td>
-<td>NA</td>
-<td align="left">NA</td>
+<tr>
+<td style="text-align:left;">
+ArousalSelfPlusDep
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+8385.168
+</td>
+<td style="text-align:right;">
+8477.325
+</td>
+<td style="text-align:right;">
+-4177.584
+</td>
+<td style="text-align:right;">
+8355.168
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="right">ArousalSelfPlusLiking</td>
-<td align="left">15</td>
-<td align="center">7769.258</td>
-<td align="center">7861.415</td>
-<td align="right">-3869.629</td>
-<td align="left">7739.258</td>
-<td align="right">615.909800</td>
-<td>0</td>
-<td align="left">0.0000000</td>
+<tr>
+<td style="text-align:left;">
+ArousalSelfPlusLiking
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+7769.258
+</td>
+<td style="text-align:right;">
+7861.415
+</td>
+<td style="text-align:right;">
+-3869.629
+</td>
+<td style="text-align:right;">
+7739.258
+</td>
+<td style="text-align:right;">
+615.910
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000
+</td>
 </tr>
-<tr class="odd">
-<td align="right">ArousalSelfPlusLikingPLusDep</td>
-<td align="left">19</td>
-<td align="center">7771.002</td>
-<td align="center">7887.735</td>
-<td align="right">-3866.501</td>
-<td align="left">7733.002</td>
-<td align="right">6.255595</td>
-<td>4</td>
-<td align="left">0.1808561</td>
+<tr>
+<td style="text-align:left;">
+ArousalSelfPlusLikingPLusDep
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+7771.002
+</td>
+<td style="text-align:right;">
+7887.735
+</td>
+<td style="text-align:right;">
+-3866.501
+</td>
+<td style="text-align:right;">
+7733.002
+</td>
+<td style="text-align:right;">
+6.256
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.181
+</td>
 </tr>
 </tbody>
 </table>
@@ -2006,59 +2791,112 @@ knitr::kable(anova(ArousalSelfPlusDep, ArousalSelfPlusLiking, ArousalSelfPlusLik
 <p>As can be seen blow the model with liking is preferred</p>
 <pre class="r"><code>SubsetArousalReg &lt;- lmer(ArousalRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 knitr::kable(anova(SubsetArousalReg, 
-      ArousalSelfPlusLiking))</code></pre>
+      ArousalSelfPlusLiking), format = &quot;html&quot;, digits = 3)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="right">D</th>
-<th align="left">f</th>
-<th align="center">AIC</th>
-<th align="center">BIC</th>
-<th align="right">logLik d</th>
-<th align="left">eviance</th>
-<th align="right">Chisq C</th>
-<th>hi Df P</th>
-<th align="left">r(&gt;Chisq)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Df
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+logLik
+</th>
+<th style="text-align:right;">
+deviance
+</th>
+<th style="text-align:right;">
+Chisq
+</th>
+<th style="text-align:right;">
+Chi Df
+</th>
+<th style="text-align:right;">
+Pr(&gt;Chisq)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">SubsetArousalReg</td>
-<td align="left">11</td>
-<td align="center">8377.468</td>
-<td align="center">8445.050</td>
-<td align="right">-4177.734</td>
-<td align="left">8355.468</td>
-<td align="right">NA</td>
-<td>NA</td>
-<td align="left">NA</td>
+<tr>
+<td style="text-align:left;">
+SubsetArousalReg
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+8377.468
+</td>
+<td style="text-align:right;">
+8445.050
+</td>
+<td style="text-align:right;">
+-4177.734
+</td>
+<td style="text-align:right;">
+8355.468
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="right">ArousalSelfPlusLiking</td>
-<td align="left">15</td>
-<td align="center">7769.258</td>
-<td align="center">7861.415</td>
-<td align="right">-3869.629</td>
-<td align="left">7739.258</td>
-<td align="right">616.2103</td>
-<td>4</td>
-<td align="left">0</td>
+<tr>
+<td style="text-align:left;">
+ArousalSelfPlusLiking
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+7769.258
+</td>
+<td style="text-align:right;">
+7861.415
+</td>
+<td style="text-align:right;">
+-3869.629
+</td>
+<td style="text-align:right;">
+7739.258
+</td>
+<td style="text-align:right;">
+616.21
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
 </tbody>
 </table>
-<p>Here both models can be seen side by side.</p>
+<p>Here both models can be seen side by side. In the model that includes liking an interaction is present. The model terms indicate no effect of alexithymia on ratings of arousal for songs that were positively valenced and low in arousal. However, the slopes for songs that were high in arousal were significantly differnent to the slope when song were positively valenced and low in arousal</p>
 <pre class="r"><code>sjPlot::tab_model(SubsetArousalReg, 
-                  ArousalSelfPlusLiking)</code></pre>
+                  ArousalSelfPlusLiking, show.std = &quot;std&quot;)</code></pre>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
 </th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-ArousalRating
+<th colspan="5" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Arousal Rating
 </th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-ArousalRating
+<th colspan="5" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Arousal Rating
 </th>
 </tr>
 <tr>
@@ -2069,18 +2907,30 @@ Predictors
 Estimates
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+standardized CI
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 p
 </td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
 Estimates
 </td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col8">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col9">
 CI
 </td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  0">
+standardized CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  1">
 p
 </td>
 </tr>
@@ -2092,18 +2942,26 @@ p
 2.38
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 1.77 – 3.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 1.30
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 0.77 – 1.84
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -2115,18 +2973,30 @@ High Arousal/Negative<br>Valence
 0.97
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.34
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.41 – 1.53
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.14 – 0.54
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.002</strong>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 1.56
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.55
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 1.03 – 2.10
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.36 – 0.74
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -2138,18 +3008,30 @@ High Arousal/Positive<br>Valence
 1.53
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.54
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.96 – 2.09
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.34 – 0.74
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 1.19
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.42
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 0.64 – 1.73
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.23 – 0.61
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -2161,18 +3043,30 @@ Low Arousal/Negative<br>Valence
 -1.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.38
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -1.63 – -0.51
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.58 – -0.18
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.001</strong>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.49
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -1.03 – 0.05
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.37 – 0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 0.080
 </td>
 </tr>
@@ -2184,18 +3078,30 @@ TAS
 -0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.01 – 0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.11 – 0.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.631
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.00
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -0.01 – 0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.07 – 0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 0.965
 </td>
 </tr>
@@ -2207,18 +3113,30 @@ affectcatHigh Arousal/Negative Valence:TAS
 -0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.01 – 0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.21 – 0.05
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.202
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -0.02 – -0.00
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.29 – -0.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.005</strong>
 </td>
 </tr>
@@ -2230,18 +3148,30 @@ affectcatHigh Arousal/Positive Valence:TAS
 -0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 -0.01 – 0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.21 – 0.04
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.203
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 -0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.18
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -0.02 – -0.00
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.29 – -0.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.004</strong>
 </td>
 </tr>
@@ -2253,24 +3183,36 @@ affectcatLow Arousal/Negative Valence:TAS
 0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.00 – 0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.01 – 0.27
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>0.037</strong>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
 0.00
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
 -0.00 – 0.01
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.05 – 0.19
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 0.235
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-LikingRating
+Liking Rating
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
@@ -2279,12 +3221,22 @@ LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.32
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.28 – 0.37
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.31
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.28 – 0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.27 – 0.36
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -2299,12 +3251,22 @@ affectcatHigh Arousal/Negative Valence:LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.08 – 0.05
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+-0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.08 – 0.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.07 – 0.04
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 0.658
 </td>
 </tr>
@@ -2319,12 +3281,22 @@ affectcatHigh Arousal/Positive Valence:LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.17
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.10 – 0.23
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.20
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.10 – 0.23
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.13 – 0.28
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>&lt;0.001
 </td>
 </tr>
@@ -2339,17 +3311,27 @@ affectcatLow Arousal/Negative Valence:LikingRating
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.09
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.16 – -0.03
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+-0.09
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.09
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.16 – -0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-0.15 – -0.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
 <strong>0.005</strong>
 </td>
 </tr>
 <tr>
-<td colspan="7" style="font-weight:bold; text-align:left; padding-top:.8em;">
+<td colspan="11" style="font-weight:bold; text-align:left; padding-top:.8em;">
 Random Effects
 </td>
 </tr>
@@ -2357,77 +3339,77 @@ Random Effects
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 σ<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.60
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.51
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 τ<sub>00</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.26 <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.16 <sub>id</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.10 <sub>affectcat:songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.08 <sub>affectcat:songmark</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 ICC
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.37
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.31
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 N
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 109 <sub>id</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 109 <sub>id</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 4 <sub>affectcat</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 4 <sub>affectcat</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 16 <sub>songmark</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 16 <sub>songmark</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="5">
 3442
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="5">
 3442
 </td>
 </tr>
@@ -2435,85 +3417,268 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.374 / 0.605
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">
 0.491 / 0.651
 </td>
 </tr>
 </table>
-<p>And here the slope estimates can be seen along with the pairwise comparions of the slopes</p>
+<p>The slopes indicate that increased alexithymia predicted reduced self-reported experience of arousal when the arousal of the song was high. There was no relationship between alexithymia and low arousal songs</p>
 <pre class="r"><code>ArousalExploreSlopes &lt;- emmeans::emtrends(ArousalSelfPlusLiking, var = &quot;TAS&quot;, specs = &quot;affectcat&quot;)
-summary(ArousalExploreSlopes)</code></pre>
-<pre><code> affectcat                     TAS.trend      SE  df lower.CL  upper.CL
- Low Arousal/Positve Valence   -0.000192 0.00432 174 -0.00872  0.008337
- High Arousal/Negative Valence -0.009509 0.00432 174 -0.01804 -0.000977
- High Arousal/Positive Valence -0.009765 0.00432 174 -0.01829 -0.001240
- Low Arousal/Negative Valence   0.003719 0.00432 174 -0.00481  0.012245
-
-Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.95 </code></pre>
-<pre class="r"><code>knitr::kable(pairs(ArousalExploreSlopes))</code></pre>
+knitr::kable(summary(ArousalExploreSlopes), format = &quot;html&quot;, digits = 3)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="left">contrast</th>
-<th align="right">estimate</th>
-<th align="right">SE</th>
-<th align="right">df</th>
-<th align="right">t.ratio</th>
-<th align="right">p.value</th>
+<tr>
+<th style="text-align:left;">
+affectcat
+</th>
+<th style="text-align:right;">
+TAS.trend
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Low Arousal/Positve Valence - High Arousal/Negative Valence</td>
-<td align="right">0.0093173</td>
-<td align="right">0.0032977</td>
-<td align="right">3312.396</td>
-<td align="right">2.8254027</td>
-<td align="right">0.0245259</td>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+174.141
+</td>
+<td style="text-align:right;">
+-0.009
+</td>
+<td style="text-align:right;">
+0.008
+</td>
 </tr>
-<tr class="even">
-<td align="left">Low Arousal/Positve Valence - High Arousal/Positive Valence</td>
-<td align="right">0.0095732</td>
-<td align="right">0.0032933</td>
-<td align="right">3312.057</td>
-<td align="right">2.9068456</td>
-<td align="right">0.0192437</td>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.010
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+174.330
+</td>
+<td style="text-align:right;">
+-0.018
+</td>
+<td style="text-align:right;">
+-0.001
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Low Arousal/Positve Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0039116</td>
-<td align="right">0.0032934</td>
-<td align="right">3312.211</td>
-<td align="right">-1.1876987</td>
-<td align="right">0.6346825</td>
+<tr>
+<td style="text-align:left;">
+High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+-0.010
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+173.813
+</td>
+<td style="text-align:right;">
+-0.018
+</td>
+<td style="text-align:right;">
+-0.001
+</td>
 </tr>
-<tr class="even">
-<td align="left">High Arousal/Negative Valence - High Arousal/Positive Valence</td>
-<td align="right">0.0002559</td>
-<td align="right">0.0032936</td>
-<td align="right">3311.348</td>
-<td align="right">0.0777054</td>
-<td align="right">0.9998318</td>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+173.784
+</td>
+<td style="text-align:right;">
+-0.005
+</td>
+<td style="text-align:right;">
+0.012
+</td>
 </tr>
-<tr class="odd">
-<td align="left">High Arousal/Negative Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0132288</td>
-<td align="right">0.0032934</td>
-<td align="right">3311.379</td>
-<td align="right">-4.0167311</td>
-<td align="right">0.0003512</td>
+</tbody>
+</table>
+<p>Finally, the pairwise comparions of slopes indicates that the slopes for high arousal songs were equivalent to each other and steeper than the slopes for all low arousal comparions.</p>
+<pre class="r"><code>knitr::kable(pairs(ArousalExploreSlopes), format = &quot;html&quot;, digits = 3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+contrast
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+t.ratio
+</th>
+<th style="text-align:right;">
+p.value
+</th>
 </tr>
-<tr class="even">
-<td align="left">High Arousal/Positive Valence - Low Arousal/Negative Valence</td>
-<td align="right">-0.0134847</td>
-<td align="right">0.0032894</td>
-<td align="right">3311.254</td>
-<td align="right">-4.0994662</td>
-<td align="right">0.0002478</td>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence - High Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3312.396
+</td>
+<td style="text-align:right;">
+2.825
+</td>
+<td style="text-align:right;">
+0.025
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence - High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3312.057
+</td>
+<td style="text-align:right;">
+2.907
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Arousal/Positve Valence - Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3312.211
+</td>
+<td style="text-align:right;">
+-1.188
+</td>
+<td style="text-align:right;">
+0.635
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence - High Arousal/Positive Valence
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3311.348
+</td>
+<td style="text-align:right;">
+0.078
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Negative Valence - Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.013
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3311.379
+</td>
+<td style="text-align:right;">
+-4.017
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Arousal/Positive Valence - Low Arousal/Negative Valence
+</td>
+<td style="text-align:right;">
+-0.013
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+3311.254
+</td>
+<td style="text-align:right;">
+-4.099
+</td>
+<td style="text-align:right;">
+0.000
+</td>
 </tr>
 </tbody>
 </table>
@@ -2540,11 +3705,11 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] interactions_1.1.1 lmerTest_3.1-0     lme4_1.1-21       
- [4] Matrix_1.2-17      sjPlot_2.7.0       forcats_0.4.0     
- [7] stringr_1.4.0      dplyr_0.8.3        purrr_0.3.3       
-[10] readr_1.3.1        tidyr_1.0.0        tibble_2.1.3      
-[13] ggplot2_3.2.1      tidyverse_1.2.1   
+ [1] here_0.1           interactions_1.1.1 lmerTest_3.1-0    
+ [4] lme4_1.1-21        Matrix_1.2-17      sjPlot_2.7.0      
+ [7] forcats_0.4.0      stringr_1.4.0      dplyr_0.8.3       
+[10] purrr_0.3.2        readr_1.3.1        tidyr_1.0.0       
+[13] tibble_2.1.3       ggplot2_3.2.0      tidyverse_1.2.1   
 
 loaded via a namespace (and not attached):
  [1] nlme_3.1-140        pbkrtest_0.4-7      fs_1.3.1           
@@ -2554,30 +3719,30 @@ loaded via a namespace (and not attached):
 [13] sjlabelled_1.1.0    lazyeval_0.2.2      colorspace_1.4-1   
 [16] withr_2.1.2         tidyselect_0.2.5    mnormt_1.5-5       
 [19] emmeans_1.4         compiler_3.6.1      git2r_0.26.1       
-[22] performance_0.2.0   cli_1.1.0           rvest_0.3.4        
-[25] xml2_1.2.2          sandwich_2.5-1      labeling_0.3       
+[22] performance_0.3.0   cli_1.1.0           rvest_0.3.4        
+[25] xml2_1.2.1          sandwich_2.5-1      labeling_0.3       
 [28] bayestestR_0.2.2    scales_1.0.0        mvtnorm_1.0-11     
-[31] psych_1.8.12        digest_0.6.22       foreign_0.8-71     
+[31] psych_1.8.12        digest_0.6.21       foreign_0.8-71     
 [34] minqa_1.2.4         rmarkdown_1.16      pkgconfig_2.0.3    
-[37] htmltools_0.4.0     highr_0.8           rlang_0.4.1        
+[37] htmltools_0.3.6     highr_0.8           rlang_0.4.0        
 [40] readxl_1.3.1        rstudioapi_0.10     generics_0.0.2     
 [43] zoo_1.8-6           jsonlite_1.6        magrittr_1.5       
 [46] Rcpp_1.0.2          munsell_0.5.0       lifecycle_0.1.0    
-[49] stringi_1.4.3       multcomp_1.4-10     whisker_0.4        
-[52] yaml_2.2.0          MASS_7.3-51.4       plyr_1.8.4         
-[55] grid_3.6.1          parallel_3.6.1      ggrepel_0.8.1      
-[58] sjmisc_2.8.1        crayon_1.3.4        lattice_0.20-38    
-[61] ggeffects_0.11.0    haven_2.1.1         splines_3.6.1      
-[64] pander_0.6.3        jtools_2.0.1        sjstats_0.17.5     
-[67] hms_0.5.0           zeallot_0.1.0       knitr_1.25         
-[70] pillar_1.4.2        boot_1.3-23         estimability_1.3   
-[73] codetools_0.2-16    glue_1.3.1          evaluate_0.14      
-[76] modelr_0.1.4        vctrs_0.2.0         nloptr_1.2.1       
-[79] cellranger_1.1.0    gtable_0.3.0        assertthat_0.2.1   
-[82] xfun_0.10           xtable_1.8-4        broom_0.5.2        
-[85] viridisLite_0.3.0   survival_2.44-1.1   glmmTMB_0.2.3      
-[88] workflowr_1.4.0     ellipsis_0.3.0      TH.data_1.0-10     
-[91] here_0.1           </code></pre>
+[49] stringi_1.4.3       multcomp_1.4-10     whisker_0.3-2      
+[52] yaml_2.2.0          snakecase_0.11.0    MASS_7.3-51.4      
+[55] plyr_1.8.4          grid_3.6.1          parallel_3.6.1     
+[58] ggrepel_0.8.1       sjmisc_2.8.1        crayon_1.3.4       
+[61] lattice_0.20-38     ggeffects_0.11.0    haven_2.1.1        
+[64] splines_3.6.1       pander_0.6.3        jtools_2.0.1       
+[67] sjstats_0.17.5      hms_0.5.0           zeallot_0.1.0      
+[70] knitr_1.25          pillar_1.4.2        boot_1.3-22        
+[73] estimability_1.3    codetools_0.2-16    glue_1.3.1         
+[76] evaluate_0.14       modelr_0.1.4        vctrs_0.2.0        
+[79] nloptr_1.2.1        cellranger_1.1.0    gtable_0.3.0       
+[82] assertthat_0.2.1    xfun_0.10           xtable_1.8-4       
+[85] broom_0.5.2         coda_0.19-3         viridisLite_0.3.0  
+[88] survival_2.44-1.1   glmmTMB_0.2.3       workflowr_1.4.0    
+[91] ellipsis_0.3.0      TH.data_1.0-10     </code></pre>
 </div>
 </div>
 </div>

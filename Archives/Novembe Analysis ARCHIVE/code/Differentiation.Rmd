@@ -68,8 +68,8 @@ joinedICC %>% select(contains("ICC")) %>% skimr::skim() %>% skimr::kable()
 # Emotion Differentiation Correlations
 ```{r Differentiation Correlations}
 
-DiffCorVar <- select(joinedICC, ICCneg_r, ICCpos_r, TAS, DDF, DIF, EOT)
-DiffCorMatrix <- cor(select(joinedICC, ICCneg_r, ICCpos_r, TAS, DDF, DIF, EOT)) #variables for correlation
+DiffCorVar <- select(joinedICC, ICCneg_r, ICCpos_r, ICCneg_fz_r, ICCpos_fz_r,  TAS, DDF, DIF, EOT)
+DiffCorMatrix <- cor(select(joinedICC, ICCneg_r, ICCpos_r, ICCneg_fz_r, ICCpos_fz_r , TAS, DDF, DIF, EOT)) #variables for correlation
 p.mat <- cor.mtest(DiffCorVar)
 
 DiffCorPlot <- corrplot(corr = cor(DiffCorVar, use = "complete.obs"),

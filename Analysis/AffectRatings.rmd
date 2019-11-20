@@ -9,12 +9,17 @@ editor_options:
 
 # Analysis of self-reported experienced affect
 
+For all analyses the fixed effect of Postive Valence and Low Arousal (or tender emotion) was the referent category. 
+
+
+
 ```{r SelfReportLoadin, echo = TRUE, results = FALSE, message = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(tidyverse)
 library("sjPlot")
 library("lmerTest")
 library("interactions")
+library(here)
 
 selfreport <- read_csv(here::here("data", "PsychoPyProcessed.csv")) %>% 
   rename(ValenceRating = valencekey.keys, 
@@ -29,13 +34,14 @@ selfreport <- read_csv(here::here("data", "PsychoPyProcessed.csv")) %>%
 ### Registered Hypothesis
 **People high in alexithymia will judge their experience of valence as more neutral for negative but not positively valenced music.** 
 
+From the table below we can see that there is a significant effect of alexithymia for songs that were positively valenced and negative in arousal. With higher ratings of alexithymia predicting more neutral ratings of experienced valence. This is not consistent with our predictions and can also be seen in the plot below
+
 ```{r ValenceSelfReportConfirmRaw}
 
 ValenceSelfConfirmRaw <- lmer(ValenceRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =selfreport)
-tab_model(ValenceSelfConfirmRaw)
+tab_model(ValenceSelfConfirmRaw, show.std = "std")
 ```
 
-An interaction is present such that the decrease in ratings of valence as alexithymia increases is greater when the music listened to is postive and low in arousal compared to all other song types
 ```{r TASmeanSD}
 minusTAS <- mean(selfreport$TAS, na.rm = TRUE)-sd(selfreport$TAS, na.rm = TRUE)
 
@@ -71,16 +77,18 @@ emmeans::emmip(ValenceConfirmGridRaw,
   ggplot2::ylim(c(1,5)) +
   ggplot2::geom_hline(yintercept = 3, linetype = "dashed") +
   ggplot2::scale_x_discrete(labels = c("-1SD", "Mean", "+1 SD"))
+```
 
+In the table of slopes below it is evidenct that alexithymia only related to ratings of experienced valence when the song is positively valenced and low in arousal. 
+```{r valenceslopesConfirm}
 ValenceConfirmSlopesRaw <- emmeans::emtrends(ValenceSelfConfirmRaw, 
                   specs = "affectcat",
-                  var = "TAS"
-                  ) # calculates trend of alexithymia at each level of affectcat
+                  var = "TAS") # calculates trend of alexithymia at each level of affectcat
 
-ValenceConfirmSlopesRaw
+knitr::kable(ValenceConfirmSlopesRaw, format = "html", digits = 3)
 ```
-Here we can see that the interaction is being drivn by decreases in ratings of experienced valence as alexithymia increases for songs that are positive and high in arousal while there is no relationship between alexithymia and experienced valence across any of the otehr song types.  
-Below is the full matrix of slope comparisons 
+
+The contrast of the slopes shows that the slopes for all other fixed effects are not differnt to each otehr (but are all different to the slope for postively valenced songs that are low in arousal. 
 
 ```{r VBalenecConfirmSlopePairwise}
 knitr::kable(pairs(ValenceConfirmSlopesRaw))
@@ -88,7 +96,7 @@ knitr::kable(pairs(ValenceConfirmSlopesRaw))
 
 ### Exploratory tests
 
-The model presented as confrimatory did not include potential covairates of liking of a song and of depression scores. Here I build models that add the liking by afectcat and depression by affectcat terms 
+The model presented as confrimatory did not include potential covairates of liking of a song and of depression scores. Here I build models that add the liking by afectcat and depression by affectcat terms. The comparion of the models shows that the best fitting model includes the term for the liking of each song. 
 ```{r ValenceSelfExploreBuild}
 
 ValenceSelfPlusLiking <- lmer(ValenceRating ~ affectcat*TAS + affectcat*LikingRating + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
@@ -97,45 +105,50 @@ ValenceSelfPlusDep <- lmer(ValenceRating ~ affectcat*TAS + affectcat*depression 
 
 ValenceSelfPlusLikingPLusDep <- lmer(ValenceRating ~ affectcat*TAS + affectcat*LikingRating + affectcat*depression + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 
-knitr::kable(anova(ValenceSelfPlusDep, ValenceSelfPlusLiking, ValenceSelfPlusLikingPLusDep))
+knitr::kable(anova(ValenceSelfPlusDep, ValenceSelfPlusLiking, ValenceSelfPlusLikingPLusDep), format = "html")
 ```
 
-The comparison of models indicates that the best model is the one that includes the liking of the song covariate. Data for liking is not available for all participants but below I compare the models with and without liking.  
-
-As can be seen blow the model with liking is preferred
+The model that included liking also fit the data better than the hypothesised model 
 
 ```{r ValenceSelfExploreRegCompare}
 
 SubsetValenceReg <- lmer(ValenceRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 knitr::kable(anova(SubsetValenceReg, 
-      ValenceSelfPlusLiking))
+      ValenceSelfPlusLiking), format = "html", digits = 3)
 ```
 
-Here both models can be seen side by side. 
+Here both models can be seen side by side. The second model is the model that included how much each song was liked. This model indicated that alexithymia predicted reduced experienced valence when the song was positive and low in arousal. However, this slope was only significantly different to the slopes for negatively valenced songs. 
 
 ```{r ValenceModelSideBySide}
 sjPlot::tab_model(SubsetValenceReg, 
-                  ValenceSelfPlusLiking)
+                  ValenceSelfPlusLiking,
+                  show.std = "std")
 ```
 
-And here the slope estimates can be seen along with the pairwise comparions of the slopes 
+Despite the interaction, alexithymia only related to ratings of experienced valence when the song is positively valenced and low in arousal.
 ```{r ValenceModelExploreSlopes}
 ValenceExploreSlopes <- emmeans::emtrends(ValenceSelfPlusLiking, var = "TAS", specs = "affectcat")
 
 summary(ValenceExploreSlopes)
+```
+The pairwise comparison of slopes adds more fidelity to the interaction. They indicate that the slopes for positvley valenced songs did not differ from eachother but that both postively valenced songs that were high in arousal and positively valenced songs that were low in arousal were significantly different to the slopes of the songs that were negatively valenced. 
 
-knitr::kable(pairs(ValenceExploreSlopes))
+```{r valenceExplorePairs}
+knitr::kable(pairs(ValenceExploreSlopes), type = "html", digits = 3)
 ```
 
 
 ## Affect Ratings {.tabset}
 ### Registerd Hypothesis
+
+**People high in alexithymia will have judge thier experience of arousal as more neutral when the music is positively valenced but not when it is negatively valenced**
+
+From the table below it can be seen that alexithymia did not relate to self-reports of experienced arousal for songs that were positively valenced and low in arousal. It is also seen that the slopes of the other song catergries did not differ from the slope for positively valenced and low arousal songs. The slopes can also be seen in the plot below.]
 ```{r ArousalSelfReportConfirmRaw}
 
 ArousalSelfConfirmRaw <- lmer(ArousalRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =selfreport)
-tab_model(ArousalSelfConfirmRaw)
+tab_model(ArousalSelfConfirmRaw, show.std = "std")
 ```
-No interaction between alexithymia and song type is indicated for ratings of experienced arousal
 
 ```{r emmeansArousalConfirmRaw}
 emmeans::emm_options(lmerTest.limit = 4000, 
@@ -147,10 +160,6 @@ ArousalConfirmGridRaw <- emmeans::ref_grid(ArousalSelfConfirmRaw,
                                                                 "High Arousal/Negative Valence",
                                                                 "High Arousal/Positive Valence",
                                                                 "Low Arousal/Negative Valence"))) 
-
-
-ArousalConfirmGridRaw
-
 emmeans::emmip(ArousalConfirmGridRaw, 
                affectcat~TAS, 
                CIs = TRUE, 
@@ -163,18 +172,19 @@ emmeans::emmip(ArousalConfirmGridRaw,
   ggplot2::ylim(c(1,5)) + 
   ggplot2::geom_hline(yintercept = 3, linetype = "dashed") +
   ggplot2::scale_x_discrete(labels = c("-1SD", "Mean", "+1 SD"))
-  
+```
+The table of slopes also indicates that alexithymia did not relate to experiences of arousal for any of the songs. 
 
+```{r ArousalSlopesConfirm}
 ArousalConfirmSlopesRaw <- emmeans::emtrends(ArousalSelfConfirmRaw, 
                   specs = "affectcat",
-                  var = "TAS"
-                  ) # calculates trend of alexithymia at each level of affectcat
-
-summary(ArousalConfirmSlopesRaw)
+                  var = "TAS")
+knitr::kable(ArousalConfirmSlopesRaw, format = "html", digits = 3)
 ```
-From the slopes we see that alexithymia is not relating to experienced arousal for any song type. Given this the pairwise comparions are of little importance but presented for interest. 
+
+From the slopes we see that alexithymia is not relating to experienced arousal for any song type. Given this the pairwise comparions are of little importance but presented for interest (and show that the only difference in slopes was between negatively valenced songs)
 ```{r ArousalConfirmSLopePairwise}}
-knitr::kable(pairs(ArousalConfirmSlopesRaw))
+knitr::kable(pairs(ArousalConfirmSlopesRaw), format = "html", digits = 3)
 ```
 
 ### Exploratory tests
@@ -188,7 +198,9 @@ ArousalSelfPlusDep <- lmer(ArousalRating ~ affectcat*TAS + affectcat*depression 
 
 ArousalSelfPlusLikingPLusDep <- lmer(ArousalRating ~ affectcat*TAS + affectcat*LikingRating + affectcat*depression + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 
-knitr::kable(anova(ArousalSelfPlusDep, ArousalSelfPlusLiking, ArousalSelfPlusLikingPLusDep))
+knitr::kable(anova(ArousalSelfPlusDep, ArousalSelfPlusLiking, ArousalSelfPlusLikingPLusDep), 
+             format = "html", 
+             digits = 3)
 ```
 
 The comparison of models indicates that the best model is the one that includes the liking of the song covariate. Data for liking is not available for all participants but below I compare the models with and without liking.  
@@ -199,21 +211,24 @@ As can be seen blow the model with liking is preferred
 
 SubsetArousalReg <- lmer(ArousalRating ~ affectcat*TAS + (1 | id) + (1|affectcat:songmark), data =drop_na(selfreport))
 knitr::kable(anova(SubsetArousalReg, 
-      ArousalSelfPlusLiking))
+      ArousalSelfPlusLiking), format = "html", digits = 3)
 ```
 
-Here both models can be seen side by side. 
+Here both models can be seen side by side. In the model that includes liking an interaction is present. The model terms indicate no effect of alexithymia on ratings of arousal for songs that were positively valenced and low in arousal. However, the slopes for songs that were high in arousal were significantly differnent to the slope when song were positively valenced and low in arousal 
 
 ```{r ArousalModelSideBySide}
 sjPlot::tab_model(SubsetArousalReg, 
-                  ArousalSelfPlusLiking)
+                  ArousalSelfPlusLiking, show.std = "std")
 ```
 
-And here the slope estimates can be seen along with the pairwise comparions of the slopes 
-
+The slopes indicate that increased alexithymia predicted reduced self-reported experience of arousal when the arousal of the song was high. There was no relationship between alexithymia and low arousal songs
 ```{r ArousalModelExploreSlopes}
 ArousalExploreSlopes <- emmeans::emtrends(ArousalSelfPlusLiking, var = "TAS", specs = "affectcat")
-summary(ArousalExploreSlopes)
-knitr::kable(pairs(ArousalExploreSlopes))
+knitr::kable(summary(ArousalExploreSlopes), format = "html", digits = 3)
+```
+
+Finally, the pairwise comparions of slopes indicates that the slopes for high arousal songs were equivalent to each other and steeper than the slopes for all low arousal comparions. 
+```{r exploreArousalPairwise}
+knitr::kable(pairs(ArousalExploreSlopes), format = "html", digits = 3)
 ```
 

@@ -1,0 +1,232 @@
+---
+title: "Linear Models"
+output: github_document
+---
+Linear Models without Physiology 
+
+```{r filterNA}
+filtered <- filter(joined, prac == "trial" )
+
+vis_dat(filtered)
+```
+
+# Self Report Data 
+## Valence Self Report 
+
+```{r}
+modeldata <- filtered %>% rename(ValenceRating = valencekey.keys,
+                                 ArousalRating = arousalkey.keys,
+                                 Liking = likekey.keys, 
+                                 Condition = affectcat)
+
+names(modeldata)
+```
+
+
+```{r, eval = FALSE}
+valenceratings <- lmer(ValenceRating ~ depression + Liking + TAS + Condition + Condition*TAS + (1 | id) + (songmark | id), data = modeldata)
+```
+
+
+
+```{r valence model}
+valencemodel <- lmer(valencekey.keys~affectcat*TAS + (1 | participant) +(1 | songmark), data = filtered) 
+tab_model(valencemodel)
+
+interactions::sim_slopes(valencemodel,
+                                pred = TAS,
+                                modx = affectcat)
+anova(valencemodel)
+
+sjPlot::plot_model(model = valencemodel,
+                   type = "int",
+                   mdrt.values = "meansd",
+                   title = "Mean Self Report Valence",
+                   grparticipant = FALSE) + 
+  ggplot2::ylim(1, 5) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") + 
+  xlab("Affective Category") +
+  ylab ("Rated Valence") + 
+  theme_classic()
+
+interactions::interact_plot(valencemodel,
+                            pred = TAS,
+                            modx = affectcat, 
+                            interval = TRUE)  + 
+  ylab("Rated Valence") + 
+  xlab("TAS") + 
+  ylim(1,5) +
+  theme_classic()
+```
+
+## Arousal Self Report
+```{r arousal model}
+arousalmodel <- lmer(arousalkey.keys~affectcat*TAS + (1 | participant) +(1 | songmark), data = filtered) 
+tab_model(arousalmodel)
+
+interactions::sim_slopes(arousalmodel,
+                                pred = TAS,
+                                modx = affectcat)
+
+sjPlot::plot_model(model = arousalmodel,
+                   type = "int",
+                   mdrt.values = "meansd",
+                   title = "Mean Self Report Arousal",
+                   grparticipant = FALSE) + 
+  ggplot2::ylim(1, 5) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") + 
+  xlab("Affective Category") +
+  ylab ("Rated Arousal") + 
+  theme_classic()
+
+interactions::interact_plot(arousalmodel,
+                            pred = TAS,
+                            modx = affectcat,
+                            interval = TRUE)  + 
+  ylab("Rated Arousal") + 
+  xlab("TAS") + 
+  ylim (1,5) +
+  theme_classic()
+```
+
+## Liking
+### Valence
+```{r valencemodel2}
+valencemodelliking <- lmer(valencekey.keys~affectcat*likekey.keys + (1 | participant) +(1 | songmark), data = filtered) 
+tab_model(valencemodel)
+
+interactions::sim_slopes(valencemodelliking,
+                                pred = likekey.keys,
+                                modx = affectcat)
+
+sjPlot::plot_model(model = valencemodelliking,
+                   type = "int",
+                   mdrt.values = "meansd",
+                   title = "Mean Self Report Valence",
+                   legend.title = "Liking Rating",
+                   grparticipant = FALSE) + 
+  ggplot2::ylim(1, 5) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") + 
+  xlab("Affective Category") +
+  ylab ("Rated Valence") + 
+  theme_classic()
+
+
+interactions::interact_plot(valencemodelliking,
+                            pred = likekey.keys,
+                            modx = affectcat,
+                            interval = TRUE)  + 
+  ylab("Rated Valence") + 
+  xlab("Song Liking") + 
+  theme_classic()
+```
+
+### Arousal
+```{r arousalmodel2}
+arousalmodelliking <- lmer(arousalkey.keys~affectcat*likekey.keys + (1 | participant) +(1 | songmark), data = filtered) 
+tab_model(arousalmodel)
+
+interactions::sim_slopes(arousalmodelliking,
+                                pred = likekey.keys,
+                                modx = affectcat)
+
+sjPlot::plot_model(model = arousalmodelliking,
+                   type = "int",
+                   mdrt.values = "meansd",
+                   title = "Mean Self Report Arousal",
+                   legend.title = "Liking Rating",
+                   grparticipant = FALSE) + 
+  ggplot2::ylim(1, 5) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") + 
+  xlab("Affective Category") +
+  ylab ("Rated Arousal") + 
+  theme_classic()
+
+interactions::interact_plot(arousalmodelliking,
+                            pred = likekey.keys,
+                            modx = affectcat,
+                            interval = TRUE)  + 
+  ggplot2::ylab("Rated Arousal") + 
+  ggplot2::xlab("Song Liking") + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dotted") +
+  ggplot2::theme_classic()
+```
+
+# By Category 
+## Low Arousal/Negative Valence
+### Valence
+```{r LowA/NegV-Valence}
+
+ValenceLowArNegVa <- lmer(valencekey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "Low Arousal/Negative Valence"))
+
+```
+
+```{r LowA/NegV-Arousal}
+
+ArousalLowArNegVa <- lmer(arousalkey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "Low Arousal/Negative Valence"))
+
+```
+
+## Low Arousal / Positive Valence
+### Valence
+```{r LowA/PosV-Valence}
+
+ValenceLowArPosVa <- lmer(valencekey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "Low Arousal/Positve Valence"))
+
+```
+
+```{r LowA/PosV-Arousal}
+
+ArousalLowArPosVa <- lmer(arousalkey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "Low Arousal/Positve Valence"))
+
+```
+
+## High Arousal / Negative Valence
+### Valence
+```{r highA/NegV-Valence}
+
+ValenceHighArNegVa <- lmer(valencekey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "High Arousal/Negative Valence"))
+
+```
+
+```{r HighA/NegV-Arousal}
+
+ArousalHighArNegVa <- lmer(arousalkey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "High Arousal/Negative Valence"))
+
+```
+
+
+## High Arousal / Positive Valence
+### Valence
+```{r highA/PosV-Valence}
+
+ValenceHighArPosVa <- lmer(valencekey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "High Arousal/Positive Valence"))
+
+```
+
+```{r HighA/NegV-Arousal}
+
+ArousalHighArPosVa <- lmer(arousalkey.keys~likekey.keys + TAS + (1 | participant) + (1| songmark), data = filter(filtered, affectcat == "High Arousal/Positive Valence"))
+
+```
+
+# Valence Models 
+```{r valencemodel}
+
+sjPlot::tab_model(ValenceLowArNegVa, ValenceLowArPosVa, ValenceHighArNegVa, ValenceHighArPosVa,
+                  dv.labels = c("Low Arousal/Negative Valence", "Low Arousal/Positive Valence", "High Arousal/Negative Valence", "High Arousal/Positive Valence"),
+                  title ="Valence Ratings")
+
+```
+
+# Arousal Models 
+```{r}
+sjPlot::tab_model(ArousalLowArNegVa, ArousalLowArPosVa, ArousalHighArNegVa, ArousalHighArPosVa,
+                  dv.labels = c("Low Arousal/Negative Valence", "Low Arousal/Positive Valence", "High Arousal/Negative Valence", "High Arousal/Positive Valence"),
+                  title ="Arousal Ratings")
+```
+
+
+
+
+

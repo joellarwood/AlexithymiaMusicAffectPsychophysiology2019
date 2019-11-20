@@ -13,6 +13,7 @@ library(tidyverse)
 library(corrr)
 library(ggpubr)
 library(tableone)
+library(corrr)
 ```
 
 # Self Report Descriptives 
@@ -30,6 +31,8 @@ demographics <- read_csv(here::here("data", "ProcessedSurvey.csv")) %>%
 ```
 
 ### Age 
+
+The age of participants was heavily skewed to the 17-25 year old range
 ```{r Age}
 tableone::CreateCatTable(vars = "age", data = demographics)
 
@@ -49,6 +52,7 @@ The mean age was `r mean(demographics$age_num, na.rm = TRUE)` with a SD of `r sd
 
 ### Gender
 
+The participants were majority female. 
 ```{r gender}
 
 tableone::CreateCatTable(vars = "gender", data = demographics)
@@ -62,6 +66,7 @@ ggplot2::ggplot(demographics, aes(gender)) +
 
 ### Years Played
 
+Generally speaking the participants had a high level of musical experience. 
 ```{r yearsplay}
 tableone::CreateCatTable(vars = "yearsplay", data = demographics)
 
@@ -71,6 +76,8 @@ ggplot2::ggplot(demographics, aes(yearsplay)) +
 ```
 
 ### Alexithymia and Depression
+
+Alexithymia and depression related to eachother as is presented in the literature. Further half of the participants  fell into the normal range of scores for depression. 
 
 ```{r selfreportmeasures}
 demographics %>% select(TAS, DIF, DDF, EOT, depression) %>% skimr::skim()
@@ -90,13 +97,14 @@ demographics %>%
 
 ## Songs 
 ### Valence
+
+Negatively valence songs were generally rated as negative (i.e. below 3[Neutral]) while positively valenced songs tended to be rated more neutrally with the mean trending around 3
 ```{r importpsychopy, echo = FALSE}
 
 songdata <- read_csv(here::here("data", "PsychoPyProcessed.csv"))
 
 ```
 
-### Arousal
 ```{r valenceplot}
 
 affectdat <- songdata %>% 
@@ -120,7 +128,8 @@ ggpubr::ggviolin(data = drop_na(songdata),
                  add = "mean", 
                  caption = "Dot indicates mean")
 ```
-
+### Arousal
+Arousal ratings were broadly distributed as expected, however the means were closer to neutral. 
 ```{r arousal}
 ggpubr::ggviolin(data = drop_na(songdata), 
                  x = "songmark",
@@ -133,11 +142,14 @@ ggpubr::ggviolin(data = drop_na(songdata),
                  caption = "Dot inidcates mean")
 ```
 
+
 ### Specific Emotions 
 
 Each song and its target emotion are presented along with the mean ratings for that song. 
 
-On visual observation it seems altert and maybe active are arousal rather valence discriminant
+On visual observation it seems altert and maybe active are arousal rather valence discriminant. 
+
+Generally speaking the target emotion (as specified by Vuoskoski and EErola, 2011) was among the hightest rated emotion for each song. 
 
 ```{r specificemotions}
 emotionratinglong <- songdata %>% 
@@ -166,6 +178,8 @@ ggplot2::ggplot(describeratings,
                 )) +
   ggplot2::geom_errorbar(aes(ymin = Mean-SD, 
                              ymax = Mean + SD)) +
+  ggplot2::labs(title = "Mean emotion rating for each song", 
+                caption = "Image can be opened full screen in a new window by") +
   facet_wrap("song") +
   geom_bar(stat = "identity") +
   theme_classic ()+
@@ -177,6 +191,6 @@ describeratings %>%
   select(song, emotion, Mean_SD) %>% 
   pivot_wider(names_from = emotion, 
               values_from = Mean_SD) %>% 
-  knitr::kable()
+  knitr::kable(format = "html", digits = 3)
 ```
 

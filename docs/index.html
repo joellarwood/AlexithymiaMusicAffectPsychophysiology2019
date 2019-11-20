@@ -330,7 +330,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-17
+<strong>Last updated:</strong> 2019-11-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -361,10 +361,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree492e77665dd7ffd04d891d6345d1424d563eb0d2targetblank492e776a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/492e77665dd7ffd04d891d6345d1424d563eb0d2" target="_blank">492e776</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree841c36741a5a0edbd25666c26b881671f564047btargetblank841c367a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/tree/841c36741a5a0edbd25666c26b881671f564047b" target="_blank">841c367</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree492e77665dd7ffd04d891d6345d1424d563eb0d2targetblank492e776a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjoellarwoodAlexithymiaMusicAffectPsychophysiology2019tree841c36741a5a0edbd25666c26b881671f564047btargetblank841c367a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -372,29 +372,76 @@ Great! You are using Git for version control. Tracking code development and conn
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    Archives/.DS_Store
-    Ignored:    Archives/JULY Analysis ARCHIVE/.DS_Store
-    Ignored:    Archives/JULY Analysis ARCHIVE/.RData
-    Ignored:    Archives/JULY Analysis ARCHIVE/.Rhistory
-    Ignored:    Archives/JULY Analysis ARCHIVE/.Rproj.user/
-    Ignored:    Archives/JULY Analysis ARCHIVE/First19Data/.DS_Store
-    Ignored:    Archives/JULY Analysis ARCHIVE/data/.DS_Store
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.DS_Store
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.RData
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rhistory
-    Ignored:    Archives/Novembe Analysis ARCHIVE/.Rproj.user/
-    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.DS_Store
-    Ignored:    Archives/Novembe Analysis ARCHIVE/code/.Rhistory
-    Ignored:    Archives/Novembe Analysis ARCHIVE/data/.DS_Store
-    Ignored:    JULY Analysis ARCHIVE/
+    Ignored:    Analysis/.DS_Store
+    Ignored:    Analysis/.RData
+    Ignored:    Analysis/.Rhistory
+    Ignored:    Analysis/.Rproj.user/
+    Ignored:    Analysis/data/.DS_Store
+    Ignored:    Analysis/data/PsychoPyData/.DS_Store
     Ignored:    Psychopy/.DS_Store
-    Ignored:    data/.DS_Store
-    Ignored:    dataAnalysis/.DS_Store
 
 Unstaged changes:
+    Modified:   Analysis/AffectRatings.rmd
     Modified:   Analysis/describe.rmd
+
+Staged changes:
+    New:        Analysis/code/Data Cleaning.Rmd
+    New:        Analysis/code/Linear Models.Rmd
+    New:        Analysis/data/ProcessedSurvey
+    New:        Analysis/data/PsychoPyData/072_MusicAffectPsychophysiology2019_2019_Aug_26_1014.csv
+    New:        Analysis/data/PsychoPyData/073_MusicAffectPsychophysiology2019_2019_Aug_26_1112.csv
+    New:        Analysis/data/PsychoPyData/074_MusicAffectPsychophysiology2019_2019_Aug_26_1313.csv
+    New:        Analysis/data/PsychoPyData/075_MusicAffectPsychophysiology2019_2019_Aug_26_1501.csv
+    New:        Analysis/data/PsychoPyData/076_MusicAffectPsychophysiology2019_2019_Aug_27_0905.csv
+    New:        Analysis/data/PsychoPyData/077_MusicAffectPsychophysiology2019_2019_Aug_27_1005.csv
+    New:        Analysis/data/PsychoPyData/078_MusicAffectPsychophysiology2019_2019_Aug_27_1108.csv
+    New:        Analysis/data/PsychoPyData/079_MusicAffectPsychophysiology2019_2019_Aug_27_1320.csv
+    New:        Analysis/data/PsychoPyData/080_MusicAffectPsychophysiology2019_2019_Aug_27_1412.csv
+    New:        Analysis/data/PsychoPyData/081_MusicAffectPsychophysiology2019_2019_Aug_27_1507.csv
+    New:        Analysis/data/PsychoPyData/082_MusicAffectPsychophysiology2019_2019_Aug_28_0909.csv
+    New:        Analysis/data/PsychoPyData/083_MusicAffectPsychophysiology2019_2019_Aug_28_1010.csv
+    New:        Analysis/data/PsychoPyData/084_MusicAffectPsychophysiology2019_2019_Aug_28_1113.csv
+    New:        Analysis/data/PsychoPyData/085_MusicAffectPsychophysiology2019_2019_Aug_28_1212.csv
+    New:        Analysis/data/PsychoPyData/086_MusicAffectPsychophysiology2019_2019_Aug_28_1417.csv
+    New:        Analysis/data/PsychoPyData/087_MusicAffectPsychophysiology2019_2019_Aug_28_1511.csv
+    New:        Analysis/data/PsychoPyData/088_MusicAffectPsychophysiology2019_2019_Aug_28_1625.csv
+    New:        Analysis/data/PsychoPyData/089_MusicAffectPsychophysiology2019_2019_Aug_29_0913.csv
+    New:        Analysis/data/PsychoPyData/090_MusicAffectPsychophysiology2019_2019_Aug_29_1009.csv
+    New:        Analysis/data/PsychoPyData/091_MusicAffectPsychophysiology2019_2019_Aug_29_1106.csv
+    New:        Analysis/data/PsychoPyData/092_MusicAffectPsychophysiology2019_2019_Aug_29_1308.csv
+    New:        Analysis/data/PsychoPyData/093_MusicAffectPsychophysiology2019_2019_Aug_29_1408.csv
+    New:        Analysis/data/PsychoPyData/094_MusicAffectPsychophysiology2019_2019_Sep_02_0912.csv
+    New:        Analysis/data/PsychoPyData/095_MusicAffectPsychophysiology2019_2019_Sep_02_1006.csv
+    New:        Analysis/data/PsychoPyData/096_MusicAffectPsychophysiology2019_2019_Sep_02_1108.csv
+    New:        Analysis/data/PsychoPyData/097_MusicAffectPsychophysiology2019_2019_Sep_02_1404.csv
+    New:        Analysis/data/PsychoPyData/098_MusicAffectPsychophysiology2019_2019_Sep_03_1106.csv
+    New:        Analysis/data/PsychoPyData/099_MusicAffectPsychophysiology2019_2019_Sep_03_1307.csv
+    New:        Analysis/data/PsychoPyData/100_MusicAffectPsychophysiology2019_2019_Sep_03_1412.csv
+    New:        Analysis/data/PsychoPyData/101_MusicAffectPsychophysiology2019_2019_Sep_04_0905.csv
+    New:        Analysis/data/PsychoPyData/102_MusicAffectPsychophysiology2019_2019_Sep_04_1015.csv
+    New:        Analysis/data/PsychoPyData/103_MusicAffectPsychophysiology2019_2019_Sep_04_1112.csv
+    New:        Analysis/data/PsychoPyData/104_MusicAffectPsychophysiology2019_2019_Sep_05_0910.csv
+    New:        Analysis/data/PsychoPyData/105_MusicAffectPsychophysiology2019_2019_Sep_05_1012.csv
+    New:        Analysis/data/PsychoPyData/107_MusicAffectPsychophysiology2019_2019_Sep_05_1408.csv
+    New:        Analysis/data/PsychoPyData/108_MusicAffectPsychophysiology2019_2019_Sep_05_1512.csv
+    New:        Analysis/data/PsychoPyData/109_MusicAffectPsychophysiology2019_2019_Sep_05_1612.csv
+    New:        Analysis/data/PsychoPyData/110_MusicAffectPsychophysiology2019_2019_Sep_10_1309.csv
+    New:        Analysis/data/PsychoPyData/111_MusicAffectPsychophysiology2019_2019_Sep_10_1418.csv
+    New:        Analysis/data/PsychoPyData/112_MusicAffectPsychophysiology2019_2019_Sep_11_1118.csv
+    New:        Analysis/data/PsychoPyData/113_MusicAffectPsychophysiology2019_2019_Sep_11_1516.csv
+    New:        Analysis/data/PsychoPyData/114_MusicAffectPsychophysiology2019_2019_Sep_19_1009.csv
+    New:        Analysis/data/PsychoPyData/115_MusicAffectPsychophysiology2019_2019_Sep_23_1011.csv
+    New:        Analysis/data/PsychoPyData/116_MusicAffectPsychophysiology2019_2019_Sep_26_1115.csv
+    New:        Analysis/data/PsychoPyData/117_MusicAffectPsychophysiology2019_2019_Sep_26_1411.csv
+    New:        Analysis/data/PsychoPyData/118_MusicAffectPsychophysiology2019_2019_Sep_26_1458.csv
+    New:        Analysis/data/PsychoPyData/119_MusicAffectPsychophysiology2019_2019_Sep_26_1712.csv
+    New:        Analysis/data/survey_13_9_19.csv
+    New:        Analysis/data/survey_27_9_19.csv
+    New:        Analysis/install.R
+    Modified:   Archives/Novembe Analysis ARCHIVE/code/Differentiation.Rmd
+    Modified:   Archives/Novembe Analysis ARCHIVE/dataPsychoPyProcessed.csv
+    Modified:   Archives/Novembe Analysis ARCHIVE/results/DiffCorrelations.rtf
 
 </code></pre>
 <p>
@@ -435,10 +482,27 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/841c36741a5a0edbd25666c26b881671f564047b/docs/index.html" target="_blank">841c367</a>
+</td>
+<td>
+Joel Larwood
+</td>
+<td>
+2019-11-19
+</td>
+<td>
+update html
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/492e77665dd7ffd04d891d6345d1424d563eb0d2/analysis/index.Rmd" target="_blank">492e776</a>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/492e77665dd7ffd04d891d6345d1424d563eb0d2/Analysis/index.Rmd" target="_blank">492e776</a>
 </td>
 <td>
 Joel Larwood
@@ -489,7 +553,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/20bc296819e1b85e817c9955f9eeb8bf213f2465/analysis/index.Rmd" target="_blank">20bc296</a>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/20bc296819e1b85e817c9955f9eeb8bf213f2465/Analysis/index.Rmd" target="_blank">20bc296</a>
 </td>
 <td>
 joellarwood
@@ -523,7 +587,7 @@ workflowr deploy
 Rmd
 </td>
 <td>
-<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/75221d66385750fe907bad2c7b6d29a6f3abc013/analysis/index.Rmd" target="_blank">75221d6</a>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/75221d66385750fe907bad2c7b6d29a6f3abc013/Analysis/index.Rmd" target="_blank">75221d6</a>
 </td>
 <td>
 joellarwood
@@ -540,7 +604,7 @@ Start workflowr project.
 Rmd
 </td>
 <td>
-<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/f200098bd81983d3025dcdb9a084ad0506b93833/analysis/index.Rmd" target="_blank">f200098</a>
+<a href="https://github.com/joellarwood/AlexithymiaMusicAffectPsychophysiology2019/blob/f200098bd81983d3025dcdb9a084ad0506b93833/Analysis/index.Rmd" target="_blank">f200098</a>
 </td>
 <td>
 Joel Larwood
