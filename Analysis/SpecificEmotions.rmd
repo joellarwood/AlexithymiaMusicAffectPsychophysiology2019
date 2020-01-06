@@ -16,7 +16,8 @@ library(tidyverse)
 library("sjPlot")
 library("lmerTest")
 library("interactions")
-library(here)
+library("here")
+library(kableExtra)
 ```
 
 ```{r DataLoad}
@@ -33,10 +34,6 @@ SpecificEmotion <- read_csv(here::here("data", "PsychoPyProcessed.csv")) %>%
                                                 HAPPY_rating)))) %>% 
   rename(liking = likekey.keys)
 
-SpecificEmotion %>% select(contains("target"), 
-                           contains("rating")) %>% 
-  head(15) %>% 
-  knitr::kable()
 ```
 
 The data still has a number of variables in it but many of these are not of consequence to the model. The variables of interest are `targetrating` (outcome) `targetemotion` (predictor), `TAS` (predictor) `liking` (covariate), `id` (grouping factor of participant) and `songmark` (random factor of the song listened to). 
@@ -55,12 +52,30 @@ knitr::kable(anova(SpecEmoModel,
                    SpecEmoModelLiking), 
              digits = 3, 
              format = "html"
-             )
+             ) %>% kableExtra::kable_styling()
 
 tab_model(SpecEmoModel,
           SpecEmoModelLiking,
           show.std = "std", 
           show.r2 = TRUE,
           show.aic =  TRUE)
+```
+
+```{r emmeansContrast}
+emmeans::emm_options(pbkrtest.limit = 3442)
+
+SpecEmoSlopesRaw <- emmeans::emtrends(SpecEmoModelLiking, 
+                                      data = drop_na(SpecificEmotion, liking),
+                                      specs = "targetemotion",
+                                      var = "TAS")
+
+knitr::kable(SpecEmoSlopesRaw, format = "html", digits = 3) %>% 
+  kableExtra::kable_styling()
+
+pairs(SpecEmoSlopesRaw) %>% 
+  kable(format = "html", digits = 3) %>% 
+  kableExtra::kable_styling()
+
+
 ```
 
