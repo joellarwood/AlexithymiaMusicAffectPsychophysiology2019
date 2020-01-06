@@ -20,6 +20,8 @@ library("sjPlot")
 library("lmerTest")
 library("interactions")
 library(here)
+library(cowplot)
+library(svglite)
 
 selfreport <- read_csv(here::here("data", "PsychoPyProcessed.csv")) %>% 
   rename(ValenceRating = valencekey.keys, 
@@ -85,13 +87,13 @@ ValenceConfirmSlopesRaw <- emmeans::emtrends(ValenceSelfConfirmRaw,
                   specs = "affectcat",
                   var = "TAS") # calculates trend of alexithymia at each level of affectcat
 
-knitr::kable(ValenceConfirmSlopesRaw, format = "html", digits = 3)
+knitr::kable(ValenceConfirmSlopesRaw, format = "html", digits = 3) %>% kableExtra::kable_styling()
 ```
 
 <br>The contrast of the slopes shows that the slopes for all other fixed effects are not differnt to each otehr (but are all different to the slope for postively valenced songs that are low in arousal. 
 
 ```{r VBalenecConfirmSlopePairwise}
-knitr::kable(pairs(ValenceConfirmSlopesRaw))
+knitr::kable(pairs(ValenceConfirmSlopesRaw)) %>% kableExtra::kable_styling()
 ``` 
 
 ### Exploratory tests
@@ -230,5 +232,80 @@ knitr::kable(summary(ArousalExploreSlopes), format = "html", digits = 3)
 <br>Finally, the pairwise comparions of slopes indicates that the slopes for high arousal songs were equivalent to each other and steeper than the slopes for all low arousal comparions. 
 ```{r exploreArousalPairwise}
 knitr::kable(pairs(ArousalExploreSlopes), format = "html", digits = 3)
+```
+
+# Plot Exploratory models side by side 
+```{r ModelPlot}
+ValenceExploreGridRaw <- emmeans::ref_grid(ValenceSelfPlusLiking, 
+                                        at = list(TAS = c(minusTAS, meanTAS, plusTAS), # have alexithymia values for +/-1 SD 
+                                                  affectcat = c("Low Arousal/Positve Valence", 
+                                                                "High Arousal/Negative Valence",
+                                                                "High Arousal/Positive Valence",
+                                                                "Low Arousal/Negative Valence"))) 
+
+valenceplot <- emmeans::emmip(ValenceExploreGridRaw, 
+                          affectcat~TAS, 
+                          CIs = TRUE, 
+                          xlab = "Alexithymia Scores", 
+                          ylab = "Predicted Valence Rating"
+) + 
+  ggplot2::theme_classic() + 
+  ggplot2::theme(legend.title = element_blank())+
+  ggplot2::scale_fill_viridis_c() +
+  ggplot2::ylim(c(1,5)) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dashed") +
+  ggplot2::scale_x_discrete(labels = c("-1SD", "Mean", "+1 SD")) + 
+    ggplot2::theme_classic() + 
+  ggplot2::theme(legend.title = element_blank()) +
+  ggplot2::scale_fill_viridis_c() +
+  ggplot2::ylim(c(1,5)) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dashed") +
+  ggplot2::scale_x_discrete(labels = c("-1SD", "Mean", "+1 SD")) +
+  ggplot2::theme(text = element_text(family = "Times New Roman", 
+                                     size = 12)) 
+
+  
+
+ArousalExploreGridRaw <- emmeans::ref_grid(ArousalSelfPlusLiking, 
+                                        at = list(TAS = c(minusTAS, meanTAS, plusTAS), # have alexithymia values for +/-1 SD 
+                                                  affectcat = c("Low Arousal/Positve Valence", 
+                                                                "High Arousal/Negative Valence",
+                                                                "High Arousal/Positive Valence",
+                                                                "Low Arousal/Negative Valence"))) 
+arousalplot <- emmeans::emmip(ArousalExploreGridRaw, 
+                          affectcat~TAS, 
+                          CIs = TRUE, 
+                          xlab = "Alexithymia Scores", 
+                          ylab = "Predicted Arousal Rating"
+) + 
+  ggplot2::theme_classic() + 
+  ggplot2::theme(legend.title = element_blank()) +
+  ggplot2::scale_fill_viridis_c() +
+  ggplot2::ylim(c(1,5)) + 
+  ggplot2::geom_hline(yintercept = 3, linetype = "dashed") +
+  ggplot2::scale_x_discrete(labels = c("-1SD", "Mean", "+1 SD"))+
+  ggplot2::theme(text = element_text(family = "Times New Roman", 
+                                     size = 12)) 
+
+
+
+legend <- get_legend(
+  valenceplot + 
+    guides(color = guide_legend(nrow = 1)) +
+    theme(legend.position = "bottom")
+)
+
+sideplot <- plot_grid(
+  valenceplot + theme(legend.position = "none"), 
+  arousalplot + theme(legend.position = "none"),
+  align = 'vh',
+  nrow = 1
+)
+
+sideplotlegend <- plot_grid(sideplot, legend, ncol = 1, rel_heights = c(1, .1))
+
+ggsave(here::here("docs", "ValenceArousal.svg"))
+
+
 ```
 
