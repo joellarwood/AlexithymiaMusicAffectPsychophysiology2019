@@ -1,0 +1,152 @@
+---
+title: "EmoDif"
+author: "joellarwood"
+date: "2020-01-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+```{r PackageLoad, echo = TRUE, results = FALSE, message = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library("tidyverse")
+library("sjPlot")
+library("lmerTest")
+library("here")
+library("kableExtra")
+library("icc")
+library("naniar")
+library(psych)
+```
+
+I need to split the data according to the valence of the stimulus presented and also create a vector of the postive and negative emotion terms
+```{r loaddata}
+
+ProcessedData <- read_csv(here::here("data", "PsychoPyProcessed.csv")) %>% 
+  drop_na(songmark)
+
+
+NegTrails <- ProcessedData %>% 
+  filter(valence == "Negative")
+
+PosTrials <- ProcessedData %>% 
+  filter(valence == "Positive")
+
+
+```
+
+To get the emotion differentiation index I need to calculate the ICC for each participant
+
+# Negative Emotion Differentiation
+```{r NegDif}
+
+participant <- unique(ProcessedData$id)
+
+NegDif <- NULL # init empty data list for loop 
+
+for (i in participant){
+  p_select = filter(NegTrails, id == i)
+  word_select = select(p_select, 
+                       "ANGRY_rating", 
+                       "ANXIOUS_rating", 
+                       "ASHAMED_rating", 
+                       "FRUSTRATED_rating", 
+                       "GUILTY_rating",
+                       "SAD_rating", 
+                       "SCARED_rating")
+  icc = irr::icc(word_select, model = "twoway", unit = "average")
+  icc_temp = icc$value
+  row_tmp = c(i, icc_temp)
+  NegDif = rbind(NegDif, row_tmp)
+  print(icc_temp)
+}
+
+colnames(NegDif) = c("id", "NegICC")
+
+NegDif <- NegDif %>% 
+  as_tibble() %>% 
+  naniar::replace_with_na_at(
+    .vars = c("NegICC"), 
+    condition = ~(.x) < 0 # remove negative values as they cannot be interpreted 
+  ) %>%  
+  mutate(NegDif = 1 - NegICC,
+         NegDif_fz = psych::fisherz(NegICC)
+  )
+
+```
+The index from `r sum(is.na(NegDif$NegICC))` participants was not usable owing to being a negative ICC
+
+
+# Positive Emotion Differentiation
+```{r NegDif}
+
+
+PosDif <- NULL # init empty data list for loop 
+
+for (i in participant){
+  p_select = filter(NegTrails, id == i)
+  word_select = select(p_select, 
+                       "ALERT_rating", 
+                       "ACTIVE_rating", 
+                       "EXCITED_rating", 
+                       "HAPPY_rating", 
+                       "TENDER_rating"
+                       )
+  icc = irr::icc(word_select, model = "twoway", unit = "average")
+  icc_temp = icc$value
+  row_tmp = c(i, icc_temp)
+  PosDif = rbind(PosDif, row_tmp)
+  print(icc_temp)
+}
+
+colnames(PosDif) = c("id", "PosICC")
+
+PosDif <- PosDif %>% 
+  as_tibble() %>% 
+  naniar::replace_with_na_at(
+    .vars = c("PosICC"), 
+    condition = ~(.x) < 0 # remove negative values as they cannot be interpreted 
+  ) %>%  
+  mutate(PosDif = 1 - PosICC,
+         PosDif_fz = psych::fisherz(PosICC)
+  )
+
+```
+The index from `r sum(is.na(PosDif$PosICC))` participants was not usable owing to being a negative ICC
+
+
+Now I want to merge the emotion differntiation data with the self report data 
+
+```{r merge}
+
+MergedDif <- ProcessedData %>% 
+  select(id, depression:yearsplay) %>% 
+  distinct(id, .keep_all = TRUE) %>% 
+  inner_join(NegDif, by = "id") %>% 
+  inner_join(PosDif, by = "id") 
+
+```
+
+Now I want to see the simple correaltions 
+```{r}
+
+MergedDif %>% 
+  dplyr::select(TAS, DDF, DIF, EOT, depression, NegDif_fz, PosDif_fz) %>% 
+  apaTables::apa.cor.table(filename = "docs/emotionDifCorrelations.rtf")
+
+
+```
+And I will also look at the distributions 
+```{r}
+
+```
+
+I also want to do some exploratory regressions as well as my registered regression 
+
+```{r}
+
+
+PosDifReg <- lm(PosDif_fz~TAS, 
+                data = MergedDif)
+plot_qq(PosDifReg)
+```
+
