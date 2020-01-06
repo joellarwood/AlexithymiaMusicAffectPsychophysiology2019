@@ -16,13 +16,15 @@ library("kableExtra")
 library("icc")
 library("naniar")
 library(psych)
+library(car)
 ```
 
 I need to split the data according to the valence of the stimulus presented and also create a vector of the postive and negative emotion terms
 ```{r loaddata}
 
 ProcessedData <- read_csv(here::here("data", "PsychoPyProcessed.csv")) %>% 
-  drop_na(songmark)
+  drop_na(songmark) %>% 
+  mutate(gender_factor = as_factor(gender_recoded))
 
 
 NegTrails <- ProcessedData %>% 
@@ -67,7 +69,11 @@ NegDif <- NegDif %>%
   naniar::replace_with_na_at(
     .vars = c("NegICC"), 
     condition = ~(.x) < 0 # remove negative values as they cannot be interpreted 
-  ) %>%  
+  )%>%
+    naniar::replace_with_na_at(
+    .vars = c("NegICC"), 
+    condition = ~(.x) > 1
+    ) %>% 
   mutate(NegDif = 1 - NegICC,
          NegDif_fz = psych::fisherz(NegICC)
   )
@@ -105,10 +111,14 @@ PosDif <- PosDif %>%
   naniar::replace_with_na_at(
     .vars = c("PosICC"), 
     condition = ~(.x) < 0 # remove negative values as they cannot be interpreted 
-  ) %>%  
-  mutate(PosDif = 1 - PosICC,
-         PosDif_fz = psych::fisherz(PosICC)
-  )
+  ) %>% 
+  naniar::replace_with_na_at(
+    .vars = c("PosICC"), 
+    condition = ~(.x) > 1
+  ) %>% 
+mutate(PosDif = 1 - PosICC,
+       PosDif_fz = psych::fisherz(PosICC)
+)
 
 ```
 The index from `r sum(is.na(PosDif$PosICC))` participants was not usable owing to being a negative ICC
@@ -119,7 +129,7 @@ Now I want to merge the emotion differntiation data with the self report data
 ```{r merge}
 
 MergedDif <- ProcessedData %>% 
-  select(id, depression:yearsplay) %>% 
+  select(id, depression:gender_factor, -gender_recoded) %>% 
   distinct(id, .keep_all = TRUE) %>% 
   inner_join(NegDif, by = "id") %>% 
   inner_join(PosDif, by = "id") 
@@ -138,15 +148,66 @@ MergedDif %>%
 And I will also look at the distributions 
 ```{r}
 
+MergedDif %>% 
+  select(contains("fz")) %>% 
+  pivot_longer(cols = everything(), 
+               names_to = "metric", 
+               values_to = "FisherZ") %>% 
+ggplot2::ggplot(aes(x = FisherZ)) +
+  ggplot2::geom_histogram(alpha = .4, fill = "red") +
+  ggplot2::geom_density(alpha = .2, fill = "red") +
+  ggplot2::theme_classic() +
+  ggplot2::facet_wrap(facets = "metric") +
+  ggplot2::ggtitle("Standardised Scores")
+
+MergedDif %>% 
+  select(contains("fz")) %>% 
+  pivot_longer(cols = everything(), 
+               names_to = "metric", 
+               values_to = "FisherZ") %>% 
+  mutate(LogFisherZ = log(FisherZ)) %>% 
+ggplot2::ggplot(aes(x = LogFisherZ)) +
+  ggplot2::geom_histogram(alpha = .4, fill = "red") +
+  ggplot2::geom_density(alpha = .2, fill = "red") +
+  ggplot2::theme_classic() +
+  ggplot2::facet_wrap(facets = "metric") +
+  ggplot2::ggtitle("Log Standardised Scores")
 ```
 
 I also want to do some exploratory regressions as well as my registered regression 
 
+Here are the tests for total alexithymia 
 ```{r}
-
-
 PosDifReg <- lm(PosDif_fz~TAS, 
                 data = MergedDif)
-plot_qq(PosDifReg)
+qqPlot(PosDifReg)
+
+Pos_AllPred_TAS_Total <- lm(PosDif_fz~., 
+                data = select(MergedDif, 
+                              TAS, 
+                              gender_factor, 
+                              depression, 
+                              PosDif_fz)
+)
+qqPlot(PosDifReg)
+
+anova(PosDifReg, TAS_AllPred)
+```
+
+```{r}
+PosDifReg <- lm(PosDif_fz~DIF + EOT + DDF, 
+                data = MergedDif)
+qqPlot(PosDifReg)
+
+Pos_AllPred_TAS_Total <- lm(PosDif_fz~., 
+                data = select(MergedDif, 
+                              TAS, 
+                              gender_factor, 
+                              depression, 
+                              PosDif_fz)
+)
+qqPlot(PosDifReg)
+
+anova(PosDifReg, TAS_AllPred)
 ```
 
