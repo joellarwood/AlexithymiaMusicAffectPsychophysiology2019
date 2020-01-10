@@ -182,32 +182,27 @@ PosDifReg <- lm(PosDif_fz~TAS,
                 data = MergedDif)
 qqPlot(PosDifReg)
 
-Pos_AllPred_TAS_Total <- lm(PosDif_fz~., 
-                data = select(MergedDif, 
-                              TAS, 
-                              gender_factor, 
-                              depression, 
-                              PosDif_fz)
-)
-qqPlot(PosDifReg)
+NegDifReg <- lm(NegDif_fz ~TAS, 
+                data = MergedDif)
 
-anova(PosDifReg, TAS_AllPred)
+qqPlot(NegDifReg)
+
+
+tab_model(PosDifReg, NegDifReg,
+          dv.labels = c("Negative Emotion Differentiation", 
+                        "Positive Emotion Differentiation"),
+          show.std = TRUE)
 ```
+here are the same models with depression controlled for 
 
 ```{r}
-PosDifReg <- lm(PosDif_fz~DIF + EOT + DDF, 
-                data = MergedDif)
-qqPlot(PosDifReg)
-
-Pos_AllPred_TAS_Total <- lm(PosDif_fz~., 
-                data = select(MergedDif, 
-                              TAS, 
-                              gender_factor, 
-                              depression, 
-                              PosDif_fz)
-)
-qqPlot(PosDifReg)
-
-anova(PosDifReg, TAS_AllPred)
+tab_model(lm(PosDif_fz~TAS + depression + gender_factor, 
+                data = MergedDif), 
+          lm(NegDif_fz~TAS + depression + gender_factor, 
+                data = MergedDif),
+          dv.labels = c("Negative Emotion Differentiation", 
+                        "Positive Emotion Differentiation")
+          )
 ```
+
 
